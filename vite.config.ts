@@ -21,10 +21,15 @@ function copyTmpoStaticPage() {
 }
 
 export default defineConfig({
+  root: "app",
   plugins: [react(), copyTmpoStaticPage()],
+  build: {
+    outDir: "../dist",
+    emptyOutDir: true,
+  },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
+      "@": resolve(__dirname, "app", "src"),
     },
   },
 })
