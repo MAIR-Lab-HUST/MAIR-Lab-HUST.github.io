@@ -2,9 +2,7 @@ import { motion } from "motion/react"
 import hustLogoUrl from "@/assets/HUST_logo.png"
 import mairLogoUrl from "@/assets/MAIR_logo.png"
 import specImageUrl from "@/assets/signature-spine-spec.jpg"
-
-const videoUrl =
-  "https://res.cloudinary.com/daklr2whx/video/upload/v1778602552/track-video_2_s9lp53.mp4"
+import videoUrl from "@/assets/track-video.mp4"
 
 const navLinks = [
   { label: "Research", href: "#research" },
@@ -119,6 +117,10 @@ function App() {
           loop
           muted
           playsInline
+          preload="auto"
+          onCanPlay={(event) => {
+            void event.currentTarget.play().catch(() => undefined)
+          }}
           className="absolute inset-0 h-full w-full object-cover object-bottom"
           aria-hidden="true"
         >

@@ -27,12 +27,13 @@
       <img src="references/signature-spine-mobile.png" alt="Signature Spine mobile implementation" />
       <h2>Monochrome revision</h2>
       <img src="references/signature-spine-monochrome.png" alt="White and black Signature Spine implementation" />
+      <img src="references/signature-spine-local-video.png" alt="Final implementation with the restored original-color video" />
       <h2>Validation</h2>
       <ul>
         <li>Reference header frame matched at 1242×65, x=79, y=22.</li>
         <li>Title footprint uses 91px Instrument Serif with controlled horizontal scaling.</li>
         <li>Body typography uses Inter 400/500 through the shared font token.</li>
-        <li>The supplied MAIR logo is bundled locally; the red-tinted mockup fallback was removed so only the video remains beneath the white fade.</li>
+        <li>The supplied MAIR logo and replacement video are bundled locally; the video plays beneath the white fade without a color filter.</li>
         <li>The HUST emblem is paired to the right of the MAIR mark with a vertical divider and responsive clear space.</li>
         <li>Desktop and mobile layouts have zero horizontal overflow.</li>
         <li>Vite production build and the existing <code>/TMPO/</code> route remain valid.</li>
