@@ -72,7 +72,7 @@ function SpecCrop({ className, label }: { className: string; label: string }) {
 function App() {
   return (
     <div className="latest-page text-black">
-      <header className="px-3 pt-[8px]">
+      <header className="px-3 pt-2 sm:px-6 sm:pt-5">
         <nav className="latest-nav mx-auto flex items-center justify-between rounded-full border border-black/10 px-[10px]">
           <a
             href="#"
@@ -108,7 +108,7 @@ function App() {
 
       <main>
         <section className="latest-hero flex flex-col items-center text-center" aria-labelledby="hero-title">
-          <div className="latest-lockup flex items-center justify-center gap-[8px]">
+          <div className="latest-lockup flex items-center justify-center">
             <img
               src={mairLogoUrl}
               alt="MAIR Lab geometric mark"

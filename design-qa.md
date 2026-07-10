@@ -1,22 +1,27 @@
-# Design QA — Latest Strip
+# Design QA — Latest Strip full-width correction
 
-Reference: `.lazyweb/image-to-code/latest-strip-2026-07-10/latest-strip-spec.jpg`  
-Final comparison: `.lazyweb/image-to-code/latest-strip-2026-07-10/latest-strip-final-comparison.png`
+Source visual truth: `.lazyweb/image-to-code/latest-strip-2026-07-10/latest-strip-spec.jpg` plus the user's explicit correction that the page must render full-width rather than at the report thumbnail scale.
 
-## Comparison history
+Implementation: `http://127.0.0.1:4173/`
 
-- Pass 1 — P1 fidelity: the extracted MAIR signature was too wide and the display title was horizontally oversized. Fixed the source-image crop and title scale in `app/src/index.css`.
-- Pass 2 — P1 layout: the Latest/content boundary and lower section dividers did not land on the reference coordinates. Re-measured the 1400 × 1074 mockup and matched the Latest block, section dividers, footer, and total page height.
-- Pass 3 — P2 asset alignment: refined the MAIR/HUST lockup proportions and optical offset while retaining the user-supplied logo assets.
+Target viewport: 1280 × 720 desktop, with 390 × 844 mobile resilience check.
 
-## Final verification
+## Findings
 
-- Desktop reference geometry: 1074px page height; 463px video; 418px content strip; divider positions matched.
-- Typography: Instrument Serif display treatment and Inter 400/500 body treatment verified.
-- Assets: supplied MAIR and HUST logos used; original-color video is playing with `filter: none`; no red overlay or red filter.
-- Content: I2E, TMPO, and SciIR appear in Latest with the requested external links.
-- Behavior: navigation anchor tested; external links have valid targets; desktop console has no errors.
-- Responsive checks: 768px and 390px viewports have zero horizontal overflow; mobile rows reflow without clipping.
-- Build: `npm run build` and `npm run build:pages` both pass.
+- [P1] Previous implementation interpreted the report image's thumbnail pixels as literal CSS dimensions, producing a 414px navigation, 463px video, 418px content column, and 5–8px desktop body type. This made the entire site look like a centered miniature.
+  - Fix applied: navigation now expands to 1240px, content to 1180px, the video spans 100% of the viewport, and desktop typography/spacing use normal full-page dimensions.
+- [P2] The previous fixed 1074px page height encoded the report screenshot canvas rather than the page's real responsive height.
+  - Fix applied: the page now uses content-driven height with `min-height: 100svh`.
+- [P2] Mobile widths inherited desktop thumbnail constraints.
+  - Fix applied: mobile video spans 100%, content uses the viewport minus 32px, and title wrapping is enabled below 640px.
 
-final result: passed
+## Verification
+
+- `npm run build:pages`: passed.
+- `git diff --check`: passed (line-ending warnings only).
+- Local HTTP response: 200.
+- Full visual comparison: blocked because the Codex in-app Browser webview could not attach to a new preview tab after repeated reconnect attempts.
+- Focused region comparison: blocked for the same reason.
+- Console and interaction checks: blocked for the same reason.
+
+final result: blocked

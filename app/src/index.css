@@ -30,6 +30,7 @@
 
   body {
     margin: 0;
+    overflow-x: hidden;
     background: #fff;
     font-family: var(--font-body);
     text-rendering: geometricPrecision;
@@ -38,75 +39,82 @@
 
 @layer components {
   .latest-page {
-    min-height: 1074px;
+    min-height: 100svh;
+    width: 100%;
     background: #fff;
   }
 
   .latest-nav {
-    width: min(100%, 414px);
-    height: 27px;
+    width: min(100%, 1240px);
+    height: 58px;
   }
 
   .latest-brand {
-    font-size: 9px;
+    font-size: 20px;
     letter-spacing: -0.025em;
   }
 
   .latest-nav-link {
-    font-size: 5.5px;
+    font-size: 13px;
     line-height: 1;
   }
 
   .latest-contact {
-    width: 45px;
-    height: 20px;
-    font-size: 5.5px;
+    width: 96px;
+    height: 42px;
+    font-size: 13px;
   }
 
   .latest-hero {
-    padding-top: 17px;
+    width: 100%;
+    padding-top: 70px;
   }
 
   .latest-lockup {
-    height: 56px;
-    transform: translate(5px, -4px);
+    height: 112px;
+    gap: 18px;
+    transform: translateX(10px);
   }
 
   .latest-mair-logo {
-    width: 42px;
-    height: 46px;
+    width: 84px;
+    height: 92px;
   }
 
   .latest-logo-rule {
-    height: 28px;
+    height: 60px;
   }
 
   .latest-hust-logo {
-    width: 49px;
-    height: 54px;
+    width: 98px;
+    height: 108px;
   }
 
   .latest-kicker {
-    margin-top: 1px;
-    font-size: 6px;
+    margin-top: 15px;
+    font-size: 12px;
     line-height: 1;
     letter-spacing: 0.43em;
   }
 
   .latest-title {
-    width: min(calc(100% - 32px), 360px);
-    margin: 8px auto 0;
-    font-size: 38px;
-    line-height: 0.82;
+    width: min(calc(100% - 80px), 1120px);
+    margin: 24px auto 0;
+    font-size: clamp(72px, 7vw, 100px);
+    line-height: 0.86;
     letter-spacing: -0.046em;
-    transform: scaleX(0.78);
+    transform: scaleX(0.9);
+  }
+
+  .latest-title span {
+    white-space: nowrap;
   }
 
   .latest-intro {
-    width: min(calc(100% - 32px), 360px);
-    margin: 10px auto 0;
-    font-size: 7.5px;
-    line-height: 1.55;
+    width: min(calc(100% - 64px), 760px);
+    margin: 28px auto 0;
+    font-size: 16px;
+    line-height: 1.65;
   }
 
   .spec-crop {
@@ -123,56 +131,58 @@
   }
 
   .latest-signature-crop {
-    width: min(100%, 463px);
-    height: 70px;
-    margin-top: 8px;
+    width: min(calc(100% - 64px), 1160px);
+    height: 175px;
+    margin-top: 26px;
   }
 
   .latest-signature-crop > img {
-    width: 525px;
-    height: 370px;
-    left: -24px;
-    top: -236px;
+    width: 1313px;
+    height: 925px;
+    left: -60px;
+    top: -590px;
     filter: grayscale(1) contrast(10) invert(1);
   }
 
   .latest-video {
-    width: min(calc(100% - 24px), 463px);
-    height: 62px;
-    margin-top: 4px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 7.3 / 1;
+    margin-top: 10px;
   }
 
   .latest-video-fade {
-    height: 37px;
+    height: 84px;
   }
 
   .latest-shell,
   .latest-content-shell,
   .latest-footer {
-    width: min(calc(100% - 36px), 418px);
+    width: min(calc(100% - 96px), 1180px);
   }
 
   .latest-shell {
-    margin: 26px auto 0;
+    margin: 72px auto 0;
   }
 
   .latest-heading {
-    height: 19px;
+    height: 50px;
     margin: 0;
     border-bottom: 1px solid rgb(0 0 0 / 18%);
-    font-size: 6.5px;
+    font-size: 15px;
     line-height: 1;
     letter-spacing: 0.34em;
   }
 
   .latest-row {
-    grid-template-columns: 43px minmax(0, 1fr) 67px;
-    min-height: 33px;
+    grid-template-columns: 110px minmax(0, 1fr) 160px;
+    min-height: 84px;
     border-bottom: 1px solid rgb(0 0 0 / 14%);
-    font-size: 7px;
+    font-size: 16px;
   }
 
-  .latest-row-type {
+  .latest-row-type,
+  .latest-row-date {
     color: #111;
   }
 
@@ -180,51 +190,47 @@
     color: #4667d7;
   }
 
-  .latest-row-date {
-    color: #111;
-  }
-
   .latest-content-shell {
-    margin: 25px auto 0;
+    margin: 64px auto 0;
   }
 
   .latest-info-section {
-    min-height: 92px;
-    padding: 7px 8px 11px;
+    min-height: 230px;
+    padding: 38px 20px 52px;
     border-bottom: 1px solid rgb(0 0 0 / 18%);
   }
 
   .latest-info-section:nth-child(2) {
-    min-height: 109px;
-    padding-top: 13px;
+    min-height: 270px;
+    padding-top: 48px;
   }
 
   .latest-info-section:nth-child(3) {
-    min-height: 107px;
-    padding-top: 13px;
+    min-height: 265px;
+    padding-top: 48px;
   }
 
   .latest-info-section:nth-child(4) {
-    min-height: 76px;
-    padding-top: 13px;
+    min-height: 190px;
+    padding-top: 48px;
   }
 
   .latest-info-section:nth-child(5) {
-    min-height: 90px;
-    padding-top: 13px;
+    min-height: 225px;
+    padding-top: 48px;
   }
 
   .latest-section-title {
     margin: 0;
-    font-size: 29px;
+    font-size: clamp(52px, 5vw, 72px);
     line-height: 0.95;
     letter-spacing: -0.035em;
   }
 
   .latest-section-copy {
-    max-width: 365px;
-    margin: 9px 0 0;
-    font-size: 8px;
+    max-width: 960px;
+    margin: 28px 0 0;
+    font-size: 20px;
     line-height: 1.65;
   }
 
@@ -233,51 +239,47 @@
   }
 
   .latest-footer-main {
-    min-height: 34px;
+    min-height: 84px;
   }
 
   .latest-footer-brand {
-    font-size: 10px;
+    font-size: 25px;
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
   .latest-footer-link {
-    padding: 0 8px;
-    font-size: 5px;
+    padding: 0 18px;
+    font-size: 12px;
     line-height: 1;
   }
 
   .latest-footer-rule {
-    height: 14px;
-    margin: 0 8px 0 2px;
+    height: 35px;
+    margin: 0 16px 0 6px;
   }
 
   .latest-social-link {
     display: grid;
-    width: 23px;
-    height: 23px;
+    width: 56px;
+    height: 56px;
     place-items: center;
     text-decoration: none;
   }
 
   .latest-social-link svg {
-    width: 10px;
-    height: 10px;
+    width: 24px;
+    height: 24px;
   }
 
   .latest-copyright {
-    margin: 10px 0 0;
-    font-size: 5.5px;
+    margin: 24px 0 40px;
+    font-size: 13px;
     line-height: 1;
     color: rgb(0 0 0 / 55%);
   }
 
   @media (max-width: 639px) {
-    .latest-page {
-      min-height: 100svh;
-    }
-
     .latest-nav {
       height: 38px;
       padding-inline: 13px;
@@ -294,11 +296,12 @@
     }
 
     .latest-hero {
-      padding-top: 22px;
+      padding-top: 26px;
     }
 
     .latest-lockup {
       height: 76px;
+      gap: 11px;
       transform: none;
     }
 
@@ -323,50 +326,68 @@
     }
 
     .latest-title {
+      width: min(calc(100% - 28px), 362px);
       margin-top: 12px;
-      font-size: 42px;
+      font-size: 44px;
       line-height: 0.9;
       transform: none;
     }
 
+    .latest-title span {
+      white-space: normal;
+    }
+
     .latest-intro {
+      width: min(calc(100% - 42px), 348px);
       margin-top: 15px;
       font-size: 10px;
       line-height: 1.6;
     }
 
     .latest-signature-crop {
-      width: 358px;
-      height: 78px;
-      margin-top: 9px;
+      width: calc(100% - 24px);
+      height: 88px;
+      margin-top: 12px;
     }
 
     .latest-signature-crop > img {
       width: 736px;
       height: 487px;
-      left: -189px;
-      top: -310px;
+      left: calc(50% - 368px);
+      top: -306px;
     }
 
     .latest-video {
-      height: 74px;
-      margin-top: 6px;
+      width: 100%;
+      height: 92px;
+      aspect-ratio: auto;
+      margin-top: 8px;
+    }
+
+    .latest-video-fade {
+      height: 48px;
+    }
+
+    .latest-shell,
+    .latest-content-shell,
+    .latest-footer {
+      width: calc(100% - 32px);
     }
 
     .latest-shell {
-      margin-top: 29px;
+      margin-top: 38px;
     }
 
     .latest-heading {
-      height: 24px;
-      font-size: 8px;
+      height: 30px;
+      font-size: 10px;
     }
 
     .latest-row {
-      grid-template-columns: 45px minmax(0, 1fr);
-      min-height: 50px;
-      padding-block: 8px;
-      font-size: 9px;
+      grid-template-columns: 52px minmax(0, 1fr);
+      min-height: 58px;
+      padding-block: 9px;
+      font-size: 10px;
     }
 
     .latest-row-date {
@@ -377,50 +398,50 @@
     }
 
     .latest-content-shell {
-      margin-top: 31px;
+      margin-top: 42px;
     }
 
     .latest-info-section,
     .latest-info-section:nth-child(n) {
       min-height: 0;
-      padding: 24px 4px 26px;
+      padding: 34px 4px 38px;
     }
 
     .latest-section-title {
-      font-size: 39px;
+      font-size: 44px;
     }
 
     .latest-section-copy {
-      margin-top: 13px;
-      font-size: 11px;
+      margin-top: 16px;
+      font-size: 13px;
       line-height: 1.65;
     }
 
     .latest-footer-main {
-      min-height: 48px;
+      min-height: 56px;
     }
 
     .latest-footer-brand {
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .latest-footer-rule {
-      height: 20px;
+      height: 22px;
     }
 
     .latest-social-link {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
     }
 
     .latest-social-link svg {
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
     }
 
     .latest-copyright {
-      margin: 14px 0 22px;
-      font-size: 7px;
+      margin: 16px 0 26px;
+      font-size: 8px;
     }
   }
 }
