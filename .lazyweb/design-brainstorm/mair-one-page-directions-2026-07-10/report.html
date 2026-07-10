@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MAIR Lab 一页式官网方向</title>
+    <style>
+      :root { color: #111; background: #f7f7f5; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+      * { box-sizing: border-box; }
+      body { margin: 0; line-height: 1.65; }
+      main { width: min(980px, calc(100% - 36px)); margin: 48px auto 96px; }
+      h1 { font-family: Georgia, serif; font-size: clamp(42px, 7vw, 76px); font-weight: 400; letter-spacing: -.04em; line-height: .98; }
+      h2 { margin-top: 64px; font-family: Georgia, serif; font-size: 36px; font-weight: 400; }
+      h3 { margin-top: 40px; font-size: 24px; }
+      .tldr { padding: 20px 22px; background: #eaf3ff; border: 1px solid #c9e0ff; border-radius: 14px; }
+      .option { margin-top: 56px; padding-top: 8px; border-top: 1px solid #bbb; }
+      img { display: block; width: 100%; margin: 22px 0; border-radius: 14px; box-shadow: 0 14px 34px rgba(0,0,0,.1); }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0; background: #fff; }
+      th, td { padding: 12px 14px; text-align: left; border: 1px solid #ddd; }
+      th { background: #eee; }
+      pre { overflow-x: auto; padding: 20px; background: #111; color: #f5f5f5; border-radius: 12px; line-height: 1.35; }
+      li + li { margin-top: 7px; }
+      .pick { display: inline-block; padding: 6px 10px; border: 1px solid #111; border-radius: 999px; font-size: 13px; }
+      @media (max-width: 640px) { main { margin-top: 28px; } table { font-size: 13px; } th, td { padding: 9px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>MAIR Lab<br />一页式官网方向</h1>
+      <p><a href="https://www.lazyweb.com/report/lazyweb/8f378bf4-1993-4557-9673-ee65ef979cf9/?source=create">打开 Lazyweb 在线视觉变体报告</a></p>
+      <div class="tldr"><strong>建议优先比较 A 与 B。</strong> A 是国际研究机构式的项目图谱；B 是延续 Signature Spine 的研究期刊。C 信息效率最高，D 最具电影感。</div>
+
+      <h2>Current State</h2>
+      <img src="references/current-state.png" alt="当前 MAIR Lab 首页" />
+
+      <h2>先选方向</h2>
+      <table>
+        <thead><tr><th>方向</th><th>新颖度</th><th>可实施性</th><th>适合</th></tr></thead>
+        <tbody>
+          <tr><td>A. Research Atlas</td><td>高</td><td>高</td><td>项目与开源成果</td></tr>
+          <tr><td>B. Living Journal</td><td>高</td><td>高</td><td>叙事与持续更新</td></tr>
+          <tr><td>C. Signal Spine</td><td>中高</td><td>很高</td><td>论文和里程碑较多</td></tr>
+          <tr><td>D. Cinematic Field Notes</td><td>很高</td><td>中</td><td>高质量视频与 Demo</td></tr>
+        </tbody>
+      </table>
+
+      <section class="option">
+        <span class="pick">推荐 01</span>
+        <h2>A. Research Atlas</h2>
+        <img src="references/architecture-project-index.png" alt="建筑事务所项目索引参考" />
+        <p>把研究方向处理成项目场域：大图或 demo 帧、项目代号、研究问题与论文/代码状态。使用细黑线、编号和无缝网格，不做通用圆角卡片。</p>
+        <pre>HERO + VIDEO
+01 PERCEPTION  | 02 GENERATION
+03 REASONING   | 04 ACTION
+FEATURED SYSTEM / TMPO
+OPEN SOURCE LEDGER
+VISION → PAPERS → PEOPLE → JOIN</pre>
+      </section>
+
+      <section class="option">
+        <span class="pick">推荐 02</span>
+        <h2>B. Living Journal</h2>
+        <img src="references/editorial-archive.png" alt="编辑档案参考" />
+        <p>把官网当作不断更新的研究期刊。项目、论文、代码与新闻以 Feature / Note / Release / Paper 标签组成编辑节奏，最能延续当前“署名宣言”的人格。</p>
+        <pre>HERO / COVER
+ISSUE 01 + FEATURE STORY
+RESEARCH FEATURES
+2026 ARCHIVE: PAPER / RELEASE / NEWS
+MANIFESTO → TEAM → JOIN</pre>
+      </section>
+
+      <section class="option">
+        <h2>C. Signal Spine</h2>
+        <img src="references/research-timeline.png" alt="研究时间索引参考" />
+        <p>沿页面中央竖线展开研究节点、项目、论文和成员，直接延续 Signature Spine 概念。信息密度最高，也最容易持续维护。</p>
+        <pre>PERCEPTION       ● 2026
+                 │       GENERATION
+REASONING        ●       ACTION
+TMPO             ● 2025
+PUBLICATIONS     ●       OPEN SOURCE
+PEOPLE           ●       JOIN US</pre>
+      </section>
+
+      <section class="option">
+        <h2>D. Cinematic Field Notes</h2>
+        <img src="references/cinematic-manifesto.png" alt="电影化内容参考" />
+        <p>每个研究方向是一章全宽影像，文字像片头字幕一样出现。视觉最强，但需要持续提供高质量视频、demo 与图像。</p>
+        <pre>CHAPTER 01 / PERCEPTION  [FULL-BLEED DEMO]
+CHAPTER 02 / GENERATION  [FULL-BLEED DEMO]
+CHAPTER 03 / REASONING   [FULL-BLEED DEMO]
+DEMO REEL → MANIFESTO → PAPERS → PEOPLE</pre>
+      </section>
+
+      <h2>固定内容骨架</h2>
+      <img src="references/team-directory.png" alt="团队目录参考" />
+      <ul>
+        <li>Research：Perception / Generation / Reasoning / Action</li>
+        <li>Featured Projects：至少两个重点系统</li>
+        <li>Open Source：仓库、论文、Demo</li>
+        <li>Publications / News：按年份维护</li>
+        <li>Vision、People、Join Us 与双 Logo Footer</li>
+      </ul>
+    </main>
+  </body>
+</html>
