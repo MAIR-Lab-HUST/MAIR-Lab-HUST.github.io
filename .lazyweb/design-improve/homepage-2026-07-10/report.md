@@ -2,7 +2,7 @@
 
 ## TL;DR
 
-Implemented the report's **Signature Spine** variant using its mockup as the visual source of truth. The result matches the 1400×974 reference composition: pill navigation, geometric mark, expanded editorial title, three-line description, oversized handwritten MAIR signature, and the red landscape/video base.
+Implemented the report's **Signature Spine** variant using its mockup as the visual source of truth, then adapted it to the requested monochrome art direction. The 1400×974 composition is preserved while the canvas is now white, the typography and signature are black, and the supplied MAIR logo replaces the mockup mark.
 
 ## Source Mockup
 
@@ -12,19 +12,24 @@ Implemented the report's **Signature Spine** variant using its mockup as the vis
 
 ![Previous implementation](references/signature-spine-before.png)
 
-## Final Implementation
+## Initial Mockup Match
 
 ![Desktop implementation](references/signature-spine-final.png)
 
 ![Mobile implementation](references/signature-spine-mobile.png)
+
+## Monochrome Revision
+
+![White and black Signature Spine implementation](references/signature-spine-monochrome.png)
 
 ## Match Notes
 
 - Header frame: 1242×65 at x=79, y=22 on the 1400×974 reference viewport.
 - Editorial title: 91px Instrument Serif, visually condensed to the mockup's 922px footprint.
 - Body typography: Inter 400/500 through the shared `--font-body` token.
-- Copy, line breaks, vertical hierarchy, and red palette follow the mockup.
-- The exact mockup logo and handwritten signature are bundled as a Vite-hashed reference asset.
+- Copy, line breaks, and vertical hierarchy follow the mockup; the requested white/black palette is applied throughout.
+- The supplied MAIR logo is bundled locally as a Vite-hashed asset, while the handwritten signature is rendered black on white.
+- The bottom landscape/video base is monochrome and fades into the white page.
 - Desktop and 390px mobile layouts have zero horizontal overflow.
 - The bottom landscape acts as a deterministic fallback while the supplied Cloudinary video is unavailable.
 

@@ -1,4 +1,5 @@
 import { motion } from "motion/react"
+import mairLogoUrl from "@/assets/MAIR_logo.png"
 import specImageUrl from "@/assets/signature-spine-spec.jpg"
 
 const videoUrl =
@@ -21,12 +22,12 @@ function SpecCrop({ className, label }: { className: string; label: string }) {
 
 function App() {
   return (
-    <section className="signature-page relative w-full overflow-hidden text-white">
+    <section className="signature-page relative w-full overflow-hidden text-black">
       <header className="absolute inset-x-0 top-[22px] z-40 px-5 md:px-[5.65vw]">
-        <nav className="mx-auto flex h-[65px] max-w-[1242px] items-center justify-between rounded-full border border-white/15 px-5 md:px-[20px]">
+        <nav className="mx-auto flex h-[65px] max-w-[1242px] items-center justify-between rounded-full border border-black/15 px-5 md:px-[20px]">
           <a
             href="#"
-            className="text-[21px] leading-none tracking-[-0.03em] text-white no-underline md:text-[24px]"
+            className="text-[21px] leading-none tracking-[-0.03em] text-black no-underline md:text-[24px]"
             style={{ fontFamily: "'Instrument Serif', serif" }}
             aria-label="MAIR Lab homepage"
           >
@@ -38,7 +39,7 @@ function App() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-[13px] font-normal text-white/90 no-underline transition-opacity duration-200 hover:opacity-65"
+                className="text-[13px] font-normal text-black/90 no-underline transition-opacity duration-200 hover:opacity-65"
               >
                 {link.label}
               </a>
@@ -47,7 +48,7 @@ function App() {
 
           <motion.a
             href="mailto:mzyth@hust.edu.cn"
-            className="flex h-[43px] min-w-[92px] items-center justify-center rounded-full border border-white/15 px-5 text-[13px] font-semibold text-white no-underline transition-colors duration-200 hover:bg-white/10"
+            className="flex h-[43px] min-w-[92px] items-center justify-center rounded-full border border-black/15 px-5 text-[13px] font-semibold text-black no-underline transition-colors duration-200 hover:bg-black/5"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
@@ -59,19 +60,21 @@ function App() {
       <main
         className="relative z-20 flex w-full flex-col items-center px-5 pb-[170px] pt-[130px] text-center md:px-8"
       >
-        <div>
-          <SpecCrop className="logo-spec-crop" label="MAIR Lab geometric mark" />
-        </div>
+        <img
+          src={mairLogoUrl}
+          alt="MAIR Lab geometric mark"
+          className="h-[105px] w-[105px] object-contain md:h-[140px] md:w-[140px]"
+        />
 
         <p
-          className="mt-[24px] text-[10px] font-semibold uppercase leading-none tracking-[0.46em] text-white/95 sm:text-[12px] md:mt-[22px] md:translate-x-[7px] md:tracking-[0.48em]"
+          className="mt-[24px] text-[10px] font-semibold uppercase leading-none tracking-[0.46em] text-black/95 sm:text-[12px] md:mt-[22px] md:translate-x-[7px] md:tracking-[0.48em]"
         >
           Multimodal Artificial Intelligence Research Lab
         </p>
 
         <div className="mt-[22px]">
           <h1
-            className="signature-title text-[46px] font-normal leading-[0.98] tracking-[-0.045em] text-white sm:text-[58px]"
+            className="signature-title text-[46px] font-normal leading-[0.98] tracking-[-0.045em] text-black sm:text-[58px]"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             <span className="block">Engineering the next frontier of</span>
@@ -80,7 +83,7 @@ function App() {
         </div>
 
         <p
-          className="mt-[25px] max-w-[800px] text-[14px] font-normal leading-[1.6] text-white md:translate-x-[20px] md:text-[18px]"
+          className="mt-[25px] max-w-[800px] text-[14px] font-normal leading-[1.6] text-black md:translate-x-[20px] md:text-[18px]"
         >
           <span className="md:block">
             At MAIR Lab, we build multimodal systems that move from perception to generation,
@@ -110,7 +113,7 @@ function App() {
         >
           <source src={videoUrl} type="video/mp4" />
         </video>
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[110px] bg-gradient-to-b from-[#D80200] to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[110px] bg-gradient-to-b from-white to-transparent" />
       </div>
     </section>
   )
