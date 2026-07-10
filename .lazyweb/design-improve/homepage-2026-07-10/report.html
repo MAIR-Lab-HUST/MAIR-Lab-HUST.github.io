@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Signature Spine Implementation</title>
+    <style>
+      :root { color: #182230; background: #f6f8fb; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+      body { margin: 0; line-height: 1.65; }
+      main { width: min(900px, calc(100% - 40px)); margin: 48px auto; }
+      h1, h2 { line-height: 1.15; letter-spacing: -0.025em; }
+      h2 { margin-top: 42px; }
+      .tldr { padding: 18px 20px; background: #eaf3ff; border: 1px solid #c9e0ff; border-radius: 14px; }
+      img { display: block; max-width: 100%; margin: 20px 0; border-radius: 16px; box-shadow: 0 12px 30px rgba(24, 34, 48, 0.12); }
+      li + li { margin-top: 8px; }
+      a { color: #155eef; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Signature Spine Implementation</h1>
+      <div class="tldr">The report mockup was treated as the source of truth and implemented at its native 1400×974 reference canvas, with a responsive 390px adaptation.</div>
+      <h2>Source mockup</h2>
+      <img src="references/signature-spine-spec.jpg" alt="Signature Spine source mockup" />
+      <h2>Final implementation</h2>
+      <img src="references/signature-spine-final.png" alt="Signature Spine desktop implementation" />
+      <img src="references/signature-spine-mobile.png" alt="Signature Spine mobile implementation" />
+      <h2>Validation</h2>
+      <ul>
+        <li>Reference header frame matched at 1242×65, x=79, y=22.</li>
+        <li>Title footprint uses 91px Instrument Serif with controlled horizontal scaling.</li>
+        <li>Body typography uses Inter 400/500 through the shared font token.</li>
+        <li>Desktop and mobile layouts have zero horizontal overflow.</li>
+        <li>Vite production build and the existing <code>/TMPO/</code> route remain valid.</li>
+      </ul>
+      <p><a href="https://www.lazyweb.com/report/lazyweb/d9546379-cb7f-490f-96ee-74c8163e1ffd/?source=create">Open the source Lazyweb report</a>.</p>
+    </main>
+  </body>
+</html>
