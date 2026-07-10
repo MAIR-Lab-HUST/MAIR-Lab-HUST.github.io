@@ -29,7 +29,8 @@ Implemented the report's **Signature Spine** variant using its mockup as the vis
 - Body typography: Inter 400/500 through the shared `--font-body` token.
 - Copy, line breaks, and vertical hierarchy follow the mockup; the requested white/black palette is applied throughout.
 - The supplied MAIR logo is bundled locally as a Vite-hashed asset, while the handwritten signature is rendered black on white.
-- The bottom landscape/video base keeps its original color and fades into the white page.
+- The HUST emblem is paired to the right of the MAIR mark with a restrained vertical divider and responsive clear space.
+- The red-tinted mockup fallback has been removed; only the video itself remains beneath the white fade.
 - Desktop and 390px mobile layouts have zero horizontal overflow.
 - The bottom landscape acts as a deterministic fallback while the supplied Cloudinary video is unavailable.
 

@@ -1,4 +1,5 @@
 import { motion } from "motion/react"
+import hustLogoUrl from "@/assets/HUST_logo.png"
 import mairLogoUrl from "@/assets/MAIR_logo.png"
 import specImageUrl from "@/assets/signature-spine-spec.jpg"
 
@@ -60,11 +61,22 @@ function App() {
       <main
         className="relative z-20 flex w-full flex-col items-center px-5 pb-[170px] pt-[130px] text-center md:px-8"
       >
-        <img
-          src={mairLogoUrl}
-          alt="MAIR Lab geometric mark"
-          className="h-[105px] w-[105px] object-contain md:h-[140px] md:w-[140px]"
-        />
+        <div className="flex h-[105px] items-center justify-center gap-[16px] md:h-[140px] md:gap-[22px]">
+          <img
+            src={mairLogoUrl}
+            alt="MAIR Lab geometric mark"
+            className="h-[78px] w-[78px] object-contain md:h-[118px] md:w-[118px]"
+          />
+          <span
+            className="h-[48px] w-px shrink-0 bg-black/25 md:h-[64px]"
+            aria-hidden="true"
+          />
+          <img
+            src={hustLogoUrl}
+            alt="Huazhong University of Science and Technology emblem"
+            className="h-[72px] w-auto object-contain md:h-[104px]"
+          />
+        </div>
 
         <p
           className="mt-[24px] text-[10px] font-semibold uppercase leading-none tracking-[0.46em] text-black/95 sm:text-[12px] md:mt-[22px] md:translate-x-[7px] md:tracking-[0.48em]"
@@ -101,7 +113,6 @@ function App() {
 
       <div
         className="signature-video-base absolute inset-x-0 bottom-0 z-10 h-[132px] md:h-[164px]"
-        style={{ backgroundImage: `url(${specImageUrl})` }}
       >
         <video
           autoPlay

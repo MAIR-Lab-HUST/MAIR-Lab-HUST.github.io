@@ -58,12 +58,6 @@
     filter: grayscale(1) contrast(10) invert(1);
   }
 
-  .signature-video-base {
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 100% auto;
-  }
-
   .signature-title {
     max-width: 1100px;
   }
@@ -93,8 +87,5 @@
       top: -310px;
     }
 
-    .signature-video-base {
-      background-size: auto 784px;
-    }
   }
 }
