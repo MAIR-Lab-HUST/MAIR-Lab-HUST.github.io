@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editorial feature comparison</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 24px; background: #dedede; color: #111; font: 12px Arial, sans-serif; }
+      main { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1240px; margin: 0 auto; }
+      figure { margin: 0; padding: 14px; background: white; border: 1px solid #bbb; }
+      figcaption { margin-bottom: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+      .reference { display: block; width: 100%; height: auto; }
+      .implementation-window { position: relative; width: 100%; aspect-ratio: 590 / 613; overflow: hidden; background: white; }
+      .implementation { position: absolute; width: 640px; max-width: none; left: -25px; top: -1336.5px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <figure>
+        <figcaption>Lazyweb reference</figcaption>
+        <img class="reference" src="editorial-features-spec-crop.png" alt="Lazyweb editorial feature reference" />
+      </figure>
+      <figure>
+        <figcaption>Implementation</figcaption>
+        <div class="implementation-window">
+          <img class="implementation" src="editorial-full-page.png" alt="Implemented editorial feature module" />
+        </div>
+      </figure>
+    </main>
+  </body>
+</html>

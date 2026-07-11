@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAIR Lab Homepage Design Improvement</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #f6f7f9; color: #161616; font: 16px/1.65 Arial, sans-serif; }
+      main { width: min(calc(100% - 40px), 900px); margin: 36px auto; padding: 48px; background: white; }
+      h1, h2, h3 { line-height: 1.15; }
+      h1 { margin-top: 0; font-size: 40px; }
+      h2 { margin-top: 44px; padding-top: 24px; border-top: 1px solid #ddd; }
+      h3 { margin-top: 32px; }
+      img { display: block; max-width: 100%; height: auto; margin: 18px 0 28px; border-radius: 12px; box-shadow: 0 8px 24px rgb(0 0 0 / 9%); }
+      .summary { padding: 20px 22px; border: 1px solid #cbd9ff; background: #edf3ff; }
+      a { color: #4667d7; }
+      @media (max-width: 640px) { main { padding: 26px 20px; } h1 { font-size: 32px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>MAIR Lab Homepage Structure</h1>
+      <p class="summary">Reduce the page to three primary editorial sections—Research, Publications, and Join Us—while keeping News as a compact utility list.</p>
+      <p><a href="https://www.lazyweb.com/report/lazyweb/c8654a0b-88c0-4484-9f59-f514344eae29/?source=create">Open the hosted Lazyweb report</a></p>
+      <h2>Current State</h2>
+      <img src="references/current.png" alt="Previous MAIR Lab homepage structure" />
+      <h2>Implemented Improvements</h2>
+      <h3>One Publications section</h3>
+      <p>Selected Work and its category strip are removed. Only publication records remain, ordered newest first.</p>
+      <img src="references/selected-work-reference.png" alt="Selected Work reference" />
+      <h3>Metadata badge</h3>
+      <p>Each paper now carries one compact venue/type badge directly below its title.</p>
+      <img src="references/publication-badge-reference.png" alt="Publication badge reference" />
+      <h3>Lab News</h3>
+      <p>The compact Latest list becomes a reverse-chronological News list.</p>
+      <img src="references/news-reference.png" alt="News reference" />
+      <h3>Research direction cards</h3>
+      <p>Four rounded visual cards explain the lab’s research directions in plain language.</p>
+      <img src="references/research-cards-reference.png" alt="Research card reference" />
+    </main>
+  </body>
+</html>

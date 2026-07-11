@@ -4,60 +4,121 @@ import hustLogoUrl from "@/assets/HUST_logo.png"
 import mairLogoUrl from "@/assets/MAIR_logo.png"
 import specImageUrl from "@/assets/signature-spine-spec.jpg"
 import videoUrl from "@/assets/track-video.mp4"
+import i2eParadigmUrl from "@/assets/work/i2e-paradigm.png"
+import sciirDatasetUrl from "@/assets/work/sciir-dataset.png"
+import sciirOverviewUrl from "@/assets/work/sciir-overview.png"
+import tmpoComparisonUrl from "@/assets/work/tmpo-comparison.png"
+import tmpoDemoUrl from "@/assets/work/tmpo-demo.png"
 
 const navLinks = [
   { label: "Research", href: "#research" },
-  { label: "Open Source", href: "#open-source" },
-  { label: "Vision", href: "#vision" },
   { label: "Join Us", href: "#join" },
+  { label: "Publications", href: "#publications" },
 ]
 
-const latestItems = [
-  {
-    type: "Paper:",
-    title: "I2E: From Image Pixels to Actionable Interactive Environments for Text-Guided Image Editing",
-    date: "ACL 2026",
-    href: "https://scholar.google.com.hk/citations?view_op=view_citation&hl=zh-CN&user=pJRStG4AAAAJ&sortby=pubdate&citation_for_view=pJRStG4AAAAJ:abG-DnoFyZgC",
-  },
-  {
-    type: "Code:",
-    title: "TMPO",
-    date: "May 2026",
-    href: "https://github.com/MAIR-Lab-HUST/TMPO",
-  },
+const newsItems = [
   {
     type: "News:",
     title: "SciIR Accepted to ECCV 2026",
     date: "June 2026",
     href: "https://github.com/MAIR-Lab-HUST/SciIR",
   },
+  {
+    type: "News:",
+    title: "TMPO Preprint Released",
+    date: "May 2026",
+    href: "https://arxiv.org/abs/2605.10983",
+  },
+  {
+    type: "News:",
+    title: "I2E Released: From Image Pixels to Actionable Interactive Environments",
+    date: "January 2026",
+    href: "https://arxiv.org/abs/2601.03741",
+  },
 ]
 
-const sections = [
+const researchAreas = [
   {
-    id: "research",
-    title: "Research",
-    copy: "We investigate foundation models that perceive, reason, and act across modalities and tasks—advancing the state of the art and solving real-world problems.",
+    title: "Multimodal Generation",
+    description:
+      "Building generative models that connect language, vision, and structured reasoning across diverse creative tasks.",
+    image: tmpoDemoUrl,
+    imageAlt: "A grid of diverse text-to-image generations from TMPO",
   },
   {
-    id: "open-source",
-    title: "Open Source",
-    copy: "We release high-quality code, models, and datasets to empower the community and accelerate progress together.",
+    title: "Interactive Environments",
+    description:
+      "Turning visual content into actionable worlds that agents can understand, edit, and interact with.",
+    image: i2eParadigmUrl,
+    imageAlt: "I2E image-to-environment paradigm",
   },
   {
-    id: "vision",
-    title: "Vision",
-    copy: "Our vision is a future where multimodal intelligence understands the world deeply and acts responsibly to augment human potential.",
+    title: "Diffusion Alignment",
+    description:
+      "Aligning diffusion models with human intent while preserving diversity, efficiency, and reliable generation quality.",
+    image: tmpoComparisonUrl,
+    imageAlt: "TMPO comparison of diffusion alignment methods",
   },
   {
-    id: "publications",
-    title: "Publications / News",
-    copy: "Explore our latest publications, technical reports, and news updates.",
+    title: "Scientific Visual Intelligence",
+    description:
+      "Developing models that restore, interpret, and reason over scientific figures without losing their semantic meaning.",
+    image: sciirDatasetUrl,
+    imageAlt: "SciIR scientific image restoration data construction pipeline",
+  },
+]
+
+const publications = [
+  {
+    badge: "Paper · ECCV 2026",
+    date: "June 2026",
+    title: "SciIR: Towards Scientific Image Restoration",
+    authors:
+      "Zhiyuan Ma, Zhengfeng Shi, Yuning An, Peize Li, Jiabao Wei, Ruijie Li, Junhao Xiao, Jianjun Li, Bowen Zhou",
+    description:
+      "A unified study of scientific image restoration spanning data, evaluation, and reasoning-aware models for figures whose correctness matters as much as visual quality.",
+    image: sciirOverviewUrl,
+    imageAlt: "Overview of the SciIR dataset, benchmark, and scientific image restoration task",
+    imageHref: "https://sci-ir.vercel.app/sciir.html",
+    links: [
+      { label: "Paper", href: "https://arxiv.org/abs/2606.30124" },
+      { label: "Code", href: "https://github.com/MAIR-Lab-HUST/SciIR" },
+      { label: "Project", href: "https://sci-ir.vercel.app/sciir.html" },
+    ],
   },
   {
-    id: "join",
-    title: "Team / Join Us",
-    copy: "We are a diverse and collaborative team. We are always looking for passionate researchers and engineers to join us.",
+    badge: "Paper · Preprint 2026",
+    date: "May 2026",
+    title: "TMPO: Trajectory Matching Policy Optimization for Diverse and Efficient Diffusion Alignment",
+    authors:
+      "Jiaming Li, Chenyu Zhu, Nanxi Yi, Youjun Bao, Li Sun, Quanying Lv, Xiang Fang, Daizong Liu, Jianjun Li, Kun He, Bowen Zhou, Zhiyuan Ma",
+    description:
+      "TMPO aligns diffusion trajectories at the distribution level, improving sample diversity while reducing the training cost of reward-guided generation.",
+    image: tmpoComparisonUrl,
+    imageAlt: "Comparison of diffusion alignment methods and their generated image diversity",
+    imageHref: "https://arxiv.org/abs/2605.10983",
+    links: [
+      { label: "Paper", href: "https://arxiv.org/abs/2605.10983" },
+      { label: "Code", href: "https://github.com/MAIR-Lab-HUST/TMPO" },
+      { label: "Project", href: "https://mair-lab-hust.github.io/TMPO/" },
+    ],
+  },
+  {
+    badge: "Paper · ACL 2026",
+    date: "January 2026",
+    title: "I2E: From Image Pixels to Actionable Interactive Environments for Text-Guided Image Editing",
+    authors:
+      "Jinghan Yu, Junhao Xiao, Chenyu Zhu, Jiaming Li, Jia Li, Hanming Deng, Xirui Wang, Guoli Jia, Jianjun Li, Zhiyuan Ma, Xiang Bai, Bowen Zhou",
+    description:
+      "A Decompose-then-Action framework that turns edited pixels into structured, physics-aware environments that remain interactive after generation.",
+    image: i2eParadigmUrl,
+    imageAlt: "I2E paradigm comparing pixel redraws with structured interactive environment editing",
+    imageHref: "https://image2env.github.io/",
+    links: [
+      { label: "Paper", href: "https://arxiv.org/abs/2601.03741" },
+      { label: "Project", href: "https://image2env.github.io/" },
+      { label: "ACL", href: "https://aclanthology.org/2026.acl-long.2076/" },
+    ],
   },
 ]
 
@@ -118,7 +179,7 @@ function App() {
             <img
               src={hustLogoUrl}
               alt="Huazhong University of Science and Technology emblem"
-              className="latest-hust-logo object-fill"
+              className="latest-hust-logo object-contain"
             />
           </div>
 
@@ -166,13 +227,13 @@ function App() {
           </div>
         </section>
 
-        <section className="latest-shell" aria-labelledby="latest-heading">
-          <h2 id="latest-heading" className="latest-heading font-semibold uppercase">
-            Latest
+        <section className="latest-shell" aria-labelledby="news-heading">
+          <h2 id="news-heading" className="latest-heading font-semibold uppercase">
+            News
           </h2>
           <div>
-            {latestItems.map((item) => (
-              <div key={item.type} className="latest-row grid items-center">
+            {newsItems.map((item) => (
+              <div key={item.title} className="latest-row grid items-center">
                 <span className="latest-row-type font-medium">{item.type}</span>
                 <a
                   href={item.href}
@@ -189,17 +250,102 @@ function App() {
         </section>
 
         <div className="latest-content-shell">
-          {sections.map((section) => (
-            <section key={section.id} id={section.id} className="latest-info-section scroll-mt-8">
-              <h2
-                className="latest-section-title font-normal"
-                style={{ fontFamily: "'Instrument Serif', serif" }}
-              >
-                {section.title}
-              </h2>
-              <p className="latest-section-copy">{section.copy}</p>
-            </section>
-          ))}
+          <section id="research" className="homepage-major-section research-section scroll-mt-8">
+            <h2
+              className="latest-section-title font-normal"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              Research
+            </h2>
+            <p className="latest-section-copy">
+              We investigate multimodal systems that perceive, generate, reason, and act—turning
+              frontier research into reliable intelligence for complex real-world settings.
+            </p>
+
+            <div className="research-area-grid">
+              {researchAreas.map((area) => (
+                <article key={area.title} className="research-area-card">
+                  <h3 style={{ fontFamily: "'Instrument Serif', serif" }}>{area.title}</h3>
+                  <div className="research-area-figure">
+                    <img src={area.image} alt={area.imageAlt} />
+                  </div>
+                  <p>{area.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="join" className="homepage-major-section join-section scroll-mt-8">
+            <h2
+              className="latest-section-title font-normal"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              Join Us
+            </h2>
+            <p className="latest-section-copy">
+              We are a diverse and collaborative team. We are always looking for passionate
+              researchers and engineers to join us.
+            </p>
+            <a className="join-contact-link" href="mailto:mzyth@hust.edu.cn">
+              Contact the lab <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+
+          <section
+            id="publications"
+            className="homepage-major-section publications-section scroll-mt-8"
+          >
+            <h2
+              className="latest-section-title font-normal"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              Publications
+            </h2>
+            <p className="latest-section-copy">
+              Recent publications from the lab, ordered from newest to oldest.
+            </p>
+
+            <div className="publication-list">
+              {publications.map((item, index) => (
+                <article
+                  key={item.title}
+                  id={`publication-${index + 1}`}
+                  className="publication-feature"
+                >
+                  <a
+                    href={item.imageHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="publication-figure"
+                    aria-label={`Open ${item.title}`}
+                  >
+                    <img src={item.image} alt={item.imageAlt} />
+                  </a>
+
+                  <div className="publication-copy">
+                    <h3
+                      className="publication-title"
+                      style={{ fontFamily: "'Instrument Serif', serif" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <span className="publication-badge">{item.badge}</span>
+                    <p className="publication-authors">{item.authors}</p>
+                    <p className="publication-description">{item.description}</p>
+                    <div className="publication-links" aria-label={`${item.title} links`}>
+                      {item.links.map((link) => (
+                        <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                          <span>{link.label}</span>
+                          <span aria-hidden="true">↗</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
         </div>
       </main>
 
