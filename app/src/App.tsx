@@ -82,11 +82,23 @@ const siteCopy = {
     news: {
       heading: "News",
       items: [
-        { type: "News:", title: "SciIR Accepted to ECCV 2026", date: "June 2026" },
-        { type: "News:", title: "TMPO Preprint Released", date: "May 2026" },
+        {
+          type: "News:",
+          title: "SciIR Accepted to ECCV 2026",
+          description: "SciIR, our latest research work, has been accepted to ECCV 2026.",
+          date: "June 2026",
+        },
+        {
+          type: "News:",
+          title: "TMPO Preprint Released",
+          description: "The preprint of TMPO is now available on arXiv.",
+          date: "May 2026",
+        },
         {
           type: "News:",
           title: "I2E Released: From Image Pixels to Actionable Interactive Environments",
+          description:
+            "We are excited to announce the release of I2E, a novel framework that transforms image pixels into actionable and interactive 3D environments.",
           date: "January 2026",
         },
       ],
@@ -250,11 +262,22 @@ const siteCopy = {
     news: {
       heading: "实验室动态",
       items: [
-        { type: "动态：", title: "SciIR 被 ECCV 2026 接收", date: "2026 年 6 月" },
-        { type: "动态：", title: "TMPO 预印本正式发布", date: "2026 年 5 月" },
+        {
+          type: "动态：",
+          title: "SciIR 被 ECCV 2026 接收",
+          description: "SciIR 是实验室最新研究成果，已被 ECCV 2026 接收。",
+          date: "2026 年 6 月",
+        },
+        {
+          type: "动态：",
+          title: "TMPO 预印本正式发布",
+          description: "TMPO 的预印本现已发布于 arXiv。",
+          date: "2026 年 5 月",
+        },
         {
           type: "动态：",
           title: "I2E 发布：从图像像素到可执行的交互环境",
+          description: "我们很高兴发布 I2E：一个将图像像素转化为可执行、可交互三维环境的新框架。",
           date: "2026 年 1 月",
         },
       ],
@@ -522,20 +545,23 @@ function App() {
           </div>
         </section>
 
-        <section className="latest-shell" aria-labelledby="news-heading">
+        <section id="news" className="latest-shell scroll-mt-24" aria-labelledby="news-heading">
           <h2 id="news-heading" className="latest-heading font-semibold uppercase">{copy.news.heading}</h2>
           <div>
             {copy.news.items.map((item, index) => (
-              <div key={newsHrefs[index]} className="latest-row grid items-center">
+              <div key={newsHrefs[index]} className="latest-row grid items-start">
                 <span className="latest-row-type font-medium">{item.type}</span>
-                <a
-                  href={newsHrefs[index]}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="latest-row-title truncate font-medium no-underline transition-opacity duration-200 hover:opacity-60"
-                >
-                  {item.title}
-                </a>
+                <div className="latest-row-body">
+                  <a
+                    href={newsHrefs[index]}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="latest-row-title font-medium no-underline transition-opacity duration-200 hover:opacity-60"
+                  >
+                    {item.title}
+                  </a>
+                  <p className="latest-row-description">{item.description}</p>
+                </div>
                 <time className="latest-row-date text-right font-normal">{item.date}</time>
               </div>
             ))}
