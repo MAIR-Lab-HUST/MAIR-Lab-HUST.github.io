@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
-import { EnvelopeSimple, GithubLogo } from "@phosphor-icons/react"
+import { Code, EnvelopeSimple, FileText, GithubLogo, GlobeSimple, LinkSimple } from "@phosphor-icons/react"
 import { motion } from "motion/react"
 import hustLogoUrl from "@/assets/HUST_logo.png"
 import mairLogoUrl from "@/assets/MAIR_logo.png"
 import specImageUrl from "@/assets/signature-spine-spec.jpg"
 import videoUrl from "@/assets/track-video.mp4"
-import i2eParadigmUrl from "@/assets/work/i2e-paradigm.png"
-import sciirDatasetUrl from "@/assets/work/sciir-dataset.png"
+import i2eMethodUrl from "@/assets/work/i2e-method.png"
 import sciirOverviewUrl from "@/assets/work/sciir-overview.png"
-import tmpoComparisonUrl from "@/assets/work/tmpo-comparison.png"
-import tmpoDemoUrl from "@/assets/work/tmpo-demo.png"
+import tmpoMethodUrl from "@/assets/work/tmpo-method.png"
+import multimodalIntelligencePixelUrl from "@/assets/work/multimodal-intelligence-pixel.png"
+import physicalIntelligencePixelUrl from "@/assets/work/physical-intelligence-pixel.png"
+import ai4SciencePixelUrl from "@/assets/work/ai4science-pixel.png"
 
 type Language = "en" | "zh"
 
@@ -20,10 +21,9 @@ const newsHrefs = [
 ]
 
 const researchAssets = [
-  { image: tmpoDemoUrl },
-  { image: i2eParadigmUrl },
-  { image: tmpoComparisonUrl },
-  { image: sciirDatasetUrl },
+  { image: multimodalIntelligencePixelUrl },
+  { image: physicalIntelligencePixelUrl },
+  { image: ai4SciencePixelUrl },
 ]
 
 const publicationAssets = [
@@ -37,7 +37,7 @@ const publicationAssets = [
     ],
   },
   {
-    image: tmpoComparisonUrl,
+    image: tmpoMethodUrl,
     imageHref: "https://arxiv.org/abs/2605.10983",
     links: [
       { key: "paper", href: "https://arxiv.org/abs/2605.10983" },
@@ -46,7 +46,7 @@ const publicationAssets = [
     ],
   },
   {
-    image: i2eParadigmUrl,
+    image: i2eMethodUrl,
     imageHref: "https://image2env.github.io/",
     links: [
       { key: "paper", href: "https://arxiv.org/abs/2601.03741" },
@@ -55,6 +55,13 @@ const publicationAssets = [
     ],
   },
 ]
+
+const publicationLinkIcons = {
+  paper: FileText,
+  code: Code,
+  project: GlobeSimple,
+  acl: LinkSimple,
+}
 
 const siteCopy = {
   en: {
@@ -84,19 +91,19 @@ const siteCopy = {
       items: [
         {
           type: "News:",
-          title: "SciIR Accepted to ECCV 2026",
+          title: "🎉 SciIR Accepted to ECCV 2026",
           description: "SciIR, our latest research work, has been accepted to ECCV 2026.",
           date: "June 2026",
         },
         {
           type: "News:",
-          title: "TMPO Preprint Released",
+          title: "📄 TMPO Preprint Released",
           description: "The preprint of TMPO is now available on arXiv.",
           date: "May 2026",
         },
         {
           type: "News:",
-          title: "I2E Released: From Image Pixels to Actionable Interactive Environments",
+          title: "🚀 I2E Released: From Image Pixels to Actionable Interactive Environments",
           description:
             "We are excited to announce the release of I2E, a novel framework that transforms image pixels into actionable and interactive 3D environments.",
           date: "January 2026",
@@ -109,27 +116,21 @@ const siteCopy = {
         "We investigate multimodal systems that perceive, generate, reason, and act, turning frontier research into reliable intelligence for complex real-world settings.",
       areas: [
         {
-          title: "Multimodal Generation",
+          title: "Multimodal Intelligence",
           description:
-            "Building generative models that connect language, vision, and structured reasoning across diverse creative tasks.",
+            "Advancing multimodal understanding and generation, post-training for multimodal models, and new unified paradigms that continually push model capabilities.",
           imageAlt: "A grid of diverse text-to-image generations from TMPO",
         },
         {
-          title: "Interactive Environments",
+          title: "Physical Intelligence",
           description:
-            "Turning visual content into actionable worlds that agents can understand, edit, and interact with.",
+            "Studying world models and vision-language-action systems so machines can understand and interact with the physical world.",
           imageAlt: "I2E image-to-environment paradigm",
         },
         {
-          title: "Diffusion Alignment",
+          title: "AI4Science",
           description:
-            "Aligning diffusion models with human intent while preserving diversity, efficiency, and reliable generation quality.",
-          imageAlt: "TMPO comparison of diffusion alignment methods",
-        },
-        {
-          title: "Scientific Visual Intelligence",
-          description:
-            "Developing models that restore, interpret, and reason over scientific figures without losing their semantic meaning.",
+            "Applying frontier AI architectures to biology and medicine, enabling AI to accelerate scientific research.",
           imageAlt: "SciIR scientific image restoration data construction pipeline",
         },
       ],
@@ -199,7 +200,7 @@ const siteCopy = {
       items: [
         {
           badge: "Paper · ECCV 2026",
-          title: "SciIR: Towards Scientific Image Restoration",
+          title: "SciIR: A Large-scale Training Dataset and Benchmark for Scientific Image Reasoning Generation",
           authors:
             "Zhiyuan Ma, Zhengfeng Shi, Yuning An, Peize Li, Jiabao Wei, Ruijie Li, Junhao Xiao, Jianjun Li, Bowen Zhou",
           description:
@@ -264,19 +265,19 @@ const siteCopy = {
       items: [
         {
           type: "动态：",
-          title: "SciIR 被 ECCV 2026 接收",
+          title: "🎉 SciIR 被 ECCV 2026 接收",
           description: "SciIR 是实验室最新研究成果，已被 ECCV 2026 接收。",
           date: "2026 年 6 月",
         },
         {
           type: "动态：",
-          title: "TMPO 预印本正式发布",
+          title: "📄 TMPO 预印本正式发布",
           description: "TMPO 的预印本现已发布于 arXiv。",
           date: "2026 年 5 月",
         },
         {
           type: "动态：",
-          title: "I2E 发布：从图像像素到可执行的交互环境",
+          title: "🚀 I2E 发布：从图像像素到可执行的交互环境",
           description: "我们很高兴发布 I2E：一个将图像像素转化为可执行、可交互三维环境的新框架。",
           date: "2026 年 1 月",
         },
@@ -288,23 +289,18 @@ const siteCopy = {
         "我们研究能够感知、生成、推理与行动的多模态系统，将前沿成果转化为面向复杂真实场景的可靠智能。",
       areas: [
         {
-          title: "多模态生成",
-          description: "构建连接语言、视觉与结构化推理的生成模型，服务于多样化的创作与理解任务。",
+          title: "多模态智能",
+          description: "在这里，我们关注多模态理解、生成，多模态模型后训练以及统一生成与理解模型新范式，不断推进现有模型的能力边界。",
           imageAlt: "TMPO 生成的多样化文生图结果",
         },
         {
-          title: "交互环境",
-          description: "将视觉内容转化为智能体能够理解、编辑和交互的可执行环境。",
+          title: "物理智能",
+          description: "在这里，我们关注世界模型、VLA，让机器在物理世界中具有理解和交互的能力。",
           imageAlt: "I2E 图像到环境范式",
         },
         {
-          title: "扩散模型对齐",
-          description: "在保持多样性、效率与生成质量的同时，使扩散模型更好地对齐人类意图。",
-          imageAlt: "TMPO 扩散模型对齐方法对比",
-        },
-        {
-          title: "科学视觉智能",
-          description: "研究科学图像的修复、理解与推理，在改善视觉质量的同时保留关键语义。",
+          title: "科学智能",
+          description: "在这里，我们关注前沿 AI 架构在生物学、医学领域的应用，让 AI 赋能科学研究。",
           imageAlt: "SciIR 科学图像修复数据构建流程",
         },
       ],
@@ -374,7 +370,7 @@ const siteCopy = {
       items: [
         {
           badge: "论文 · ECCV 2026",
-          title: "SciIR: Towards Scientific Image Restoration",
+          title: "SciIR: A Large-scale Training Dataset and Benchmark for Scientific Image Reasoning Generation",
           authors:
             "Zhiyuan Ma, Zhengfeng Shi, Yuning An, Peize Li, Jiabao Wei, Ruijie Li, Junhao Xiao, Jianjun Li, Bowen Zhou",
           description:
@@ -596,48 +592,39 @@ function App() {
 
             <div className="join-opportunity-grid">
               <article className="join-opportunity">
-                <p className="join-opportunity-index">{copy.join.graduate.index}</p>
                 <h3 style={{ fontFamily: displayFont }}>{copy.join.graduate.heading}</h3>
                 <p>{copy.join.graduate.intro}</p>
-                <h4>{copy.join.graduate.listHeading}</h4>
                 <ul>
                   {copy.join.graduate.items.map((item) => (
-                    <li key={item.strong}>
-                      <strong>{item.strong}</strong> {item.text}
-                    </li>
+                    <li key={item.strong}><strong>{item.strong}</strong> {item.text}</li>
                   ))}
                 </ul>
+                <p className="join-contact">
+                  {copy.join.apply.text}{" "}
+                  <a
+                    className="join-inline-contact"
+                    href={`mailto:mzyth@hust.edu.cn?subject=${encodeURIComponent(copy.join.apply.subject)}`}
+                  >
+                    {copy.join.apply.link} <span aria-hidden="true">↗</span>
+                  </a>
+                </p>
               </article>
 
               <article className="join-opportunity">
-                <p className="join-opportunity-index">{copy.join.internship.index}</p>
                 <h3 style={{ fontFamily: displayFont }}>{copy.join.internship.heading}</h3>
                 <p>{copy.join.internship.intro}</p>
-                <h4>{copy.join.internship.topicsHeading}</h4>
-                <ul className="join-topic-list">
-                  {copy.join.internship.topics.map((topic) => <li key={topic}>{topic}</li>)}
-                </ul>
-                <h4>{copy.join.internship.benefitsHeading}</h4>
-                <ul>
-                  {copy.join.internship.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
-                </ul>
+                <p><strong>{copy.join.internship.topicsHeading}: </strong>{copy.join.internship.topics.join(" · ")}</p>
+                <p><strong>{copy.join.internship.benefitsHeading}: </strong>{copy.join.internship.benefits.join(" ")}</p>
+                <p className="join-contact">
+                  {copy.join.apply.text}{" "}
+                  <a
+                    className="join-inline-contact"
+                    href={`mailto:mzyth@hust.edu.cn?subject=${encodeURIComponent(copy.join.apply.subject)}`}
+                  >
+                    {copy.join.apply.link} <span aria-hidden="true">↗</span>
+                  </a>
+                </p>
               </article>
-            </div>
-
-            <div className="join-apply">
-              <div>
-                <p className="join-opportunity-index">{copy.join.apply.label}</p>
-                <h3 style={{ fontFamily: displayFont }}>{copy.join.apply.heading}</h3>
-              </div>
-              <div>
-                <p>{copy.join.apply.text}</p>
-                <a
-                  className="join-contact-link"
-                  href={`mailto:mzyth@hust.edu.cn?subject=${encodeURIComponent(copy.join.apply.subject)}`}
-                >
-                  {copy.join.apply.link} <span aria-hidden="true">↗</span>
-                </a>
-              </div>
             </div>
           </section>
 
@@ -666,12 +653,17 @@ function App() {
                     <p className="publication-authors">{item.authors}</p>
                     <p className="publication-description">{item.description}</p>
                     <div className="publication-links" aria-label={`${item.title} ${copy.publications.linksLabel}`}>
-                      {publicationAssets[index].links.map((link) => (
-                        <a key={link.key} href={link.href} target="_blank" rel="noreferrer">
-                          <span>{copy.publications.linkLabels[link.key as keyof typeof copy.publications.linkLabels]}</span>
-                          <span aria-hidden="true">↗</span>
-                        </a>
-                      ))}
+                      {publicationAssets[index].links.map((link) => {
+                        const LinkIcon = publicationLinkIcons[link.key as keyof typeof publicationLinkIcons]
+
+                        return (
+                          <a key={link.key} href={link.href} target="_blank" rel="noreferrer">
+                            <LinkIcon className="publication-link-icon" weight="regular" aria-hidden="true" />
+                            <span>{copy.publications.linkLabels[link.key as keyof typeof copy.publications.linkLabels]}</span>
+                            <span aria-hidden="true">↗</span>
+                          </a>
+                        )
+                      })}
                     </div>
                   </div>
                 </article>
