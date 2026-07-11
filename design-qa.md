@@ -9,7 +9,7 @@
 - desktop implementation screenshots:
   - `D:\MAIR-Lab-HUST.github.io\.lazyweb\image-to-code\homepage-restructure-2026-07-11\news-desktop.png`
   - `D:\MAIR-Lab-HUST.github.io\.lazyweb\image-to-code\homepage-restructure-2026-07-11\research-desktop-2.png`
-  - `D:\MAIR-Lab-HUST.github.io\.lazyweb\image-to-code\homepage-restructure-2026-07-11\join-before-publications.png`
+  - `D:\MAIR-Lab-HUST.github.io\.lazyweb\image-to-code\homepage-restructure-2026-07-11\join-desktop-final.png`
   - `D:\MAIR-Lab-HUST.github.io\.lazyweb\image-to-code\homepage-restructure-2026-07-11\publications-desktop-final.png`
 - mobile implementation screenshots:
   - `D:\MAIR-Lab-HUST.github.io\.lazyweb\image-to-code\homepage-restructure-2026-07-11\research-mobile.png`
@@ -28,11 +28,11 @@
 
 - The publication screenshots verify title scale, badge shape/color, metadata typography, link-strip size, and figure/content height matching.
 - The Research desktop/mobile screenshots verify four rounded cards on desktop and a clean one-column stack at 390px.
-- The Join Us transition screenshot verifies Join Us appears immediately before Publications.
+- The final Join Us screenshot verifies Graduate Applicants and Research Internships are presented as two full-width vertical rows before Publications.
 
 **Required fidelity surfaces**
 
-- Fonts and typography: Instrument Serif remains the display face and Inter remains the body face. Publication titles now use a 36–50px balanced scale on desktop and 40px on mobile. Author, description, and link text were enlarged for readability.
+- Fonts and typography: Instrument Serif remains the section display face and Inter remains the body face. Publication titles now use grounded Inter Medium instead of the narrow display serif, with compact balanced wrapping. Author, description, and link text remain enlarged for readability.
 - Spacing and layout rhythm: Research uses four equal rounded cards. Every publication uses a two-column row with its figure on the left and content on the right; the figure stretches with the row height. Mobile stacks figure before content without horizontal overflow.
 - Colors and tokens: The site remains white, black, neutral gray, and MAIR blue. Publication badges are now `#111` with white text, 0px corner radius, and a black-and-white editorial treatment.
 - Image quality and asset fidelity: Real I2E, TMPO, and SciIR figures are used. Desktop figures are contained inside row-height frames; mobile figures preserve native aspect ratios.
@@ -64,6 +64,11 @@
 5. Pass 5 — passed.
    - No actionable P0, P1, or P2 differences remain.
 
+6. Pass 6 — passed after scoped typography and recruiting-content updates.
+   - Publication titles changed from narrow Instrument Serif to Inter Medium.
+   - Join Us expanded into Graduate Applicants, Research Internships, and How to Apply content; the two opportunity blocks are stacked as vertical rows.
+   - Post-fix evidence: `publications-desktop-final.png` and `join-desktop-final.png`.
+
 **Primary interactions tested**
 
 - Header navigation links for Research, Join Us, and Publications scroll to the correct sections.
@@ -90,6 +95,8 @@
 - [x] All figures left and content right on desktop
 - [x] Figure height follows publication row height
 - [x] Large balanced titles
+- [x] Grounded Inter Medium publication typography
+- [x] Graduate and internship recruiting details in two vertical rows
 - [x] Black square badges with larger white text
 - [x] Larger author, description, and link typography
 - [x] Desktop and mobile visual verification
