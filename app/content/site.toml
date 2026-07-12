@@ -1,0 +1,110 @@
+[en.news]
+heading = "News"
+
+[en.research]
+heading = "Research"
+intro = "We investigate multimodal systems that perceive, generate, reason, and act, turning frontier research into reliable intelligence for complex real-world settings."
+
+[en.join]
+heading = "Join Us"
+intro = "MAIR Lab welcomes motivated researchers at all levels, including Ph.D. and Master's students, undergraduate research interns, and research engineers."
+
+[en.publications]
+heading = "Publications"
+intro = "Recent publications from the lab, ordered from newest to oldest."
+open_label = "Open"
+links_label = "links"
+paper_label = "Paper"
+code_label = "Code"
+project_label = "Project"
+acl_label = "ACL"
+
+[zh.news]
+heading = "实验室动态"
+
+[zh.research]
+heading = "研究方向"
+intro = "我们研究能够感知、生成、推理与行动的多模态系统，将前沿成果转化为面向复杂真实场景的可靠智能。"
+
+[zh.join]
+heading = "加入我们"
+intro = "MAIR 实验室欢迎不同阶段的优秀研究者加入，包括博士生、硕士生、本科研究实习生与科研工程师。"
+
+[zh.publications]
+heading = "论文发表"
+intro = "实验室近期论文，按发布时间从新到旧排列。"
+open_label = "打开"
+links_label = "相关链接"
+paper_label = "论文"
+code_label = "代码"
+project_label = "项目"
+acl_label = "ACL"
+
+[publication.sciir]
+order = 1
+image = "sciir-overview.png"
+image_href = "https://sci-ir.vercel.app/sciir.html"
+badge_en = "Paper · ECCV 2026"
+badge_zh = "论文 · ECCV 2026"
+description_en = "A unified study of scientific image restoration spanning data, evaluation, and reasoning-aware models for figures whose correctness matters as much as visual quality."
+description_zh = "围绕科学图像修复的数据、评测与推理感知模型开展系统研究，使图像在提升视觉质量的同时保持科学内容的正确性。"
+image_alt_en = "Overview of the SciIR dataset, benchmark, and scientific image restoration task"
+image_alt_zh = "SciIR 数据集、基准与科学图像修复任务概览"
+
+[[publication.sciir.links]]
+kind = "paper"
+href = "https://arxiv.org/abs/2606.30124"
+
+[[publication.sciir.links]]
+kind = "code"
+href = "https://github.com/MAIR-Lab-HUST/SciIR"
+
+[[publication.sciir.links]]
+kind = "project"
+href = "https://sci-ir.vercel.app/sciir.html"
+
+[publication.tmpo]
+order = 2
+image = "tmpo-method.png"
+image_href = "https://arxiv.org/abs/2605.10983"
+badge_en = "Paper · Preprint 2026"
+badge_zh = "论文 · 预印本 2026"
+description_en = "TMPO aligns diffusion trajectories at the distribution level, improving sample diversity while reducing the training cost of reward-guided generation."
+description_zh = "TMPO 在分布层面对齐扩散轨迹，在提升样本多样性的同时，降低奖励引导生成的训练成本。"
+image_alt_en = "Comparison of diffusion alignment methods and their generated image diversity"
+image_alt_zh = "扩散模型对齐方法及其生成多样性对比"
+
+[[publication.tmpo.links]]
+kind = "paper"
+href = "https://arxiv.org/abs/2605.10983"
+
+[[publication.tmpo.links]]
+kind = "code"
+href = "https://github.com/MAIR-Lab-HUST/TMPO"
+
+[[publication.tmpo.links]]
+kind = "project"
+href = "https://mair-lab-hust.github.io/TMPO/"
+
+[publication.i2e]
+order = 3
+image = "i2e-method.png"
+image_href = "https://image2env.github.io/"
+badge_en = "Paper · ACL 2026"
+badge_zh = "论文 · ACL 2026"
+description_en = "A Decompose-then-Action framework that turns edited pixels into structured, physics-aware environments that remain interactive after generation."
+description_zh = "提出“分解后行动”框架，将编辑后的图像像素转化为结构化、符合物理规律且可继续交互的环境。"
+image_alt_en = "I2E paradigm comparing pixel redraws with structured interactive environment editing"
+image_alt_zh = "I2E 像素重绘与结构化交互环境编辑范式对比"
+
+[[publication.i2e.links]]
+kind = "paper"
+href = "https://arxiv.org/abs/2601.03741"
+
+[[publication.i2e.links]]
+kind = "project"
+href = "https://image2env.github.io/"
+
+[[publication.i2e.links]]
+kind = "acl"
+href = "https://aclanthology.org/2026.acl-long.2076/"

@@ -575,7 +575,7 @@
     letter-spacing: -0.02em;
   }
 
-  .join-opportunity > p {
+  .join-markdown > p {
     margin: 14px 0 0;
     font-size: var(--text-3);
     line-height: 1.6;
@@ -598,13 +598,13 @@
     font-weight: 600;
   }
 
-  .join-inline-contact {
+  .join-markdown a {
     color: #111;
     font-weight: 500;
     text-decoration: none;
   }
 
-  .join-inline-contact:hover {
+  .join-markdown a:hover {
     text-decoration: underline;
   }
 
@@ -1124,7 +1124,7 @@
       line-height: 1.25;
     }
 
-    .join-opportunity > p:not(.join-opportunity-index),
+    .join-markdown > p,
     .join-apply p:not(.join-opportunity-index) {
       margin-top: 14px;
       font-size: var(--text-3);
