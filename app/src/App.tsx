@@ -170,7 +170,7 @@ function App() {
             <img src={hustLogoUrl} alt={copy.hero.hustAlt} className="latest-hust-logo object-contain" />
           </div>
 
-          <p className="latest-kicker font-semibold uppercase text-black/95">{copy.hero.kicker}</p>
+          <p className="latest-kicker font-medium uppercase text-black/95">{copy.hero.kicker}</p>
           <h1 id="hero-title" className="latest-title font-normal text-black" style={{ fontFamily: displayFont }}>
             {copy.hero.title.map((line) => <span key={line} className="block">{line}</span>)}
           </h1>
@@ -199,7 +199,7 @@ function App() {
         </section>
 
         <section id="news" className="latest-shell scroll-mt-24" aria-labelledby="news-heading">
-          <h2 id="news-heading" className="latest-heading font-semibold uppercase">{content.news.heading}</h2>
+          <h2 id="news-heading" className="latest-heading font-medium uppercase">{content.news.heading}</h2>
           <div>
             {content.news.items.map((item) => (
               <div key={`${item.href}-${item.title}`} className="latest-row grid items-start">
