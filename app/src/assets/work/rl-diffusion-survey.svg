@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Reinforcement Learning-driven Diffusion Models</title>
+  <desc id="desc">A conceptual diagram connecting reinforcement learning with language and vision diffusion models.</desc>
+  <rect width="1200" height="700" fill="#eef2ff"/>
+  <circle cx="600" cy="350" r="145" fill="#111827"/>
+  <circle cx="250" cy="350" r="112" fill="#c7d2fe"/>
+  <circle cx="950" cy="350" r="112" fill="#bfdbfe"/>
+  <path d="M365 350h80M755 350h80" stroke="#4f46e5" stroke-width="18" stroke-linecap="round"/>
+  <path d="m430 320 45 30-45 30M770 320l-45 30 45 30" fill="none" stroke="#4f46e5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="600" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="48" fill="#111827">RL-DRIVEN DIFFUSION MODELS</text>
+  <text x="250" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#312e81">LANGUAGE</text>
+  <text x="950" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#1e3a8a">VISION</text>
+  <text x="600" y="338" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="38" fill="white">REWARD</text>
+  <text x="600" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="38" fill="white">LEARNING</text>
+  <text x="600" y="625" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#475569">Language · Vision · Beyond</text>
+</svg>

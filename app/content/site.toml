@@ -19,6 +19,10 @@ code_label = "Code"
 project_label = "Project"
 acl_label = "ACL"
 
+[en.people]
+heading = "People"
+intro = "Meet the researchers and students who make up MAIR Lab."
+
 [zh.news]
 heading = "实验室动态"
 
@@ -39,6 +43,10 @@ paper_label = "论文"
 code_label = "代码"
 project_label = "项目"
 acl_label = "ACL"
+
+[zh.people]
+heading = "成员"
+intro = "认识共同组成 MAIR 实验室的研究者与学生。"
 
 [publication.sciir]
 order = 1
@@ -109,51 +117,78 @@ href = "https://image2env.github.io/"
 kind = "acl"
 href = "https://aclanthology.org/2026.acl-long.2076/"
 
-[publication.unitransfer]
+[publication.momentumfm]
 order = 4
-image = "unitransfer-results.png"
-image_href = "https://papers.neurips.cc/paper_files/paper/2025/hash/7f05193e5487287a890df7fbc3554427-Abstract-Conference.html"
-badge_en = "Paper · NeurIPS 2025"
-badge_zh = "论文 · NeurIPS 2025"
-description_en = "A progressive spatial and diffusion-timestep decomposition framework that transfers characters, backgrounds, garments, and motion into videos with fine-grained control."
-description_zh = "通过渐进式空间与扩散时间步分解，实现对人物、背景、服装和动作的视频概念迁移与细粒度控制。"
-image_alt_en = "Examples of UniTransfer transferring characters, garments, backgrounds, and motion between videos"
-image_alt_zh = "UniTransfer 在视频间迁移人物、服装、背景与动作的示例"
+image = "momentum-flow.png"
+image_href = "https://arxiv.org/abs/2506.08796"
+badge_en = "Preprint · 2026"
+badge_zh = "预印本 · 2026"
+description_en = "A momentum flow-matching framework that samples stochastic velocity fields to preserve fast generation while expanding trajectory diversity and multi-scale modeling capacity."
+description_zh = "通过随机速度场采样学习动量流匹配，在保持快速生成的同时拓展轨迹多样性与多尺度建模能力。"
+image_alt_en = "Momentum flow matching method and generated samples"
+image_alt_zh = "动量流匹配方法与生成样例"
 
-[[publication.unitransfer.links]]
+[[publication.momentumfm.links]]
 kind = "paper"
-href = "https://papers.neurips.cc/paper_files/paper/2025/hash/7f05193e5487287a890df7fbc3554427-Abstract-Conference.html"
+href = "https://arxiv.org/abs/2506.08796"
 
-[publication.efficientdms]
-order = 5
-image = "efficient-diffusion-survey.png"
-image_href = "https://arxiv.org/abs/2410.11795"
-badge_en = "Survey · TPAMI 2025"
-badge_zh = "综述 · TPAMI 2025"
-description_en = "A comprehensive efficiency-oriented survey of diffusion models, connecting their theoretical principles with architecture, training, inference, and deployment practices."
-description_zh = "从效率视角系统梳理扩散模型，将理论原理与架构、训练、推理及部署实践贯通起来。"
-image_alt_en = "Timeline of major principles and practices in efficient diffusion models"
-image_alt_zh = "高效扩散模型主要原理与实践的发展时间线"
-
-[[publication.efficientdms.links]]
-kind = "paper"
-href = "https://arxiv.org/abs/2410.11795"
-
-[[publication.efficientdms.links]]
+[[publication.momentumfm.links]]
 kind = "code"
-href = "https://github.com/ponyzym/Efficient-DMs-Survey"
+href = "https://github.com/liuruixun/momentum-fm"
 
-[publication.videodirector]
+[publication.rldiffusionsurvey]
+order = 5
+image = "rl-diffusion-survey.svg"
+image_href = "#publication-rldiffusionsurvey"
+badge_en = "Survey · Preprint 2026"
+badge_zh = "综述 · 预印本 2026"
+description_en = "A broad survey of reinforcement learning for diffusion models across language, vision, and related domains, organizing objectives, algorithms, and emerging applications."
+description_zh = "系统梳理强化学习驱动扩散模型在语言、视觉及相关领域的方法脉络、优化目标与新兴应用。"
+image_alt_en = "Reinforcement learning-driven diffusion models across language and vision"
+image_alt_zh = "面向语言与视觉的强化学习驱动扩散模型"
+links = []
+
+[publication.mild]
 order = 6
-image = "videodirector-results.png"
-image_href = "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html"
-badge_en = "Paper · CVPR 2025"
-badge_zh = "论文 · CVPR 2025"
-description_en = "A text-to-video editing method that decouples spatial and temporal guidance to preserve unedited content while improving realism and motion consistency."
-description_zh = "通过解耦空间与时间引导进行文本驱动视频编辑，在保留未编辑内容的同时提升真实感与运动一致性。"
-image_alt_en = "VideoDirector examples of text-guided animal identity editing across video frames"
-image_alt_zh = "VideoDirector 跨视频帧进行动物身份文本编辑的示例"
+image = "mild-human-erasing.svg"
+image_href = "https://openreview.net/forum?id=zv91fpVOGc"
+badge_en = "Preprint · 2026"
+badge_zh = "预印本 · 2026"
+description_en = "A multi-layer diffusion strategy for clean human removal in scenes with occlusion, object entanglement, and complex foreground-background interactions."
+description_zh = "面向遮挡、人物与物体纠缠及复杂前背景交互场景，通过多层扩散实现干净、稳定的人物消除。"
+image_alt_en = "MILD examples of interaction-aware human erasing"
+image_alt_zh = "MILD 交互感知人物消除示例"
 
-[[publication.videodirector.links]]
+[[publication.mild.links]]
 kind = "paper"
-href = "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html"
+href = "https://openreview.net/forum?id=zv91fpVOGc"
+
+[publication.vcvton]
+order = 8
+image = "vc-vton.svg"
+image_href = "https://doi.org/10.1109/TIP.2026.3700904"
+badge_en = "Paper · TIP 2026"
+badge_zh = "论文 · TIP 2026"
+description_en = "A view-consistent virtual try-on framework and annotated multi-view dataset for synthesizing garments across changing viewpoints and body poses."
+description_zh = "提出跨视角一致的虚拟试穿框架与多视角标注数据集，支持不同视角和人体姿态下的服装合成。"
+image_alt_en = "VC-VTON across-view and multi-posture virtual try-on"
+image_alt_zh = "VC-VTON 跨视角多姿态虚拟试穿"
+
+[[publication.vcvton.links]]
+kind = "paper"
+href = "https://doi.org/10.1109/TIP.2026.3700904"
+
+[publication.dynappi]
+order = 7
+image = "dynappi.svg"
+image_href = "https://neurips.cc/virtual/2025/125787"
+badge_en = "Workshop · NeurIPS 2025"
+badge_zh = "研讨会 · NeurIPS 2025"
+description_en = "A dynamic protein interaction dataset that captures molecular trajectories from dissociated chains to bound complexes for generative modeling of protein interactomics."
+description_zh = "构建从游离蛋白链到结合复合物的动态分子轨迹数据集，支持蛋白质相互作用组学的生成式建模。"
+image_alt_en = "DynaPPI dynamic protein interaction dataset overview"
+image_alt_zh = "DynaPPI 动态蛋白质相互作用数据集概览"
+
+[[publication.dynappi.links]]
+kind = "paper"
+href = "https://neurips.cc/virtual/2025/125787"

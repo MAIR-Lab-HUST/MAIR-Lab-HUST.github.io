@@ -22,6 +22,7 @@ const siteCopy = {
       { label: "Research", href: "#research" },
       { label: "Join Us", href: "#join" },
       { label: "Publications", href: "#publications" },
+      { label: "People", href: "#people" },
     ],
     contact: "Contact",
     languageLabel: "Choose language",
@@ -51,6 +52,7 @@ const siteCopy = {
       { label: "研究方向", href: "#research" },
       { label: "加入我们", href: "#join" },
       { label: "论文发表", href: "#publications" },
+      { label: "成员", href: "#people" },
     ],
     contact: "联系",
     languageLabel: "选择语言",
@@ -290,6 +292,26 @@ function App() {
                     </div>
                   </div>
                 </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="people" className="homepage-major-section people-section scroll-mt-8">
+            <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
+              {content.people.heading}
+            </h2>
+            <p className="latest-section-copy">{content.people.intro}</p>
+            <div className="people-groups">
+              {content.people.groups.map((group, index) => (
+                <section key={group.title} className="people-group" aria-labelledby={`people-group-${index}`}>
+                  <div className="people-group-heading">
+                    <span className="people-group-index" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 id={`people-group-${index}`}>{group.title}</h3>
+                  </div>
+                  <div className="people-markdown" dangerouslySetInnerHTML={{ __html: group.html }} />
+                </section>
               ))}
             </div>
           </section>

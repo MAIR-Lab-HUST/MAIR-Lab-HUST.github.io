@@ -65,11 +65,18 @@ interface PublicationSectionCopy extends SectionCopy {
   linkLabels: Record<PublicationLinkKind, string>
 }
 
+interface PeopleGroup {
+  order: number
+  title: string
+  html: string
+}
+
 export interface PageContent {
   news: SectionCopy & { items: NewsItem[] }
   research: Required<SectionCopy> & { areas: ResearchArea[] }
   join: Required<SectionCopy> & { opportunities: JoinOpportunity[] }
   publications: PublicationSectionCopy & { items: Publication[] }
+  people: Required<SectionCopy> & { groups: PeopleGroup[] }
 }
 
 interface BibEntry {
@@ -82,6 +89,7 @@ const markdownModules = {
   ...import.meta.glob("../content/news/**/*.md", { eager: true, query: "?raw", import: "default" }),
   ...import.meta.glob("../content/research/**/*.md", { eager: true, query: "?raw", import: "default" }),
   ...import.meta.glob("../content/join/**/*.md", { eager: true, query: "?raw", import: "default" }),
+  ...import.meta.glob("../content/people/**/*.md", { eager: true, query: "?raw", import: "default" }),
 } as Record<string, string>
 
 const workAssetModules = import.meta.glob("./assets/work/*", {
@@ -133,7 +141,7 @@ const markdownDocuments = Object.entries(markdownModules).map(([path, source]) =
   parseMarkdownDocument(path, source),
 )
 
-function documentsFor(section: "news" | "research" | "join", language: Language) {
+function documentsFor(section: "news" | "research" | "join" | "people", language: Language) {
   return markdownDocuments.filter(({ path }) =>
     path.includes(`/content/${section}/${language}/`),
   )
@@ -175,6 +183,16 @@ function parseResearch(language: Language): ResearchArea[] {
 
 function parseJoin(language: Language): JoinOpportunity[] {
   return documentsFor("join", language)
+    .map(({ path, metadata, html }) => ({
+      order: requiredNumber(metadata.order, `${path}: order`),
+      title: requiredString(metadata.title, `${path}: title`),
+      html,
+    }))
+    .sort((a, b) => a.order - b.order)
+}
+
+function parsePeople(language: Language): PeopleGroup[] {
+  return documentsFor("people", language)
     .map(({ path, metadata, html }) => ({
       order: requiredNumber(metadata.order, `${path}: order`),
       title: requiredString(metadata.title, `${path}: title`),
@@ -359,6 +377,7 @@ function buildPageContent(language: Language): PageContent {
   const research = section(language, "research")
   const join = section(language, "join")
   const publications = section(language, "publications")
+  const people = section(language, "people")
 
   return {
     news: {
@@ -387,6 +406,11 @@ function buildPageContent(language: Language): PageContent {
         acl: requiredString(publications.acl_label, `${language}.publications.acl_label`),
       },
       items: parsePublications(language),
+    },
+    people: {
+      heading: requiredString(people.heading, `${language}.people.heading`),
+      intro: requiredString(people.intro, `${language}.people.intro`),
+      groups: parsePeople(language),
     },
   }
 }

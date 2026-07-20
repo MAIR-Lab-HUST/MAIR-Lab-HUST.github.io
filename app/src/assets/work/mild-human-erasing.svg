@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-Layer Diffusion for Human Erasing</title>
+  <desc id="desc">Layered silhouettes illustrate foreground separation and clean human removal.</desc>
+  <rect width="1200" height="700" fill="#fff7ed"/>
+  <text x="70" y="95" font-family="Arial, sans-serif" font-weight="700" font-size="54" fill="#431407">MILD</text>
+  <text x="70" y="145" font-family="Arial, sans-serif" font-size="29" fill="#9a3412">MULTI-LAYER DIFFUSION</text>
+  <g transform="translate(130 225)">
+    <rect width="260" height="330" rx="28" fill="#fed7aa" stroke="#fb923c" stroke-width="8"/>
+    <circle cx="130" cy="90" r="48" fill="#7c2d12"/>
+    <path d="M65 285c8-93 28-143 65-143s57 50 65 143" fill="#7c2d12"/>
+  </g>
+  <path d="M430 390h120" stroke="#ea580c" stroke-width="18" stroke-linecap="round"/>
+  <path d="m525 355 48 35-48 35" fill="none" stroke="#ea580c" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(610 225)">
+    <rect width="460" height="330" rx="28" fill="#ffedd5" stroke="#fb923c" stroke-width="8"/>
+    <path d="M0 245 120 135l90 70 90-115 160 155v85H0z" fill="#fdba74"/>
+    <circle cx="365" cy="80" r="38" fill="#f97316"/>
+  </g>
+  <text x="600" y="635" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" fill="#7c2d12">Separate instances · Reconstruct background · Remove cleanly</text>
+</svg>
