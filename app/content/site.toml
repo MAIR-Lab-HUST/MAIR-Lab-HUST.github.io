@@ -108,3 +108,52 @@ href = "https://image2env.github.io/"
 [[publication.i2e.links]]
 kind = "acl"
 href = "https://aclanthology.org/2026.acl-long.2076/"
+
+[publication.unitransfer]
+order = 4
+image = "unitransfer-results.png"
+image_href = "https://papers.neurips.cc/paper_files/paper/2025/hash/7f05193e5487287a890df7fbc3554427-Abstract-Conference.html"
+badge_en = "Paper · NeurIPS 2025"
+badge_zh = "论文 · NeurIPS 2025"
+description_en = "A progressive spatial and diffusion-timestep decomposition framework that transfers characters, backgrounds, garments, and motion into videos with fine-grained control."
+description_zh = "通过渐进式空间与扩散时间步分解，实现对人物、背景、服装和动作的视频概念迁移与细粒度控制。"
+image_alt_en = "Examples of UniTransfer transferring characters, garments, backgrounds, and motion between videos"
+image_alt_zh = "UniTransfer 在视频间迁移人物、服装、背景与动作的示例"
+
+[[publication.unitransfer.links]]
+kind = "paper"
+href = "https://papers.neurips.cc/paper_files/paper/2025/hash/7f05193e5487287a890df7fbc3554427-Abstract-Conference.html"
+
+[publication.efficientdms]
+order = 5
+image = "efficient-diffusion-survey.png"
+image_href = "https://arxiv.org/abs/2410.11795"
+badge_en = "Survey · TPAMI 2025"
+badge_zh = "综述 · TPAMI 2025"
+description_en = "A comprehensive efficiency-oriented survey of diffusion models, connecting their theoretical principles with architecture, training, inference, and deployment practices."
+description_zh = "从效率视角系统梳理扩散模型，将理论原理与架构、训练、推理及部署实践贯通起来。"
+image_alt_en = "Timeline of major principles and practices in efficient diffusion models"
+image_alt_zh = "高效扩散模型主要原理与实践的发展时间线"
+
+[[publication.efficientdms.links]]
+kind = "paper"
+href = "https://arxiv.org/abs/2410.11795"
+
+[[publication.efficientdms.links]]
+kind = "code"
+href = "https://github.com/ponyzym/Efficient-DMs-Survey"
+
+[publication.videodirector]
+order = 6
+image = "videodirector-results.png"
+image_href = "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html"
+badge_en = "Paper · CVPR 2025"
+badge_zh = "论文 · CVPR 2025"
+description_en = "A text-to-video editing method that decouples spatial and temporal guidance to preserve unedited content while improving realism and motion consistency."
+description_zh = "通过解耦空间与时间引导进行文本驱动视频编辑，在保留未编辑内容的同时提升真实感与运动一致性。"
+image_alt_en = "VideoDirector examples of text-guided animal identity editing across video frames"
+image_alt_zh = "VideoDirector 跨视频帧进行动物身份文本编辑的示例"
+
+[[publication.videodirector.links]]
+kind = "paper"
+href = "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VideoDirector_Precise_Video_Editing_via_Text-to-Video_Models_CVPR_2025_paper.html"
