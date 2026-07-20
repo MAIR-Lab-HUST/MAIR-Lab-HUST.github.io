@@ -390,8 +390,9 @@
   .research-area-card h3 {
     min-height: 64px;
     margin: 0;
+    font-family: var(--font-emphasis) !important;
     font-size: var(--text-6);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 0.98;
     letter-spacing: -0.035em;
   }
@@ -1415,6 +1416,7 @@
   .latest-page .publication-badge,
   .latest-page .publication-links a,
   .latest-page .join-opportunity-index,
+  .latest-page .research-area-card h3,
   .latest-page .join-opportunity h3,
   .latest-page .join-markdown strong,
   .latest-page .join-markdown a,

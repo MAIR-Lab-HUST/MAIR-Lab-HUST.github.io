@@ -150,8 +150,8 @@ links = []
 
 [publication.mild]
 order = 6
-image = "mild-human-erasing.svg"
-image_href = "https://openreview.net/forum?id=zv91fpVOGc"
+image = "mild-human-erasing.png"
+image_href = "https://arxiv.org/abs/2508.06543"
 badge_en = "Preprint · 2026"
 badge_zh = "预印本 · 2026"
 description_en = "A multi-layer diffusion strategy for clean human removal in scenes with occlusion, object entanglement, and complex foreground-background interactions."
@@ -161,7 +161,7 @@ image_alt_zh = "MILD 交互感知人物消除示例"
 
 [[publication.mild.links]]
 kind = "paper"
-href = "https://openreview.net/forum?id=zv91fpVOGc"
+href = "https://arxiv.org/abs/2508.06543"
 
 [publication.vcvton]
 order = 8
