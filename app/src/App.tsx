@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Code, EnvelopeSimple, FileText, GithubLogo, GlobeSimple, LinkSimple } from "@phosphor-icons/react"
 import { motion } from "motion/react"
+import { IrisAsciiArt } from "@/components/IrisAsciiArt"
 import { pageContent, type Language } from "@/content"
 import hustLogoUrl from "@/assets/HUST_logo.png"
 import mairLogoUrl from "@/assets/MAIR_logo.png"
@@ -35,6 +36,7 @@ const siteCopy = {
         "understand and shape complex worlds.",
       ],
       signatureAlt: "MAIR handwritten signature",
+      asciiAlt: "Interactive ASCII iris illustration",
     },
     footer: {
       navLabel: "Footer navigation",
@@ -65,6 +67,7 @@ const siteCopy = {
         "并以可靠、可控的方式与世界交互。",
       ],
       signatureAlt: "MAIR 手写签名",
+      asciiAlt: "交互式 ASCII 鸢尾花插画",
     },
     footer: {
       navLabel: "页脚导航",
@@ -179,6 +182,7 @@ function App() {
       <main>
         {route === "home" && <>
         <section className="latest-hero flex flex-col items-center text-center" aria-labelledby="hero-title">
+          <div className="latest-hero-copy">
           <div className="latest-lockup flex items-center justify-center">
             <img src={mairLogoUrl} alt={copy.hero.mairAlt} className="latest-mair-logo object-contain" />
             <span className="latest-logo-rule w-px shrink-0 bg-black/25" aria-hidden="true" />
@@ -192,7 +196,10 @@ function App() {
           <p className="latest-intro font-normal text-black">
             {copy.hero.intro.map((line) => <span key={line} className="block">{line}</span>)}
           </p>
-
+          </div>
+          <div className="hero-ascii">
+            <IrisAsciiArt label={copy.hero.asciiAlt} />
+          </div>
         </section>
 
         <section id="news" className="latest-shell scroll-mt-24" aria-labelledby="news-heading">
