@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">DynaPPI dynamic protein interaction dataset</title>
+  <desc id="desc">Protein chains move through intermediate states to form a bound complex.</desc>
+  <rect width="1200" height="700" fill="#ecfdf5"/>
+  <text x="600" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="54" fill="#064e3b">DynaPPI</text>
+  <text x="600" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#047857">DYNAMIC PROTEIN INTERACTION TRAJECTORIES</text>
+  <g fill="none" stroke-linecap="round" stroke-width="26">
+    <path d="M95 300c60-90 120 90 180 0s120 90 180 0" stroke="#059669"/>
+    <path d="M95 470c60 90 120-90 180 0s120-90 180 0" stroke="#0ea5e9"/>
+    <path d="M760 315c65-95 130 95 195 0s110 65 145 0" stroke="#059669"/>
+    <path d="M755 440c65 95 130-95 195 0s110-65 145 0" stroke="#0ea5e9"/>
+  </g>
+  <path d="M500 385h145" stroke="#10b981" stroke-width="18" stroke-linecap="round"/>
+  <path d="m620 350 48 35-48 35" fill="none" stroke="#10b981" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#f59e0b">
+    <circle cx="805" cy="355" r="18"/><circle cx="880" cy="395" r="18"/><circle cx="960" cy="350" r="18"/><circle cx="1030" cy="410" r="18"/>
+  </g>
+  <text x="275" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="29" fill="#065f46">Dissociated chains</text>
+  <text x="925" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="29" fill="#065f46">Bound complex</text>
+</svg>

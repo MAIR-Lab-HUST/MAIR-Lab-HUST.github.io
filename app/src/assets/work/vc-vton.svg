@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">VC-VTON virtual try-on</title>
+  <desc id="desc">A garment is transferred consistently across three body poses and viewpoints.</desc>
+  <rect width="1200" height="700" fill="#fdf2f8"/>
+  <text x="600" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="52" fill="#831843">VC-VTON</text>
+  <text x="600" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#9d174d">ACROSS-VIEW · MULTI-POSTURE · VIEW CONSISTENCY</text>
+  <g fill="#f9a8d4" stroke="#be185d" stroke-width="8">
+    <path d="M95 250 205 185l110 65-42 88-35-24v205H162V314l-35 24z"/>
+    <path d="M445 240 555 175l110 65-34 98-43-25v206H512V313l-43 25z"/>
+    <path d="M795 260 905 195l110 65-48 82-29-22v199H872V320l-29 22z"/>
+  </g>
+  <g fill="#831843">
+    <circle cx="205" cy="205" r="38"/><circle cx="555" cy="195" r="38"/><circle cx="905" cy="215" r="38"/>
+  </g>
+  <path d="M335 355h75M685 355h75" stroke="#db2777" stroke-width="15" stroke-linecap="round" stroke-dasharray="14 20"/>
+  <text x="600" y="625" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" fill="#831843">Consistent garment identity across viewpoint and pose changes</text>
+</svg>
