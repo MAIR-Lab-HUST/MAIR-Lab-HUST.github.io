@@ -25,13 +25,13 @@ type AsciiConfig = {
 }
 
 const DEFAULT_CONFIG: AsciiConfig = {
-  cellStep: 6,
-  fontScale: 1.16,
-  pushRadius: 104,
-  pushForce: 0.78,
-  spring: 0.022,
-  damping: 0.94,
-  flickerInterval: 72,
+  cellStep: 4,
+  fontScale: 1.6,
+  pushRadius: 112,
+  pushForce: 0.65,
+  spring: 0.016,
+  damping: 0.845,
+  flickerInterval: 30,
 }
 
 const controlDefinitions = [
@@ -96,9 +96,11 @@ export function IrisAsciiArt({ label, language }: { label: string; language: "en
       const samplerContext = sampler.getContext("2d", { willReadFrequently: true })
       if (!samplerContext) return
 
-      const sampleWidth = Math.max(1, columns - 4)
-      const sampleHeight = Math.max(1, rows - 4)
-      const scale = Math.max(sampleWidth / source.naturalWidth, sampleHeight / source.naturalHeight)
+      const horizontalPadding = Math.max(4, Math.ceil(16 / step))
+      const verticalPadding = Math.max(3, Math.ceil(12 / step))
+      const sampleWidth = Math.max(1, columns - horizontalPadding * 2)
+      const sampleHeight = Math.max(1, rows - verticalPadding * 2)
+      const scale = Math.min(sampleWidth / source.naturalWidth, sampleHeight / source.naturalHeight)
       const drawWidth = source.naturalWidth * scale
       const drawHeight = source.naturalHeight * scale
       const drawX = (columns - drawWidth) / 2
