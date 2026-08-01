@@ -2,6 +2,14 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: "MAIR Douyin Sans";
+  src: url("/assets/fonts/douyin-sans/douyin-sans-bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "MAIR Jost Emphasis";
   src: local("Jost Medium"), local("Jost-Medium"), url("/assets/fonts/jost/jost-medium-latin-ext.woff2") format("woff2");
   font-style: normal;
@@ -463,7 +471,7 @@
     margin: 0;
     font-family: var(--font-emphasis);
     font-size: var(--text-5);
-    font-weight: 500;
+    font-weight: var(--font-emphasis-weight, 500);
     line-height: 1.2;
     letter-spacing: -0.025em;
   }
@@ -1423,13 +1431,13 @@
   .latest-page .editorial-feature-meta,
   .latest-page .editorial-feature-links a {
     font-family: var(--font-emphasis);
-    font-weight: 500;
+    font-weight: var(--font-emphasis-weight, 500);
   }
 
   .latest-page .join-markdown em {
     font-family: var(--font-emphasis);
     font-style: italic;
-    font-weight: 500;
+    font-weight: var(--font-emphasis-weight, 500);
   }
 }
 
@@ -1442,6 +1450,11 @@
     --academic-accent: #244a73;
     background: #fbfbfa;
     color: var(--academic-ink);
+  }
+
+  .latest-page.is-zh {
+    --font-emphasis: "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-emphasis-weight: 700;
   }
 
   .latest-page header {
@@ -1749,11 +1762,7 @@
     border: 0;
   }
 
-  .latest-footer-brand,
-  .research-area-card h3,
-  .join-opportunity h3,
-  .people-group h3,
-  .publication-title {
+  .latest-footer-brand {
     font-family: var(--font-body) !important;
   }
 
