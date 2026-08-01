@@ -18,10 +18,13 @@ const siteCopy = {
     documentTitle: "MAIR Lab @ HUST",
     brandAria: "MAIR Lab homepage",
     nav: [
+      { label: "Home", href: "#/" },
+      { label: "About", href: "#/about" },
       { label: "Research", href: "#/research" },
-      { label: "Join Us", href: "#/join" },
       { label: "Publications", href: "#/publications" },
+      { label: "Projects", href: "#/projects" },
       { label: "People", href: "#/people" },
+      { label: "Join", href: "#/join" },
     ],
     contact: "Contact",
     languageLabel: "Choose language",
@@ -49,10 +52,13 @@ const siteCopy = {
     documentTitle: "华中科技大学 MAIR 实验室",
     brandAria: "MAIR 实验室主页",
     nav: [
+      { label: "首页", href: "#/" },
+      { label: "关于我们", href: "#/about" },
       { label: "研究方向", href: "#/research" },
-      { label: "加入我们", href: "#/join" },
       { label: "论文发表", href: "#/publications" },
+      { label: "研究项目", href: "#/projects" },
       { label: "成员", href: "#/people" },
+      { label: "加入我们", href: "#/join" },
     ],
     contact: "联系",
     languageLabel: "选择语言",
@@ -85,12 +91,12 @@ function getInitialLanguage(): Language {
   return window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en"
 }
 
-type PageRoute = "home" | "research" | "join" | "publications" | "people"
+type PageRoute = "home" | "about" | "research" | "publications" | "projects" | "people" | "join"
 
 function getPageRoute(): PageRoute {
   if (typeof window === "undefined") return "home"
   const route = window.location.hash.replace(/^#\/?/, "")
-  return route === "research" || route === "join" || route === "publications" || route === "people"
+  return route === "about" || route === "research" || route === "publications" || route === "projects" || route === "people" || route === "join"
     ? route
     : "home"
 }
@@ -107,7 +113,8 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = isChinese ? "zh-CN" : "en"
-    const currentPage = copy.nav.find((item) => item.href === `#/${route}`)
+    const routeHref = route === "home" ? "#/" : `#/${route}`
+    const currentPage = copy.nav.find((item) => item.href === routeHref)
     document.title = currentPage ? `${currentPage.label} | ${copy.documentTitle}` : copy.documentTitle
     window.localStorage.setItem("mair-language", language)
   }, [copy.documentTitle, copy.nav, isChinese, language, route])
@@ -139,8 +146,8 @@ function App() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`latest-nav-link text-black no-underline transition-opacity duration-200 hover:opacity-55${route === link.href.slice(2) ? " is-active" : ""}`}
-                aria-current={route === link.href.slice(2) ? "page" : undefined}
+                className={`latest-nav-link text-black no-underline transition-opacity duration-200 hover:opacity-55${route === (link.href === "#/" ? "home" : link.href.slice(2)) ? " is-active" : ""}`}
+                aria-current={route === (link.href === "#/" ? "home" : link.href.slice(2)) ? "page" : undefined}
               >
                 {link.label}
               </a>
@@ -202,31 +209,44 @@ function App() {
           </div>
         </section>
 
-        <section id="news" className="latest-shell scroll-mt-24" aria-labelledby="news-heading">
-          <h2 id="news-heading" className="latest-heading font-medium uppercase">{content.news.heading}</h2>
-          <div>
-            {content.news.items.map((item) => (
-              <div key={`${item.href}-${item.title}`} className="latest-row grid items-start">
-                <span className="latest-row-type font-medium">{item.type}</span>
-                <div className="latest-row-body">
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="latest-row-title font-medium no-underline transition-opacity duration-200 hover:opacity-60"
-                  >
-                    {item.title}
-                  </a>
-                  <p className="latest-row-description" dangerouslySetInnerHTML={{ __html: item.html }} />
-                </div>
-                <time className="latest-row-date text-right font-normal">{item.date}</time>
-              </div>
-            ))}
-          </div>
-        </section>
         </>}
 
         {route !== "home" && <div className="latest-content-shell section-page-shell">
+          {route === "about" &&
+          <section id="about" className="homepage-major-section about-section scroll-mt-8">
+            <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
+              {content.about.heading}
+            </h2>
+            <p className="latest-section-copy">{content.about.intro}</p>
+            <div className="about-layout">
+              <div className="about-narrative">
+                {content.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
+              <aside className="about-focus">
+                <h3>{content.about.focusHeading}</h3>
+                <ol>
+                  {content.about.focusItems.map((item) => <li key={item}>{item}</li>)}
+                </ol>
+              </aside>
+            </div>
+            <div className="about-news" aria-labelledby="news-heading">
+              <h3 id="news-heading" className="latest-heading font-medium uppercase">{content.news.heading}</h3>
+              {content.news.items.map((item) => (
+                <div key={`${item.href}-${item.title}`} className="latest-row grid items-start">
+                  <span className="latest-row-type font-medium">{item.type}</span>
+                  <div className="latest-row-body">
+                    <a href={item.href} target="_blank" rel="noreferrer" className="latest-row-title font-medium no-underline transition-opacity duration-200 hover:opacity-60">
+                      {item.title}
+                    </a>
+                    <p className="latest-row-description" dangerouslySetInnerHTML={{ __html: item.html }} />
+                  </div>
+                  <time className="latest-row-date text-right font-normal">{item.date}</time>
+                </div>
+              ))}
+            </div>
+          </section>
+          }
+
           {route === "research" &&
           <section id="research" className="homepage-major-section research-section scroll-mt-8">
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
@@ -286,6 +306,41 @@ function App() {
                     <span className="publication-badge">{item.badge}</span>
                     <p className="publication-authors">{item.authors}</p>
                     <p className="publication-description">{item.description}</p>
+                    <div className="publication-links" aria-label={`${item.title} ${content.publications.linksLabel}`}>
+                      {item.links.map((link) => {
+                        const LinkIcon = publicationLinkIcons[link.kind]
+                        return (
+                          <a key={link.kind} href={link.href} target="_blank" rel="noreferrer">
+                            <LinkIcon className="publication-link-icon" weight="regular" aria-hidden="true" />
+                            <span>{content.publications.linkLabels[link.kind]}</span>
+                            <span aria-hidden="true">↗</span>
+                          </a>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+          }
+
+          {route === "projects" &&
+          <section id="projects" className="homepage-major-section projects-section scroll-mt-8">
+            <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
+              {content.projects.heading}
+            </h2>
+            <p className="latest-section-copy">{content.projects.intro}</p>
+            <div className="project-list">
+              {content.projects.items.map((item) => (
+                <article key={item.citationKey} className="project-feature">
+                  <a href={item.imageHref} target="_blank" rel="noreferrer" className="project-figure" aria-label={`${content.publications.openLabel} ${item.title}`}>
+                    <img src={item.image} alt={item.imageAlt} />
+                  </a>
+                  <div className="project-copy">
+                    <span className="publication-badge">{item.badge}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
                     <div className="publication-links" aria-label={`${item.title} ${content.publications.linksLabel}`}>
                       {item.links.map((link) => {
                         const LinkIcon = publicationLinkIcons[link.kind]

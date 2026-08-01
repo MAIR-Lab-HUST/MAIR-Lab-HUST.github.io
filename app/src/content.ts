@@ -65,6 +65,12 @@ interface PublicationSectionCopy extends SectionCopy {
   linkLabels: Record<PublicationLinkKind, string>
 }
 
+interface AboutSectionCopy extends SectionCopy {
+  paragraphs: string[]
+  focusHeading: string
+  focusItems: string[]
+}
+
 interface PeopleGroup {
   order: number
   title: string
@@ -73,9 +79,11 @@ interface PeopleGroup {
 
 export interface PageContent {
   news: SectionCopy & { items: NewsItem[] }
+  about: Required<AboutSectionCopy>
   research: Required<SectionCopy> & { areas: ResearchArea[] }
   join: Required<SectionCopy> & { opportunities: JoinOpportunity[] }
   publications: PublicationSectionCopy & { items: Publication[] }
+  projects: Required<SectionCopy> & { items: Publication[] }
   people: Required<SectionCopy> & { groups: PeopleGroup[] }
 }
 
@@ -121,6 +129,13 @@ function requiredRecord(value: unknown, context: string): Record<string, unknown
     throw new Error(`Missing table: ${context}`)
   }
   return value as Record<string, unknown>
+}
+
+function requiredStringArray(value: unknown, context: string): string[] {
+  if (!Array.isArray(value) || value.length === 0) {
+    throw new Error(`Missing string array: ${context}`)
+  }
+  return value.map((item, index) => requiredString(item, `${context}[${index}]`))
 }
 
 function parseMarkdownDocument(path: string, source: string): MarkdownDocument {
@@ -374,15 +389,25 @@ function parsePublications(language: Language): Publication[] {
 
 function buildPageContent(language: Language): PageContent {
   const news = section(language, "news")
+  const about = section(language, "about")
   const research = section(language, "research")
   const join = section(language, "join")
   const publications = section(language, "publications")
+  const projects = section(language, "projects")
   const people = section(language, "people")
+  const publicationItems = parsePublications(language)
 
   return {
     news: {
       heading: requiredString(news.heading, `${language}.news.heading`),
       items: parseNews(language),
+    },
+    about: {
+      heading: requiredString(about.heading, `${language}.about.heading`),
+      intro: requiredString(about.intro, `${language}.about.intro`),
+      paragraphs: requiredStringArray(about.paragraphs, `${language}.about.paragraphs`),
+      focusHeading: requiredString(about.focus_heading, `${language}.about.focus_heading`),
+      focusItems: requiredStringArray(about.focus_items, `${language}.about.focus_items`),
     },
     research: {
       heading: requiredString(research.heading, `${language}.research.heading`),
@@ -405,7 +430,14 @@ function buildPageContent(language: Language): PageContent {
         project: requiredString(publications.project_label, `${language}.publications.project_label`),
         acl: requiredString(publications.acl_label, `${language}.publications.acl_label`),
       },
-      items: parsePublications(language),
+      items: publicationItems,
+    },
+    projects: {
+      heading: requiredString(projects.heading, `${language}.projects.heading`),
+      intro: requiredString(projects.intro, `${language}.projects.intro`),
+      items: publicationItems.filter((item) =>
+        item.links.some((link) => link.kind === "code" || link.kind === "project"),
+      ),
     },
     people: {
       heading: requiredString(people.heading, `${language}.people.heading`),

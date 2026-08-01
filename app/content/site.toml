@@ -1,6 +1,20 @@
 [en.news]
 heading = "News"
 
+[en.about]
+heading = "About"
+intro = "MAIR Lab is a research group at Huazhong University of Science and Technology studying multimodal intelligence across perception, generation, reasoning, and action."
+paragraphs = [
+  "Our research connects multimodal intelligence, physical intelligence, and AI for science. We study not only how models understand and generate information, but also how they acquire actionable representations of environments and support scientific discovery.",
+  "Across these directions, we develop datasets, benchmarks, learning and alignment methods, and interactive systems. Our goal is to turn advances in foundation models into reliable intelligence for complex digital, physical, and scientific settings."
+]
+focus_heading = "Research perspective"
+focus_items = [
+  "Connect understanding and generation within unified multimodal systems.",
+  "Close the loop from perception and reasoning to interaction and action.",
+  "Build scientifically grounded AI systems whose outputs remain useful and correct."
+]
+
 [en.research]
 heading = "Research"
 intro = "We investigate multimodal systems that perceive, generate, reason, and act, turning frontier research into reliable intelligence for complex real-world settings."
@@ -19,12 +33,30 @@ code_label = "Code"
 project_label = "Project"
 acl_label = "ACL"
 
+[en.projects]
+heading = "Projects"
+intro = "Research systems, open-source implementations, and project pages developed around our recent work."
+
 [en.people]
 heading = "People"
 intro = "Meet the researchers and students who make up MAIR Lab."
 
 [zh.news]
 heading = "实验室动态"
+
+[zh.about]
+heading = "关于我们"
+intro = "MAIR 实验室隶属于华中科技大学，围绕感知、生成、推理与行动研究多模态智能。"
+paragraphs = [
+  "我们的研究连接多模态智能、物理智能与科学智能。我们不仅关注模型如何理解和生成信息，也关注模型如何形成可用于行动的环境表征，并进一步服务科学发现。",
+  "围绕这些方向，实验室开展数据集与评测基准、学习与对齐方法、交互系统等研究，推动基础模型能力转化为面向复杂数字环境、物理世界与科学场景的可靠智能。"
+]
+focus_heading = "研究视角"
+focus_items = [
+  "在统一的多模态系统中连接理解与生成。",
+  "打通从感知、推理到交互与行动的完整闭环。",
+  "构建结果可靠、科学内容正确且能够支持真实研究的智能系统。"
+]
 
 [zh.research]
 heading = "研究方向"
@@ -43,6 +75,10 @@ paper_label = "论文"
 code_label = "代码"
 project_label = "项目"
 acl_label = "ACL"
+
+[zh.projects]
+heading = "研究项目"
+intro = "围绕实验室近期成果形成的研究系统、开源实现与项目主页。"
 
 [zh.people]
 heading = "成员"
