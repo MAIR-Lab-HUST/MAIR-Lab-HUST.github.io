@@ -14,10 +14,10 @@ type Cell = {
 }
 
 const ASCII_CHARS = ".,:;+*xX$&"
-const PUSH_RADIUS = 82
-const PUSH_FORCE = 1.8
-const SPRING = 0.075
-const DAMPING = 0.84
+const PUSH_RADIUS = 104
+const PUSH_FORCE = 0.78
+const SPRING = 0.022
+const DAMPING = 0.94
 
 export function IrisAsciiArt({ label }: { label: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -109,7 +109,7 @@ export function IrisAsciiArt({ label }: { label: string }) {
       context.textAlign = "center"
       context.textBaseline = "middle"
 
-      const mouseIsMoving = mouse.inside && time - mouse.lastMove < 110 && !reduceMotion
+      const mouseIsMoving = mouse.inside && time - mouse.lastMove < 160 && !reduceMotion
       if (!reduceMotion && time - lastFlicker > 72) {
         for (const cell of cells) {
           if (Math.random() < 0.34) cell.char = randomChar()
@@ -125,7 +125,8 @@ export function IrisAsciiArt({ label }: { label: string }) {
         const distance = Math.hypot(dx, dy) || 0.001
 
         if (mouseIsMoving && distance < PUSH_RADIUS) {
-          const force = (PUSH_RADIUS - distance) / PUSH_RADIUS
+          const proximity = (PUSH_RADIUS - distance) / PUSH_RADIUS
+          const force = Math.sin(proximity * Math.PI * 0.5)
           cell.vx += (dx / distance) * force * PUSH_FORCE
           cell.vy += (dy / distance) * force * PUSH_FORCE
         }
