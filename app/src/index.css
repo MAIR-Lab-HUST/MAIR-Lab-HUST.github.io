@@ -1539,6 +1539,7 @@
   }
 
   .latest-hero {
+    position: relative !important;
     display: grid !important;
     grid-template-columns: minmax(0, 1.28fr) minmax(300px, 0.72fr);
     gap: clamp(36px, 5vw, 72px);
@@ -1547,6 +1548,7 @@
     padding: 76px 0 68px;
     align-items: flex-start !important;
     border-bottom: 1px solid var(--academic-rule);
+    overflow: hidden;
     text-align: left !important;
   }
 
@@ -1883,6 +1885,26 @@
 
     .hero-ascii-canvas {
       height: 370px;
+    }
+  }
+
+  @media (min-width: 901px) {
+    .latest-hero-copy {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .hero-ascii {
+      position: static;
+      grid-column: 2;
+      grid-row: 1;
+      align-self: stretch;
+      width: 100%;
+      margin-block: -62px;
+    }
+
+    .hero-ascii-canvas {
+      height: 100%;
     }
   }
 }

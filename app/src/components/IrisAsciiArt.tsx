@@ -61,7 +61,9 @@ export function IrisAsciiArt({ label }: { label: string }) {
       const samplerContext = sampler.getContext("2d", { willReadFrequently: true })
       if (!samplerContext) return
 
-      const scale = Math.min(columns / source.naturalWidth, rows / source.naturalHeight)
+      const sampleWidth = Math.max(1, columns - 4)
+      const sampleHeight = Math.max(1, rows - 4)
+      const scale = Math.max(sampleWidth / source.naturalWidth, sampleHeight / source.naturalHeight)
       const drawWidth = source.naturalWidth * scale
       const drawHeight = source.naturalHeight * scale
       const drawX = (columns - drawWidth) / 2
