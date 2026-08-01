@@ -59,7 +59,7 @@ const siteCopy = {
     hero: {
       mairAlt: "MAIR 实验室标志",
       hustAlt: "华中科技大学校徽",
-      kicker: "多模态人工智能研究实验室",
+      kicker: "华中科技大学多模态人工智能实验室",
       title: ["探索多模态智能的", "下一片前沿。"],
       intro: [
         "MAIR 实验室致力于构建从感知走向生成、从推理走向行动的多模态系统，",
