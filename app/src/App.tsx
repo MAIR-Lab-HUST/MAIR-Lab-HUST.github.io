@@ -99,7 +99,7 @@ function App() {
   const content = pageContent[language]
   const isChinese = language === "zh"
   const displayFont = isChinese
-    ? "'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif"
+    ? "'MAIR Douyin Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif"
     : "'Instrument Serif', serif"
 
   useEffect(() => {

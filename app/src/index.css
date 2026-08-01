@@ -1457,6 +1457,12 @@
     --font-emphasis-weight: 700;
   }
 
+  .latest-page.is-zh .latest-title,
+  .latest-page.is-zh .latest-section-title {
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
+  }
+
   .latest-page header {
     padding-top: 0;
   }
