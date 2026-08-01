@@ -34,7 +34,7 @@ export function IrisAsciiArt({ label }: { label: string }) {
     let cells: Cell[] = []
     let frameId = 0
     let lastFlicker = 0
-    let cellFontSize = 9
+    let cellFontSize = 6
     let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     const mouse = { x: 0, y: 0, lastMove: 0, inside: false }
 
@@ -51,8 +51,8 @@ export function IrisAsciiArt({ label }: { label: string }) {
       canvas.height = Math.round(height * dpr)
       context.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      const step = width < 390 ? 8 : 9
-      cellFontSize = step
+      const step = width < 390 ? 5 : 6
+      cellFontSize = step * 0.96
       const columns = Math.max(1, Math.floor(width / step))
       const rows = Math.max(1, Math.floor(height / step))
       const sampler = document.createElement("canvas")
