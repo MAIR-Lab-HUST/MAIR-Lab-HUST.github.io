@@ -1562,11 +1562,85 @@
     min-width: 0;
   }
 
+  .ascii-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
   .hero-ascii-canvas {
     display: block;
     width: 100%;
     height: 430px;
     touch-action: none;
+  }
+
+  .ascii-controls {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 2;
+    width: min(250px, calc(100% - 16px));
+    padding: 10px 12px;
+    border: 1px solid rgba(15, 39, 65, 0.16);
+    background: rgba(250, 250, 248, 0.9);
+    color: var(--academic-ink);
+    backdrop-filter: blur(12px);
+  }
+
+  .ascii-controls summary {
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  .ascii-control-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .ascii-control {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3px 10px;
+    align-items: center;
+    color: var(--academic-muted);
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .ascii-control output {
+    color: var(--academic-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ascii-control input {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 12px;
+    accent-color: var(--academic-accent);
+    cursor: ew-resize;
+  }
+
+  .ascii-control-list button {
+    justify-self: start;
+    padding: 2px 0;
+    border: 0;
+    border-bottom: 1px solid var(--academic-rule);
+    background: transparent;
+    color: var(--academic-accent);
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  .ascii-control-list button:focus-visible,
+  .ascii-controls summary:focus-visible {
+    outline: 2px solid var(--academic-accent);
+    outline-offset: 3px;
   }
 
   .latest-lockup {
@@ -1945,6 +2019,11 @@
 
     .hero-ascii {
       margin-top: 28px;
+    }
+
+    .ascii-controls {
+      right: 0;
+      bottom: 0;
     }
 
     .hero-ascii-canvas {

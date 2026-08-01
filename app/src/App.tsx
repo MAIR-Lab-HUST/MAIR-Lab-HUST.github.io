@@ -205,7 +205,7 @@ function App() {
           </p>
           </div>
           <div className="hero-ascii">
-            <IrisAsciiArt label={copy.hero.asciiAlt} />
+            <IrisAsciiArt label={copy.hero.asciiAlt} language={language} />
           </div>
         </section>
 
