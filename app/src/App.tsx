@@ -17,10 +17,10 @@ const siteCopy = {
     documentTitle: "MAIR Lab @ HUST",
     brandAria: "MAIR Lab homepage",
     nav: [
-      { label: "Research", href: "#research" },
-      { label: "Join Us", href: "#join" },
-      { label: "Publications", href: "#publications" },
-      { label: "People", href: "#people" },
+      { label: "Research", href: "#/research" },
+      { label: "Join Us", href: "#/join" },
+      { label: "Publications", href: "#/publications" },
+      { label: "People", href: "#/people" },
     ],
     contact: "Contact",
     languageLabel: "Choose language",
@@ -47,10 +47,10 @@ const siteCopy = {
     documentTitle: "华中科技大学 MAIR 实验室",
     brandAria: "MAIR 实验室主页",
     nav: [
-      { label: "研究方向", href: "#research" },
-      { label: "加入我们", href: "#join" },
-      { label: "论文发表", href: "#publications" },
-      { label: "成员", href: "#people" },
+      { label: "研究方向", href: "#/research" },
+      { label: "加入我们", href: "#/join" },
+      { label: "论文发表", href: "#/publications" },
+      { label: "成员", href: "#/people" },
     ],
     contact: "联系",
     languageLabel: "选择语言",
@@ -82,8 +82,19 @@ function getInitialLanguage(): Language {
   return window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en"
 }
 
+type PageRoute = "home" | "research" | "join" | "publications" | "people"
+
+function getPageRoute(): PageRoute {
+  if (typeof window === "undefined") return "home"
+  const route = window.location.hash.replace(/^#\/?/, "")
+  return route === "research" || route === "join" || route === "publications" || route === "people"
+    ? route
+    : "home"
+}
+
 function App() {
   const [language, setLanguage] = useState<Language>(getInitialLanguage)
+  const [route, setRoute] = useState<PageRoute>(getPageRoute)
   const copy = siteCopy[language]
   const content = pageContent[language]
   const isChinese = language === "zh"
@@ -93,16 +104,26 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = isChinese ? "zh-CN" : "en"
-    document.title = copy.documentTitle
+    const currentPage = copy.nav.find((item) => item.href === `#/${route}`)
+    document.title = currentPage ? `${currentPage.label} | ${copy.documentTitle}` : copy.documentTitle
     window.localStorage.setItem("mair-language", language)
-  }, [copy.documentTitle, isChinese, language])
+  }, [copy.documentTitle, copy.nav, isChinese, language, route])
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setRoute(getPageRoute())
+      window.scrollTo({ top: 0, behavior: "instant" })
+    }
+    window.addEventListener("hashchange", handleRouteChange)
+    return () => window.removeEventListener("hashchange", handleRouteChange)
+  }, [])
 
   return (
     <div className={`latest-page text-black${isChinese ? " is-zh" : ""}`} lang={isChinese ? "zh-CN" : "en"}>
       <header className="px-3 pt-2 sm:px-6 sm:pt-5">
         <nav className="latest-nav mx-auto flex items-center justify-between rounded-full border border-black/10 px-[10px]">
           <a
-            href="#"
+            href="#/"
             className="latest-brand leading-none text-black no-underline"
             style={{ fontFamily: displayFont }}
             aria-label={copy.brandAria}
@@ -115,7 +136,8 @@ function App() {
               <a
                 key={link.href}
                 href={link.href}
-                className="latest-nav-link text-black no-underline transition-opacity duration-200 hover:opacity-55"
+                className={`latest-nav-link text-black no-underline transition-opacity duration-200 hover:opacity-55${route === link.href.slice(2) ? " is-active" : ""}`}
+                aria-current={route === link.href.slice(2) ? "page" : undefined}
               >
                 {link.label}
               </a>
@@ -155,6 +177,7 @@ function App() {
       </header>
 
       <main>
+        {route === "home" && <>
         <section className="latest-hero flex flex-col items-center text-center" aria-labelledby="hero-title">
           <div className="latest-lockup flex items-center justify-center">
             <img src={mairLogoUrl} alt={copy.hero.mairAlt} className="latest-mair-logo object-contain" />
@@ -194,8 +217,10 @@ function App() {
             ))}
           </div>
         </section>
+        </>}
 
-        <div className="latest-content-shell">
+        {route !== "home" && <div className="latest-content-shell section-page-shell">
+          {route === "research" &&
           <section id="research" className="homepage-major-section research-section scroll-mt-8">
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
               {content.research.heading}
@@ -204,14 +229,16 @@ function App() {
             <div className="research-area-grid">
               {content.research.areas.map((area) => (
                 <article key={area.title} className="research-area-card">
-                  <h3 style={{ fontFamily: displayFont }}>{area.title}</h3>
+                  <h3>{area.title}</h3>
                   <div className="research-area-figure"><img src={area.image} alt={area.imageAlt} /></div>
                   <p dangerouslySetInnerHTML={{ __html: area.html }} />
                 </article>
               ))}
             </div>
           </section>
+          }
 
+          {route === "join" &&
           <section id="join" className="homepage-major-section join-section scroll-mt-8">
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
               {content.join.heading}
@@ -220,13 +247,15 @@ function App() {
             <div className="join-opportunity-grid">
               {content.join.opportunities.map((opportunity) => (
                 <article key={opportunity.title} className="join-opportunity">
-                  <h3 style={{ fontFamily: displayFont }}>{opportunity.title}</h3>
+                  <h3>{opportunity.title}</h3>
                   <div className="join-markdown" dangerouslySetInnerHTML={{ __html: opportunity.html }} />
                 </article>
               ))}
             </div>
           </section>
+          }
 
+          {route === "publications" &&
           <section id="publications" className="homepage-major-section publications-section scroll-mt-8">
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
               {content.publications.heading}
@@ -267,7 +296,9 @@ function App() {
               ))}
             </div>
           </section>
+          }
 
+          {route === "people" &&
           <section id="people" className="homepage-major-section people-section scroll-mt-8">
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
               {content.people.heading}
@@ -287,12 +318,13 @@ function App() {
               ))}
             </div>
           </section>
-        </div>
+          }
+        </div>}
       </main>
 
       <footer className="latest-footer mx-auto">
         <div className="latest-footer-main flex items-center justify-between border-b border-black/15">
-          <a href="#" className="latest-footer-brand text-black no-underline" style={{ fontFamily: displayFont }}>
+          <a href="#/" className="latest-footer-brand text-black no-underline">
             MAIR Lab @ HUST
           </a>
           <div className="flex items-center">

@@ -1468,6 +1468,13 @@
     color: var(--academic-muted);
   }
 
+  .latest-nav-link.is-active {
+    color: var(--academic-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--academic-accent);
+    text-underline-offset: 5px;
+  }
+
   .latest-nav > div:nth-child(2) {
     display: flex !important;
   }
@@ -1582,12 +1589,16 @@
   }
 
   .latest-heading {
+    height: auto;
+    margin-bottom: 14px;
+    border-bottom: 0;
     color: var(--academic-accent);
     letter-spacing: 0.13em;
   }
 
   .latest-row {
-    border-color: var(--academic-rule);
+    padding-block: 11px;
+    border-bottom: 0;
   }
 
   .latest-row-type,
@@ -1604,9 +1615,15 @@
     margin-top: 70px;
   }
 
+  .section-page-shell {
+    min-height: calc(100svh - 225px);
+    margin-top: 0;
+    padding-top: 28px;
+  }
+
   .homepage-major-section {
     padding: 58px 0 72px;
-    border-color: var(--academic-rule);
+    border-bottom: 0;
   }
 
   .latest-section-title {
@@ -1628,9 +1645,8 @@
 
   .research-area-card {
     min-height: 0;
-    padding: 22px 0 0;
+    padding: 0;
     border: 0;
-    border-top: 2px solid var(--academic-ink);
     background: transparent;
   }
 
@@ -1658,13 +1674,18 @@
   .publication-feature,
   .join-opportunity-grid,
   .join-opportunity + .join-opportunity {
-    border-color: var(--academic-rule);
+    border: 0;
+  }
+
+  .publication-list {
+    display: grid;
+    gap: 28px;
   }
 
   .publication-feature {
     grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
     gap: 40px;
-    padding: 30px 0;
+    padding: 0;
   }
 
   .publication-figure {
@@ -1717,6 +1738,25 @@
     padding: 32px 0 36px;
   }
 
+  .people-groups {
+    gap: 36px 48px;
+    border: 0;
+  }
+
+  .people-group {
+    min-height: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .latest-footer-brand,
+  .research-area-card h3,
+  .join-opportunity h3,
+  .people-group h3,
+  .publication-title {
+    font-family: var(--font-body) !important;
+  }
+
   .join-markdown > p,
   .join-opportunity li {
     color: var(--academic-muted);
@@ -1727,7 +1767,8 @@
   }
 
   .latest-footer-main {
-    border-color: var(--academic-rule);
+    border-top: 1px solid var(--academic-rule);
+    border-bottom: 0 !important;
   }
 
   @media (max-width: 639px) {
@@ -1769,13 +1810,13 @@
     }
 
     .research-area-card {
-      padding: 18px 0 0;
+      padding: 0;
     }
 
     .publication-feature,
     .publication-feature-reverse {
       gap: 18px;
-      padding: 24px 0;
+      padding: 0;
     }
 
     .publication-title {
