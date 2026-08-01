@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -46,14 +46,14 @@
 }
 
 @theme {
-  --font-display: "Instrument Serif", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --font-display: "MAIR Jost Emphasis", "Inter", sans-serif;
   --font-body: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-emphasis: "MAIR Jost Emphasis", "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 @layer base {
   :root {
-    --font-display: "Instrument Serif", "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+    --font-display: "MAIR Jost Emphasis", "Inter", sans-serif;
     --font-body: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
     --font-emphasis: "MAIR Jost Emphasis", "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
     /* Shared site type scale: keep every interface size on these eight steps. */
@@ -1461,6 +1461,11 @@
   .latest-page.is-zh .latest-section-title {
     font-weight: 700 !important;
     letter-spacing: -0.02em;
+  }
+
+  .latest-page:not(.is-zh) .latest-title,
+  .latest-page:not(.is-zh) .latest-section-title {
+    font-weight: 500 !important;
   }
 
   .latest-page header {

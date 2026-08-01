@@ -100,7 +100,7 @@ function App() {
   const isChinese = language === "zh"
   const displayFont = isChinese
     ? "'MAIR Douyin Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif"
-    : "'Instrument Serif', serif"
+    : "'MAIR Jost Emphasis', 'Inter', sans-serif"
 
   useEffect(() => {
     document.documentElement.lang = isChinese ? "zh-CN" : "en"
