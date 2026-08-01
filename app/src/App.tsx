@@ -4,8 +4,6 @@ import { motion } from "motion/react"
 import { pageContent, type Language } from "@/content"
 import hustLogoUrl from "@/assets/HUST_logo.png"
 import mairLogoUrl from "@/assets/MAIR_logo.png"
-import specImageUrl from "@/assets/signature-spine-spec.jpg"
-import videoUrl from "@/assets/track-video.mp4"
 
 const publicationLinkIcons = {
   paper: FileText,
@@ -80,14 +78,6 @@ function getInitialLanguage(): Language {
   const stored = window.localStorage.getItem("mair-language")
   if (stored === "en" || stored === "zh") return stored
   return window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en"
-}
-
-function SpecCrop({ className, label }: { className: string; label: string }) {
-  return (
-    <div className={`spec-crop ${className}`} role="img" aria-label={label}>
-      <img src={specImageUrl} alt="" aria-hidden="true" />
-    </div>
-  )
 }
 
 function App() {
@@ -178,24 +168,6 @@ function App() {
             {copy.hero.intro.map((line) => <span key={line} className="block">{line}</span>)}
           </p>
 
-          <SpecCrop className="latest-signature-crop" label={copy.hero.signatureAlt} />
-          <div className="latest-video relative shrink-0 overflow-hidden">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              onCanPlay={(event) => {
-                void event.currentTarget.play().catch(() => undefined)
-              }}
-              className="absolute inset-0 h-full w-full object-cover object-bottom"
-              aria-hidden="true"
-            >
-              <source src={videoUrl} type="video/mp4" />
-            </video>
-            <div className="latest-video-fade pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-white to-transparent" />
-          </div>
         </section>
 
         <section id="news" className="latest-shell scroll-mt-24" aria-labelledby="news-heading">
