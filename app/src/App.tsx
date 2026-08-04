@@ -19,8 +19,7 @@ const siteCopy = {
     brandAria: "MAIR Lab homepage",
     nav: [
       { label: "Home", href: "#/" },
-      { label: "About", href: "#/about" },
-      { label: "Research", href: "#/research" },
+      { label: "About & Research", href: "#/research" },
       { label: "Publications", href: "#/publications" },
       { label: "Projects", href: "#/projects" },
       { label: "People", href: "#/people" },
@@ -31,7 +30,7 @@ const siteCopy = {
     hero: {
       mairAlt: "MAIR Lab geometric mark",
       hustAlt: "Huazhong University of Science and Technology emblem",
-      kicker: "Multimodal Artificial Intelligence Research Lab",
+      kicker: "Multimodal Artificial Intelligence\nResearch Lab",
       title: ["M|Multimodal", "A|Agentic", "I|Intelligence", "R|Research"],
       intro: [
         "At MAIR Lab, we build multimodal systems that move from perception to generation,",
@@ -53,8 +52,7 @@ const siteCopy = {
     brandAria: "MAIR 实验室主页",
     nav: [
       { label: "首页", href: "#/" },
-      { label: "关于我们", href: "#/about" },
-      { label: "研究方向", href: "#/research" },
+      { label: "关于与研究", href: "#/research" },
       { label: "论文发表", href: "#/publications" },
       { label: "研究项目", href: "#/projects" },
       { label: "成员", href: "#/people" },
@@ -65,7 +63,7 @@ const siteCopy = {
     hero: {
       mairAlt: "MAIR 实验室标志",
       hustAlt: "华中科技大学校徽",
-      kicker: "华中科技大学多模态人工智能实验室",
+      kicker: "华中科技大学\n多模态人工智能实验室",
       title: ["M|Multimodal", "A|Agentic", "I|Intelligence", "R|Research"],
       intro: [
         "MAIR 实验室致力于构建从感知走向生成、从推理走向行动的多模态系统，",
@@ -104,6 +102,7 @@ function getPageRoute(): PageRoute {
 function App() {
   const [language, setLanguage] = useState<Language>(getInitialLanguage)
   const [route, setRoute] = useState<PageRoute>(getPageRoute)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const copy = siteCopy[language]
   const content = pageContent[language]
   const isChinese = language === "zh"
@@ -184,7 +183,11 @@ function App() {
               </button>
             </div>
           </div>
+          <button type="button" className="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen((open) => !open)}>☰</button>
         </nav>
+        {mobileMenuOpen && <div className="mobile-menu">
+          {copy.nav.map((link) => <a key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)}>{link.label}</a>)}
+        </div>}
       </header>
 
       <main key={route} className="page-transition">
@@ -399,31 +402,6 @@ function App() {
         </div>}
       </main>
 
-      <footer className="latest-footer mx-auto">
-        <div className="latest-footer-main flex items-center justify-between border-b border-black/15">
-          <a href="#/" className="latest-footer-brand text-black no-underline">
-            MAIR Lab @ HUST
-          </a>
-          <div className="flex items-center">
-            <nav className="hidden items-center sm:flex" aria-label={copy.footer.navLabel}>
-              {copy.nav.map((link) => (
-                <a key={link.href} href={link.href} className="latest-footer-link text-black no-underline">{link.label}</a>
-              ))}
-              <a href="mailto:mzyth@hust.edu.cn" className="latest-footer-link text-black no-underline">{copy.contact}</a>
-            </nav>
-            {route !== "home" && <>
-              <span className="latest-footer-rule w-px bg-black/20" aria-hidden="true" />
-              <a href="https://github.com/MAIR-Lab-HUST" className="latest-social-link text-black" aria-label={copy.footer.githubAria}>
-                <GithubLogo weight="bold" aria-hidden="true" />
-              </a>
-              <a href="mailto:mzyth@hust.edu.cn" className="latest-social-link text-black" aria-label={copy.footer.emailAria}>
-                <EnvelopeSimple weight="bold" aria-hidden="true" />
-              </a>
-            </>}
-          </div>
-        </div>
-        <p className="latest-copyright">{copy.footer.copyright}</p>
-      </footer>
     </div>
   )
 }

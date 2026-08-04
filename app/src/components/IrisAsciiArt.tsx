@@ -161,7 +161,7 @@ export function HomepageAsciiBackground({ label, language }: { label: string; la
   return (
     <div className="homepage-ascii-background">
       <canvas ref={canvasRef} className="homepage-ascii-canvas" role="img" aria-label={label} />
-      <details className="ascii-controls" open>
+      <details className="ascii-controls" open hidden>
         <summary>{language === "zh" ? "ASCII 参数（临时）" : "ASCII controls (temporary)"}</summary>
         <div className="ascii-control-list">
           {controlDefinitions.map((control) => (

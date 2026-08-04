@@ -716,10 +716,13 @@
 
   .join-markdown > p {
     margin: 14px 0 0;
-    font-size: var(--text-3);
+    font-size: var(--text-4);
     line-height: 1.6;
     color: rgb(0 0 0 / 72%);
   }
+
+  .mobile-menu-toggle { display: none; }
+  .mobile-menu { display: none; }
 
   .join-opportunity .join-markdown > p {
     text-indent: 2em;
@@ -1542,6 +1545,18 @@
     font-family: "MAIR Jost Emphasis", "Jost", sans-serif !important;
   }
 
+  .latest-page:not(.is-zh) .latest-nav,
+  .latest-page:not(.is-zh) .latest-nav a,
+  .latest-page:not(.is-zh) .latest-nav button {
+    font-family: "MAIR Jost Emphasis", "Jost", sans-serif !important;
+  }
+
+  .latest-page.is-zh .latest-nav,
+  .latest-page.is-zh .latest-nav a,
+  .latest-page.is-zh .latest-nav button {
+    font-family: "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  }
+
   .latest-page:not(.is-home) .latest-brand,
   .latest-page:not(.is-home) .latest-footer-brand {
     font-family: "MAIR Jost Emphasis", "Jost", sans-serif !important;
@@ -1623,9 +1638,9 @@
     padding: 0;
     place-items: center;
     box-sizing: border-box;
-    border: 0.025em solid #244f91;
+    border: 0.025em solid #252ca5;
     border-radius: 0.1em;
-    color: #244f91;
+    color: #252ca5;
     line-height: 0.84;
   }
 
@@ -1636,9 +1651,7 @@
   .publication-author.lab-author {
     color: #111;
     font-weight: 700;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
   }
 
   /* Compact badge-style publication links. */
@@ -1937,8 +1950,8 @@
   }
 
   .latest-mair-logo {
-    width: 58px;
-    height: 64px;
+    width: 75px;
+    height: 83px;
   }
 
   .latest-hust-logo {
@@ -1953,15 +1966,17 @@
   .latest-kicker {
     margin-top: 28px;
     color: var(--academic-accent);
-    font-size: var(--text-1);
-    letter-spacing: 0.15em;
+    font-size: var(--text-3);
+    letter-spacing: normal;
   }
 
   .latest-kicker-inline {
     margin: 0 0 0 22px;
-    max-width: 300px;
+    width: 260px;
+    max-width: 260px;
     text-align: left;
     line-height: 1.25;
+    white-space: pre-line;
   }
 
   .latest-title {
@@ -2116,7 +2131,7 @@
 
   .research-area-grid {
     gap: 34px;
-    margin-top: 42px;
+    margin-top: 20px;
   }
 
   .research-area-card {
@@ -2159,6 +2174,20 @@
     display: grid;
     gap: 28px;
   }
+
+  .publication-feature {
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 30px;
+    padding: 20px 0;
+    border-top: 1px solid var(--academic-rule);
+  }
+
+  .publication-feature:first-child { border-top: 0; }
+  .publication-figure { height: 180px; border: 1px solid var(--academic-rule); }
+  .publication-figure img { width: 100%; height: 100%; object-fit: cover; }
+  .publication-title { margin: 0 0 10px; font-size: clamp(20px, 2vw, 26px); font-weight: 500; line-height: 1.25; }
+  .publication-authors { margin: 0 0 8px; color: var(--academic-muted); font-size: 1rem; line-height: 1.55; }
+  .publication-badge { display: inline-block; margin: 0 0 10px; color: var(--academic-muted); font-style: italic; }
 
   .publication-feature {
     grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
@@ -2218,14 +2247,16 @@
 
   .project-list {
     display: grid;
-    gap: 52px;
-    margin-top: 46px;
+    gap: 0;
+    margin-top: 34px;
   }
 
   .project-feature {
     display: grid;
     grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
-    gap: 42px;
+    gap: 30px;
+    padding: 20px 0;
+    border-top: 1px solid var(--academic-rule);
     align-items: center;
   }
 
@@ -2248,7 +2279,7 @@
     max-width: 760px;
     margin: 10px 0 12px;
     color: var(--academic-ink);
-    font-size: clamp(24px, 2.5vw, 34px);
+    font-size: clamp(20px, 2vw, 28px);
     font-weight: 500;
     line-height: 1.16;
     letter-spacing: -0.025em;
@@ -2291,6 +2322,26 @@
   }
 
   @media (max-width: 639px) {
+    .mobile-menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      background: transparent;
+      font-size: 20px;
+    }
+    .mobile-menu {
+      display: grid;
+      gap: 8px;
+      margin: 8px 0 0;
+      padding: 12px 16px;
+      border: 1px solid rgb(0 0 0 / 12%);
+      border-radius: 12px;
+      background: #fff;
+    }
+    .mobile-menu a { overflow-wrap: anywhere; color: inherit; text-decoration: none; }
     .latest-page.is-home .latest-footer {
       padding-right: 16px;
       padding-bottom: 10px;
