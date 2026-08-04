@@ -226,7 +226,7 @@ function App() {
         </>}
 
         {route !== "home" && <div className="latest-content-shell section-page-shell">
-          {route === "about" &&
+          {(route === "about" || route === "research") &&
           <section id="about" className="homepage-major-section about-section scroll-mt-8">
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
               {content.about.heading}
