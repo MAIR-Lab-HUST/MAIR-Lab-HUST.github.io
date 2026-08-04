@@ -31,7 +31,7 @@ const siteCopy = {
       mairAlt: "MAIR Lab geometric mark",
       hustAlt: "Huazhong University of Science and Technology emblem",
       kicker: "Multimodal Artificial Intelligence\nResearch Lab",
-      title: ["M|Multimodal", "A|Agentic", "I|Intelligence", "R|Research"],
+      title: ["M|Multimodal", "A|Artificial", "I|Intelligence", "R|Research"],
       intro: [
         "At MAIR Lab, we build multimodal systems that move from perception to generation,",
         "from reasoning to action, and from isolated models to intelligent agents that can",
@@ -64,7 +64,7 @@ const siteCopy = {
       mairAlt: "MAIR 实验室标志",
       hustAlt: "华中科技大学校徽",
       kicker: "华中科技大学\n多模态人工智能实验室",
-      title: ["M|Multimodal", "A|Agentic", "I|Intelligence", "R|Research"],
+      title: ["M|Multimodal", "A|Artificial", "I|Intelligence", "R|Research"],
       intro: [
         "MAIR 实验室致力于构建从感知走向生成、从推理走向行动的多模态系统，",
         "推动模型从孤立能力迈向智能体，使其能够理解复杂世界，",
