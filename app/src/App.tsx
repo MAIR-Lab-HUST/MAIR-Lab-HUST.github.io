@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Code, EnvelopeSimple, FileText, GithubLogo, GlobeSimple, LinkSimple } from "@phosphor-icons/react"
 import { motion } from "motion/react"
-import { IrisAsciiArt } from "@/components/IrisAsciiArt"
+import { HomepageAsciiBackground } from "@/components/IrisAsciiArt"
 import { pageContent, type Language } from "@/content"
 import hustLogoUrl from "@/assets/HUST_logo.png"
 import mairLogoUrl from "@/assets/MAIR_logo.png"
@@ -32,20 +32,20 @@ const siteCopy = {
       mairAlt: "MAIR Lab geometric mark",
       hustAlt: "Huazhong University of Science and Technology emblem",
       kicker: "Multimodal Artificial Intelligence Research Lab",
-      title: ["Engineering the next frontier of", "multimodal intelligence."],
+      title: ["M|Multimodal", "A|Agentic", "I|Intelligence", "R|Research"],
       intro: [
         "At MAIR Lab, we build multimodal systems that move from perception to generation,",
         "from reasoning to action, and from isolated models to intelligent agents that can",
         "understand and shape complex worlds.",
       ],
       signatureAlt: "MAIR handwritten signature",
-      asciiAlt: "Interactive ASCII iris illustration",
+      asciiAlt: "Interactive ASCII sunflower landscape background",
     },
     footer: {
       navLabel: "Footer navigation",
       githubAria: "MAIR Lab on GitHub",
       emailAria: "Email MAIR Lab",
-      copyright: "© 2025 MAIR Lab @ HUST. All rights reserved.",
+      copyright: "© Huazhong University of Science and Technology MAIR Lab Since 2025. All rights reserved.",
     },
   },
   zh: {
@@ -66,7 +66,7 @@ const siteCopy = {
       mairAlt: "MAIR 实验室标志",
       hustAlt: "华中科技大学校徽",
       kicker: "华中科技大学多模态人工智能实验室",
-      title: ["探索多模态智能的", "下一片前沿。"],
+      title: ["M|Multimodal", "A|Agentic", "I|Intelligence", "R|Research"],
       intro: [
         "MAIR 实验室致力于构建从感知走向生成、从推理走向行动的多模态系统，",
         "推动模型从孤立能力迈向智能体，使其能够理解复杂世界，",
@@ -79,7 +79,7 @@ const siteCopy = {
       navLabel: "页脚导航",
       githubAria: "在 GitHub 上查看 MAIR 实验室",
       emailAria: "给 MAIR 实验室发送邮件",
-      copyright: "© 2025 华中科技大学 MAIR 实验室。保留所有权利。",
+      copyright: "© 华中科技大学 MAIR Lab Since 2025。保留所有权利。",
     },
   },
 } as const
@@ -129,7 +129,8 @@ function App() {
   }, [])
 
   return (
-    <div className={`latest-page text-black${isChinese ? " is-zh" : ""}`} lang={isChinese ? "zh-CN" : "en"}>
+    <div className={`latest-page text-black${isChinese ? " is-zh" : ""}${route === "home" ? " is-home" : ""}`} lang={isChinese ? "zh-CN" : "en"}>
+      {route === "home" && <HomepageAsciiBackground label={copy.hero.asciiAlt} language={language} />}
       <header className="px-3 pt-2 sm:px-6 sm:pt-5">
         <nav className="latest-nav mx-auto flex items-center justify-between rounded-full border border-black/10 px-[10px]">
           <a
@@ -186,7 +187,7 @@ function App() {
         </nav>
       </header>
 
-      <main>
+      <main key={route} className="page-transition">
         {route === "home" && <>
         <section className="latest-hero flex flex-col items-center text-center" aria-labelledby="hero-title">
           <div className="latest-hero-copy">
@@ -194,18 +195,28 @@ function App() {
             <img src={mairLogoUrl} alt={copy.hero.mairAlt} className="latest-mair-logo object-contain" />
             <span className="latest-logo-rule w-px shrink-0 bg-black/25" aria-hidden="true" />
             <img src={hustLogoUrl} alt={copy.hero.hustAlt} className="latest-hust-logo object-contain" />
+            <p className="latest-kicker latest-kicker-inline font-medium text-black/95">{copy.hero.kicker}</p>
           </div>
 
-          <p className="latest-kicker font-medium uppercase text-black/95">{copy.hero.kicker}</p>
           <h1 id="hero-title" className="latest-title font-normal text-black" style={{ fontFamily: displayFont }}>
-            {copy.hero.title.map((line) => <span key={line} className="block">{line}</span>)}
+            {copy.hero.title.map((line) => {
+              const [letter, word] = line.split("|")
+              return <span key={line} className="hero-acronym-line"><strong><b>{letter}</b>{word.slice(1)}</strong></span>
+            })}
           </h1>
           <p className="latest-intro font-normal text-black">
             {copy.hero.intro.map((line) => <span key={line} className="block">{line}</span>)}
           </p>
-          </div>
-          <div className="hero-ascii">
-            <IrisAsciiArt label={copy.hero.asciiAlt} language={language} />
+          {route === "home" && <div className="home-hero-actions">
+            <a href="https://github.com/MAIR-Lab-HUST" target="_blank" rel="noreferrer" className="home-hero-action">
+              <GithubLogo weight="bold" aria-hidden="true" />
+              <span>GitHub</span>
+            </a>
+            <a href="mailto:mzyth@hust.edu.cn" className="home-hero-action">
+              <EnvelopeSimple weight="bold" aria-hidden="true" />
+              <span>mzyth@hust.edu.cn</span>
+            </a>
+          </div>}
           </div>
         </section>
 
@@ -303,14 +314,18 @@ function App() {
 
                   <div className="publication-copy">
                     <h3 className="publication-title">{item.title}</h3>
-                    <span className="publication-badge">{item.badge}</span>
-                    <p className="publication-authors">{item.authors}</p>
+                    <span className={`publication-badge ${/预印本|preprint/i.test(item.badge) ? "is-preprint" : ""}`}>{item.badge}</span>
+                    <p className="publication-authors">
+                      {item.authors.map((author, index) => <span key={`${author.name}-${index}`} className={author.isLabAuthor ? "publication-author lab-author" : "publication-author"}>
+                        {index > 0 ? ", " : ""}{author.name}
+                      </span>)}
+                    </p>
                     <p className="publication-description">{item.description}</p>
                     <div className="publication-links" aria-label={`${item.title} ${content.publications.linksLabel}`}>
                       {item.links.map((link) => {
                         const LinkIcon = publicationLinkIcons[link.kind]
                         return (
-                          <a key={link.kind} href={link.href} target="_blank" rel="noreferrer">
+                          <a key={link.kind} className={`publication-link publication-link-${link.kind}`} href={link.href} target="_blank" rel="noreferrer">
                             <LinkIcon className="publication-link-icon" weight="regular" aria-hidden="true" />
                             <span>{content.publications.linkLabels[link.kind]}</span>
                             <span aria-hidden="true">↗</span>
@@ -338,14 +353,14 @@ function App() {
                     <img src={item.image} alt={item.imageAlt} />
                   </a>
                   <div className="project-copy">
-                    <span className="publication-badge">{item.badge}</span>
+                    <span className={`publication-badge ${/预印本|preprint/i.test(item.badge) ? "is-preprint" : ""}`}>{item.badge}</span>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
                     <div className="publication-links" aria-label={`${item.title} ${content.publications.linksLabel}`}>
                       {item.links.map((link) => {
                         const LinkIcon = publicationLinkIcons[link.kind]
                         return (
-                          <a key={link.kind} href={link.href} target="_blank" rel="noreferrer">
+                          <a key={link.kind} className={`publication-link publication-link-${link.kind}`} href={link.href} target="_blank" rel="noreferrer">
                             <LinkIcon className="publication-link-icon" weight="regular" aria-hidden="true" />
                             <span>{content.publications.linkLabels[link.kind]}</span>
                             <span aria-hidden="true">↗</span>
@@ -396,13 +411,15 @@ function App() {
               ))}
               <a href="mailto:mzyth@hust.edu.cn" className="latest-footer-link text-black no-underline">{copy.contact}</a>
             </nav>
-            <span className="latest-footer-rule w-px bg-black/20" aria-hidden="true" />
-            <a href="https://github.com/MAIR-Lab-HUST" className="latest-social-link text-black" aria-label={copy.footer.githubAria}>
-              <GithubLogo weight="bold" aria-hidden="true" />
-            </a>
-            <a href="mailto:mzyth@hust.edu.cn" className="latest-social-link text-black" aria-label={copy.footer.emailAria}>
-              <EnvelopeSimple weight="bold" aria-hidden="true" />
-            </a>
+            {route !== "home" && <>
+              <span className="latest-footer-rule w-px bg-black/20" aria-hidden="true" />
+              <a href="https://github.com/MAIR-Lab-HUST" className="latest-social-link text-black" aria-label={copy.footer.githubAria}>
+                <GithubLogo weight="bold" aria-hidden="true" />
+              </a>
+              <a href="mailto:mzyth@hust.edu.cn" className="latest-social-link text-black" aria-label={copy.footer.emailAria}>
+                <EnvelopeSimple weight="bold" aria-hidden="true" />
+              </a>
+            </>}
           </div>
         </div>
         <p className="latest-copyright">{copy.footer.copyright}</p>

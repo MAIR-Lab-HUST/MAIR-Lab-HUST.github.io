@@ -45,7 +45,7 @@ interface Publication {
   citationKey: string
   order: number
   title: string
-  authors: string
+  authors: PublicationAuthor[]
   badge: string
   description: string
   image: string
@@ -63,6 +63,11 @@ interface PublicationSectionCopy extends SectionCopy {
   openLabel: string
   linksLabel: string
   linkLabels: Record<PublicationLinkKind, string>
+}
+
+interface PublicationAuthor {
+  name: string
+  isLabAuthor: boolean
 }
 
 interface AboutSectionCopy extends SectionCopy {
@@ -351,6 +356,22 @@ const site = requiredRecord(parseToml(siteToml), "site.toml")
 const publicationDisplay = requiredRecord(site.publication, "site.toml: publication")
 const bibliography = new Map(parseBibTeX(publicationsBib).map((entry) => [entry.citationKey, entry]))
 
+// Wrap a lab author in [[double brackets]] in publications.bib to highlight
+// that author in the rendered publication list.
+function parsePublicationAuthors(rawAuthors: string, citationKey: string): PublicationAuthor[] {
+  const authors = rawAuthors.split(/\s+and\s+/i).map((rawAuthor) => {
+    const marked = rawAuthor.match(/^\s*\[\[\s*(.*?)\s*\]\]\s*$/)
+    return {
+      name: (marked ? marked[1] : rawAuthor).trim(),
+      isLabAuthor: Boolean(marked),
+    }
+  })
+  if (authors.some((author) => author.name.length === 0)) {
+    throw new Error(`publications.bib: ${citationKey}.author contains an empty author name`)
+  }
+  return authors
+}
+
 function section(language: Language, name: string): Record<string, unknown> {
   const locale = requiredRecord(site[language], `site.toml: ${language}`)
   return requiredRecord(locale[name], `site.toml: ${language}.${name}`)
@@ -367,9 +388,7 @@ function parsePublications(language: Language): Publication[] {
         citationKey,
         order: requiredNumber(display.order, `publication.${citationKey}.order`),
         title: requiredString(bib.fields.title, `publications.bib: ${citationKey}.title`),
-        authors: requiredString(bib.fields.author, `publications.bib: ${citationKey}.author`)
-          .split(/\s+and\s+/i)
-          .join(", "),
+        authors: parsePublicationAuthors(requiredString(bib.fields.author, `publications.bib: ${citationKey}.author`), citationKey),
         badge: requiredString(display[`badge_${language}`], `publication.${citationKey}.badge_${language}`),
         description: requiredString(
           display[`description_${language}`],

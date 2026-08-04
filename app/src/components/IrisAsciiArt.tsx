@@ -1,13 +1,9 @@
 import { useEffect, useRef, useState } from "react"
-import irisSourceUrl from "@/assets/iris-ascii-source.png"
+import sunflowerSourceUrl from "@/assets/cofounder-white-sky.avif"
 
 type Cell = {
   x: number
   y: number
-  offsetX: number
-  offsetY: number
-  vx: number
-  vy: number
   char: string
   color: string
   opacity: number
@@ -17,34 +13,22 @@ const ASCII_CHARS = ".,:;+*xX$&"
 type AsciiConfig = {
   cellStep: number
   fontScale: number
-  pushRadius: number
-  pushForce: number
-  spring: number
-  damping: number
   flickerInterval: number
 }
 
 const DEFAULT_CONFIG: AsciiConfig = {
   cellStep: 4,
-  fontScale: 1.6,
-  pushRadius: 112,
-  pushForce: 0.65,
-  spring: 0.016,
-  damping: 0.845,
+  fontScale: 1.8,
   flickerInterval: 30,
 }
 
 const controlDefinitions = [
   { key: "fontScale", en: "Character size", zh: "字符大小", min: 0.75, max: 1.8, step: 0.05 },
   { key: "cellStep", en: "Grid spacing", zh: "网格间距", min: 4, max: 10, step: 1 },
-  { key: "pushRadius", en: "Ripple radius", zh: "涟漪半径", min: 40, max: 220, step: 4 },
-  { key: "pushForce", en: "Push force", zh: "扩散力度", min: 0.1, max: 2.4, step: 0.05 },
-  { key: "spring", en: "Return spring", zh: "复原弹性", min: 0.004, max: 0.08, step: 0.002 },
-  { key: "damping", en: "Motion damping", zh: "运动阻尼", min: 0.82, max: 0.985, step: 0.005 },
   { key: "flickerInterval", en: "Flicker speed", zh: "闪烁间隔", min: 30, max: 240, step: 5 },
 ] as const
 
-export function IrisAsciiArt({ label, language }: { label: string; language: "en" | "zh" }) {
+export function HomepageAsciiBackground({ label, language }: { label: string; language: "en" | "zh" }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [config, setConfig] = useState(DEFAULT_CONFIG)
   const configRef = useRef(DEFAULT_CONFIG)
@@ -65,13 +49,12 @@ export function IrisAsciiArt({ label, language }: { label: string; language: "en
     if (!context) return
 
     const source = new Image()
-    source.src = irisSourceUrl
+    source.src = sunflowerSourceUrl
     let cells: Cell[] = []
     let frameId = 0
     let lastFlicker = 0
     let cellFontSize = 6
     let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    const mouse = { x: 0, y: 0, lastMove: 0, inside: false }
 
     const randomChar = () => ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)]
 
@@ -96,11 +79,7 @@ export function IrisAsciiArt({ label, language }: { label: string; language: "en
       const samplerContext = sampler.getContext("2d", { willReadFrequently: true })
       if (!samplerContext) return
 
-      const horizontalPadding = Math.max(4, Math.ceil(16 / step))
-      const verticalPadding = Math.max(3, Math.ceil(12 / step))
-      const sampleWidth = Math.max(1, columns - horizontalPadding * 2)
-      const sampleHeight = Math.max(1, rows - verticalPadding * 2)
-      const scale = Math.min(sampleWidth / source.naturalWidth, sampleHeight / source.naturalHeight)
+      const scale = Math.max(columns / source.naturalWidth, rows / source.naturalHeight)
       const drawWidth = source.naturalWidth * scale
       const drawHeight = source.naturalHeight * scale
       const drawX = (columns - drawWidth) / 2
@@ -127,10 +106,6 @@ export function IrisAsciiArt({ label, language }: { label: string; language: "en
           nextCells.push({
             x: (column + 0.5) * step,
             y: (row + 0.5) * step,
-            offsetX: 0,
-            offsetY: 0,
-            vx: 0,
-            vy: 0,
             char: randomChar(),
             color: `${red}, ${green}, ${blue}`,
             opacity: Math.min(1, 0.58 + signal / 190),
@@ -139,67 +114,30 @@ export function IrisAsciiArt({ label, language }: { label: string; language: "en
       }
 
       cells = nextCells
+      lastFlicker = 0
     }
 
     const render = (time: number) => {
       const bounds = canvas.getBoundingClientRect()
-      context.clearRect(0, 0, bounds.width, bounds.height)
-      cellFontSize = (bounds.width < 390 ? Math.max(4, configRef.current.cellStep - 1) : configRef.current.cellStep) * configRef.current.fontScale
-      context.font = `500 ${cellFontSize}px "MAIR Jost Emphasis", ui-monospace, monospace`
-      context.textAlign = "center"
-      context.textBaseline = "middle"
+      const shouldDraw = lastFlicker === 0 || (!reduceMotion && time - lastFlicker >= configRef.current.flickerInterval)
+      if (shouldDraw) {
+        context.clearRect(0, 0, bounds.width, bounds.height)
+        cellFontSize = (bounds.width < 390 ? Math.max(4, configRef.current.cellStep - 1) : configRef.current.cellStep) * configRef.current.fontScale
+        context.font = `500 ${cellFontSize}px "MAIR Jost Emphasis", ui-monospace, monospace`
+        context.textAlign = "center"
+        context.textBaseline = "middle"
 
-      const mouseIsMoving = mouse.inside && time - mouse.lastMove < 160 && !reduceMotion
-      if (!reduceMotion && time - lastFlicker > configRef.current.flickerInterval) {
         for (const cell of cells) {
-          if (Math.random() < 0.34) cell.char = randomChar()
+          if (lastFlicker !== 0 && Math.random() < 0.34) cell.char = randomChar()
+          context.fillStyle = `rgba(${cell.color}, ${cell.opacity})`
+          context.fillText(cell.char, cell.x, cell.y)
         }
         lastFlicker = time
-      }
-
-      for (const cell of cells) {
-        const currentX = cell.x + cell.offsetX
-        const currentY = cell.y + cell.offsetY
-        const dx = currentX - mouse.x
-        const dy = currentY - mouse.y
-        const distance = Math.hypot(dx, dy) || 0.001
-
-        if (mouseIsMoving && distance < configRef.current.pushRadius) {
-          const proximity = (configRef.current.pushRadius - distance) / configRef.current.pushRadius
-          const force = Math.sin(proximity * Math.PI * 0.5)
-          cell.vx += (dx / distance) * force * configRef.current.pushForce
-          cell.vy += (dy / distance) * force * configRef.current.pushForce
-        }
-
-        cell.vx = (cell.vx - cell.offsetX * configRef.current.spring) * configRef.current.damping
-        cell.vy = (cell.vy - cell.offsetY * configRef.current.spring) * configRef.current.damping
-        cell.offsetX += cell.vx
-        cell.offsetY += cell.vy
-
-        if (Math.abs(cell.vx) + Math.abs(cell.vy) < 0.008 && Math.abs(cell.offsetX) + Math.abs(cell.offsetY) < 0.08) {
-          cell.vx = 0
-          cell.vy = 0
-          cell.offsetX = 0
-          cell.offsetY = 0
-        }
-
-        context.fillStyle = `rgba(${cell.color}, ${cell.opacity})`
-        context.fillText(cell.char, cell.x + cell.offsetX, cell.y + cell.offsetY)
       }
 
       frameId = window.requestAnimationFrame(render)
     }
 
-    const handlePointerMove = (event: PointerEvent) => {
-      const bounds = canvas.getBoundingClientRect()
-      mouse.x = event.clientX - bounds.left
-      mouse.y = event.clientY - bounds.top
-      mouse.lastMove = performance.now()
-      mouse.inside = true
-    }
-    const handlePointerLeave = () => {
-      mouse.inside = false
-    }
     const handleMotionPreference = (event: MediaQueryListEvent) => {
       reduceMotion = event.matches
     }
@@ -207,8 +145,6 @@ export function IrisAsciiArt({ label, language }: { label: string; language: "en
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)")
     const resizeObserver = new ResizeObserver(sampleImage)
     resizeObserver.observe(canvas)
-    canvas.addEventListener("pointermove", handlePointerMove)
-    canvas.addEventListener("pointerleave", handlePointerLeave)
     motionPreference.addEventListener("change", handleMotionPreference)
     source.addEventListener("load", sampleImage)
     if (source.complete) sampleImage()
@@ -217,16 +153,14 @@ export function IrisAsciiArt({ label, language }: { label: string; language: "en
     return () => {
       window.cancelAnimationFrame(frameId)
       resizeObserver.disconnect()
-      canvas.removeEventListener("pointermove", handlePointerMove)
-      canvas.removeEventListener("pointerleave", handlePointerLeave)
       motionPreference.removeEventListener("change", handleMotionPreference)
       source.removeEventListener("load", sampleImage)
     }
   }, [config.cellStep])
 
   return (
-    <div className="ascii-stage">
-      <canvas ref={canvasRef} className="hero-ascii-canvas" role="img" aria-label={label} />
+    <div className="homepage-ascii-background">
+      <canvas ref={canvasRef} className="homepage-ascii-canvas" role="img" aria-label={label} />
       <details className="ascii-controls" open>
         <summary>{language === "zh" ? "ASCII 参数（临时）" : "ASCII controls (temporary)"}</summary>
         <div className="ascii-control-list">

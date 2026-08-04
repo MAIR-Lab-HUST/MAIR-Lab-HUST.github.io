@@ -107,8 +107,23 @@ href = "https://github.com/MAIR-Lab-HUST/SciIR"
 kind = "project"
 href = "https://sci-ir.vercel.app/sciir.html"
 
-[publication.tmpo]
+[publication.cliuniverse]
 order = 2
+image = "cli-universe-overview.png"
+image_href = "https://arxiv.org/abs/2606.22883"
+badge_en = "Preprint · 2026"
+badge_zh = "预印本 · 2026"
+description_en = "A verifiable task-synthesis engine that turns capability specifications into realistic Dockerized terminal-agent tasks through evidence-guided research and multi-stage executable filtering."
+description_zh = "面向终端智能体的可验证任务合成引擎，通过证据驱动的深度调研与多阶段可执行筛选，将能力规格转化为真实的 Docker 化训练任务。"
+image_alt_en = "CLI-Universe pipeline for task construction, environment synthesis, and executable verification"
+image_alt_zh = "CLI-Universe 的任务构建、环境合成与可执行验证流程"
+
+[[publication.cliuniverse.links]]
+kind = "paper"
+href = "https://arxiv.org/abs/2606.22883"
+
+[publication.tmpo]
+order = 3
 image = "tmpo-method.png"
 image_href = "https://arxiv.org/abs/2605.10983"
 badge_en = "Paper · Preprint 2026"
@@ -131,7 +146,7 @@ kind = "project"
 href = "https://mair-lab-hust.github.io/TMPO/"
 
 [publication.i2e]
-order = 3
+order = 4
 image = "i2e-method.png"
 image_href = "https://image2env.github.io/"
 badge_en = "Paper · ACL 2026"
@@ -154,7 +169,7 @@ kind = "acl"
 href = "https://aclanthology.org/2026.acl-long.2076/"
 
 [publication.momentumfm]
-order = 4
+order = 5
 image = "momentum-flow.png"
 image_href = "https://arxiv.org/abs/2506.08796"
 badge_en = "Preprint · 2026"
@@ -173,7 +188,7 @@ kind = "code"
 href = "https://github.com/liuruixun/momentum-fm"
 
 [publication.rldiffusionsurvey]
-order = 5
+order = 6
 image = "rl-diffusion-survey.svg"
 image_href = "#publication-rldiffusionsurvey"
 badge_en = "Survey · Preprint 2026"
@@ -185,7 +200,7 @@ image_alt_zh = "面向语言与视觉的强化学习驱动扩散模型"
 links = []
 
 [publication.mild]
-order = 6
+order = 7
 image = "mild-human-erasing.png"
 image_href = "https://arxiv.org/abs/2508.06543"
 badge_en = "Preprint · 2026"
@@ -200,7 +215,7 @@ kind = "paper"
 href = "https://arxiv.org/abs/2508.06543"
 
 [publication.vcvton]
-order = 8
+order = 9
 image = "vc-vton.svg"
 image_href = "https://doi.org/10.1109/TIP.2026.3700904"
 badge_en = "Paper · TIP 2026"
@@ -215,7 +230,7 @@ kind = "paper"
 href = "https://doi.org/10.1109/TIP.2026.3700904"
 
 [publication.dynappi]
-order = 7
+order = 8
 image = "dynappi.svg"
 image_href = "https://neurips.cc/virtual/2025/125787"
 badge_en = "Workshop · NeurIPS 2025"
