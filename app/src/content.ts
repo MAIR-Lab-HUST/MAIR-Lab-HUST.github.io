@@ -177,15 +177,26 @@ function assetUrl(filename: unknown, context: string): string {
 }
 
 function parseNews(language: Language): NewsItem[] {
-  return documentsFor("news", language)
-    .map(({ path, metadata, inlineHtml }) => ({
-      order: requiredNumber(metadata.order, `${path}: order`),
-      type: requiredString(metadata.type, `${path}: type`),
-      title: requiredString(metadata.title, `${path}: title`),
-      date: requiredString(metadata.date, `${path}: date`),
-      href: requiredString(metadata.href, `${path}: href`),
-      html: inlineHtml,
-    }))
+  const document = markdownDocuments.find(({ path }) => path.endsWith("/content/news/news.md"))
+  if (!document || !Array.isArray(document.metadata.items) || document.metadata.items.length === 0) {
+    throw new Error("app/content/news/news.md must contain at least one [[items]] table")
+  }
+
+  return document.metadata.items
+    .map((value, index) => {
+      const item = requiredRecord(value, `${document.path}: items[${index}]`)
+      return {
+        order: requiredNumber(item.order, `${document.path}: items[${index}].order`),
+        type: requiredString(item[`type_${language}`], `${document.path}: items[${index}].type_${language}`),
+        title: requiredString(item[`title_${language}`], `${document.path}: items[${index}].title_${language}`),
+        date: requiredString(item[`date_${language}`], `${document.path}: items[${index}].date_${language}`),
+        href: requiredString(item.href, `${document.path}: items[${index}].href`),
+        html: marked.parseInline(
+          requiredString(item[`description_${language}`], `${document.path}: items[${index}].description_${language}`),
+          { async: false, gfm: true },
+        ),
+      }
+    })
     .sort((a, b) => a.order - b.order)
 }
 
