@@ -93,10 +93,10 @@ const siteCopy = {
 } as const
 
 function getInitialLanguage(): Language {
-  if (typeof window === "undefined") return "en"
+  if (typeof window === "undefined") return "zh"
   const stored = window.localStorage.getItem("mair-language")
   if (stored === "en" || stored === "zh") return stored
-  return window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en"
+  return "zh"
 }
 
 type PageRoute = "home" | "about" | "research" | "publications" | "projects" | "people" | "join"

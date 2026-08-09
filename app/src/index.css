@@ -1652,17 +1652,34 @@
     border: 0.025em solid #252ca5;
     border-radius: 0.1em;
     color: #252ca5;
+    font-weight: 500;
     line-height: 0.84;
   }
 
   .latest-page.is-home .hero-acronym-line strong {
-    font-weight: 800;
+    font-weight: 500;
+  }
+
+  /* Keep the brand and acronym initials at the same Jost Medium weight.
+     The native <b> element otherwise applies a browser "bolder" weight. */
+  .latest-page .latest-brand,
+  .latest-page.is-home .hero-acronym-line,
+  .latest-page.is-home .hero-acronym-line strong,
+  .latest-page.is-home .hero-acronym-line b {
+    font-weight: 500 !important;
   }
 
   .publication-author.lab-author {
     color: #111;
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: none;
+  }
+
+  /* Publication headings and highlighted author names use the same Jost Medium
+     weight in both Chinese and English interfaces. */
+  .latest-page .publication-title,
+  .latest-page .publication-author.lab-author {
+    font-weight: 500 !important;
   }
 
   /* Compact badge-style publication links. */
@@ -1735,7 +1752,7 @@
     border-radius: 999px;
     color: var(--academic-ink);
     font-size: var(--text-3);
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     transition: background-color 180ms ease, border-color 180ms ease;
   }
@@ -1912,7 +1929,7 @@
   .ascii-controls summary {
     cursor: pointer;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     user-select: none;

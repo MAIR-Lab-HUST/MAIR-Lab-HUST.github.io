@@ -246,8 +246,8 @@ function parseResearch(language: Language): ResearchArea[] {
     .sort((a, b) => a.order - b.order)
 }
 
-function parseJoin(): JoinOpportunity[] {
-  return documentsFor("join", "zh")
+function parseJoin(language: Language): JoinOpportunity[] {
+  return documentsFor("join", language)
     .map(({ path, metadata, html }) => ({
       order: requiredNumber(metadata.order, `${path}: order`),
       title: requiredString(metadata.title, `${path}: title`),
@@ -522,7 +522,7 @@ function buildPageContent(language: Language): PageContent {
     join: {
       heading: requiredString(join.heading, `${language}.join.heading`),
       intro: requiredString(join.intro, `${language}.join.intro`),
-      opportunities: parseJoin(),
+      opportunities: parseJoin(language),
     },
     publications: {
       heading: requiredString(publications.heading, `${language}.publications.heading`),
