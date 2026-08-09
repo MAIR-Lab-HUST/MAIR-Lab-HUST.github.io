@@ -17,13 +17,12 @@ const publicationLinkIcons = {
 const isPreprintBadge = (badge: string) => /预印本|preprint/i.test(badge)
 
 const formatPublicationBadge = (badge: string) => {
+  if (isPreprintBadge(badge)) {
+    const year = badge.match(/\b20\d{2}\b/)?.[0]
+    return year ? `Preprint ${year}` : "Preprint"
+  }
   const separatorIndex = badge.indexOf("·")
   return separatorIndex >= 0 ? badge.slice(separatorIndex + 1).trim() : badge
-}
-
-const formatPublicationDate = (date: string) => {
-  const [year, month] = date.split("-")
-  return `${year}.${month}`
 }
 
 const siteCopy = {
@@ -32,13 +31,12 @@ const siteCopy = {
     brandAria: "MAIR Lab homepage",
     nav: [
       { label: "Home", href: "#/" },
-      { label: "About & Research", href: "#/research" },
+      { label: "About", href: "#/research" },
       { label: "Publications", href: "#/publications" },
       { label: "Projects", href: "#/projects" },
       { label: "People", href: "#/people" },
       { label: "Join", href: "#/join" },
     ],
-    contact: "Contact",
     languageLabel: "Choose language",
     hero: {
       mairAlt: "MAIR Lab geometric mark",
@@ -71,7 +69,6 @@ const siteCopy = {
       { label: "成员", href: "#/people" },
       { label: "加入我们", href: "#/join" },
     ],
-    contact: "联系",
     languageLabel: "选择语言",
     hero: {
       mairAlt: "MAIR 实验室标志",
@@ -166,15 +163,6 @@ function App() {
           </div>
 
           <div className="latest-nav-actions">
-            <motion.a
-              href="mailto:mzyth@hust.edu.cn"
-              className="latest-contact flex items-center justify-center font-medium text-black no-underline"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              {copy.contact}
-            </motion.a>
-            <span className="latest-nav-actions-divider" aria-hidden="true" />
             <div className="latest-language-switch" role="group" aria-label={copy.languageLabel}>
               <button
                 type="button"
@@ -209,7 +197,6 @@ function App() {
             <img src={mairLogoUrl} alt={copy.hero.mairAlt} className="latest-mair-logo object-contain" />
             <span className="latest-logo-rule w-px shrink-0 bg-black/25" aria-hidden="true" />
             <img src={hustLogoUrl} alt={copy.hero.hustAlt} className="latest-hust-logo object-contain" />
-            <p className="latest-kicker latest-kicker-inline font-medium text-black/95">{copy.hero.kicker}</p>
           </div>
 
           <h1 id="hero-title" className="latest-title font-normal text-black" style={{ fontFamily: displayFont }}>
@@ -256,7 +243,6 @@ function App() {
                     <a href={item.href} target="_blank" rel="noreferrer" className="latest-row-title font-medium no-underline transition-opacity duration-200 hover:opacity-60">
                       {item.title}
                     </a>
-                    <p className="latest-row-description" dangerouslySetInnerHTML={{ __html: item.html }} />
                   </div>
                   <time className="latest-row-date text-right font-normal">{item.date}</time>
                 </div>
@@ -322,7 +308,7 @@ function App() {
                   <div className="publication-copy">
                     <h3 className="publication-title">{item.title}</h3>
                     <span className={`publication-badge ${isPreprintBadge(item.badge) ? "is-preprint" : "is-accepted"}`}>
-                      {formatPublicationBadge(item.badge)}/{formatPublicationDate(item.date)}
+                      {formatPublicationBadge(item.badge)}
                     </span>
                     <p className="publication-authors">
                       {item.authors.map((author, index) => <span key={`${author.name}-${index}`} className={author.isLabAuthor ? "publication-author lab-author" : "publication-author"}>
@@ -363,7 +349,7 @@ function App() {
                   </a>
                   <div className="project-copy">
                     <span className={`publication-badge ${isPreprintBadge(item.badge) ? "is-preprint" : "is-accepted"}`}>
-                      {formatPublicationBadge(item.badge)}/{formatPublicationDate(item.date)}
+                      {formatPublicationBadge(item.badge)}
                     </span>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
@@ -393,7 +379,7 @@ function App() {
             </h2>
             <p className="latest-section-copy">{content.people.intro}</p>
             <article className="people-pi-card">
-              <a href="https://ponymzy.github.io/" target="_blank" rel="noreferrer" className="people-pi-portrait-link" aria-label={content.people.principalInvestigator.name}>
+              <a href={content.people.principalInvestigator.homepage} target="_blank" rel="noreferrer" className="people-pi-portrait-link" aria-label={content.people.principalInvestigator.name}>
                 <img className="people-pi-portrait" src={content.people.principalInvestigator.image} alt={content.people.principalInvestigator.imageAlt} />
               </a>
               <div className="people-pi-copy">
@@ -403,23 +389,35 @@ function App() {
                 <p>{content.people.principalInvestigator.research}</p>
                 <a className="people-pi-email" href={`mailto:${content.people.principalInvestigator.email}`}>{content.people.principalInvestigator.email}</a>
                 <div className="people-pi-links" aria-label={`${content.people.principalInvestigator.name} links`}>
-                  <a href="https://ponymzy.github.io/" target="_blank" rel="noreferrer" aria-label="Homepage" title="Homepage"><House weight="regular" aria-hidden="true" /></a>
-                  <a href="https://scholar.google.com.hk/citations?hl=zh-CN&user=pJRStG4AAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar"><GraduationCap weight="regular" aria-hidden="true" /></a>
-                  <a href="https://github.com/ponymzy" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><GithubLogo weight="regular" aria-hidden="true" /></a>
+                  {content.people.principalInvestigator.homepage && <a href={content.people.principalInvestigator.homepage} target="_blank" rel="noreferrer" aria-label="Homepage" title="Homepage"><House weight="regular" aria-hidden="true" /></a>}
+                  {content.people.principalInvestigator.scholar && <a href={content.people.principalInvestigator.scholar} target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar"><GraduationCap weight="regular" aria-hidden="true" /></a>}
+                  {content.people.principalInvestigator.github && <a href={content.people.principalInvestigator.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><GithubLogo weight="regular" aria-hidden="true" /></a>}
                   <a href={`mailto:${content.people.principalInvestigator.email}`} aria-label="Email" title="Email"><EnvelopeSimple weight="regular" aria-hidden="true" /></a>
                 </div>
               </div>
             </article>
             <div className="people-groups">
-              {content.people.groups.map((group, index) => (
-                <section key={group.title} className="people-group" aria-labelledby={`people-group-${index}`}>
-                  <div className="people-group-heading">
-                    <span className="people-group-index" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3 id={`people-group-${index}`}>{group.title}</h3>
+              {content.people.groups.filter((group) => group.members.length > 0).map((group) => (
+                <section key={group.id} className="people-group" aria-labelledby={`people-group-${group.id}`}>
+                  <h3 id={`people-group-${group.id}`}>{group.title}</h3>
+                  <div className="people-member-grid">
+                    {group.members.map((member, memberIndex) => (
+                      <article key={`${group.id}-${member.name}-${memberIndex}`} className={`people-member${member.placeholder ? " is-placeholder" : ""}`}>
+                        <img className="people-member-photo" src={member.photo} alt={member.photoAlt} />
+                        <div className="people-member-copy">
+                          <h4>{member.name}</h4>
+                          <p className="people-member-meta">{member.meta}</p>
+                          <p className="people-member-research">{member.research}</p>
+                          {member.intern && <p className="people-member-intern">{member.intern}</p>}
+                          {(member.homepage || member.scholar || member.github) && <div className="people-member-links" aria-label={`${member.name} links`}>
+                            {member.homepage && <a href={member.homepage} target="_blank" rel="noreferrer" aria-label={`${member.name} homepage`} title="Homepage"><House weight="regular" aria-hidden="true" /></a>}
+                            {member.scholar && <a href={member.scholar} target="_blank" rel="noreferrer" aria-label={`${member.name} Google Scholar`} title="Google Scholar"><GraduationCap weight="regular" aria-hidden="true" /></a>}
+                            {member.github && <a href={member.github} target="_blank" rel="noreferrer" aria-label={`${member.name} GitHub`} title="GitHub"><GithubLogo weight="regular" aria-hidden="true" /></a>}
+                          </div>}
+                        </div>
+                      </article>
+                    ))}
                   </div>
-                  <div className="people-markdown" dangerouslySetInnerHTML={{ __html: group.html }} />
                 </section>
               ))}
             </div>

@@ -1,0 +1,133 @@
+{
+  "principalInvestigator": {
+    "name_en": "Zhiyuan Ma · 马志远",
+    "name_zh": "马志远 · Zhiyuan Ma",
+    "role_en": "Principal Investigator · PhD Advisor",
+    "role_zh": "负责人 · 博士生导师",
+    "institution_en": "Huazhong University of Science and Technology",
+    "institution_zh": "华中科技大学",
+    "research_en": "Generative AI, Multimodal Intelligence, Embodied AI, and AI for Science",
+    "research_zh": "生成式人工智能、多模态智能、具身智能与科学智能",
+    "email": "mzyth@hust.edu.cn",
+    "image": "zhiyuan-ma.png",
+    "image_alt_en": "Portrait of Zhiyuan Ma",
+    "image_alt_zh": "马志远老师肖像",
+    "homepage": "https://ponymzy.github.io/",
+    "scholar": "https://scholar.google.com.hk/citations?hl=zh-CN&user=pJRStG4AAAAJ",
+    "github": "https://github.com/ponymzy"
+  },
+  "groups": [
+    {
+      "id": "phd",
+      "title_en": "Ph.D. Students",
+      "title_zh": "博士生",
+      "members": [
+        {
+          "placeholder": true,
+          "name_en": "Example Member A",
+          "name_zh": "示例成员 A",
+          "photo": "people-placeholder-01.svg",
+          "photo_alt_en": "Placeholder portrait for Example Member A",
+          "photo_alt_zh": "示例成员 A 的占位头像",
+          "meta_en": "Ph.D. · 2024",
+          "meta_zh": "博士生 · 2024",
+          "research_en": "Multimodal Understanding · World Models",
+          "research_zh": "多模态理解 · 世界模型",
+          "intern_en": "Research Intern · Example AI Lab",
+          "intern_zh": "研究实习 · 示例 AI 实验室",
+          "homepage": "https://example.com/",
+          "scholar": "https://scholar.google.com/",
+          "github": "https://github.com/"
+        },
+        {
+          "placeholder": true,
+          "name_en": "Example Member B",
+          "name_zh": "示例成员 B",
+          "photo": "people-placeholder-02.svg",
+          "photo_alt_en": "Placeholder portrait for Example Member B",
+          "photo_alt_zh": "示例成员 B 的占位头像",
+          "meta_en": "Ph.D. · 2025",
+          "meta_zh": "博士生 · 2025",
+          "research_en": "Embodied Intelligence · VLA",
+          "research_zh": "具身智能 · 视觉语言行动模型",
+          "intern_en": "",
+          "intern_zh": "",
+          "homepage": "",
+          "scholar": "https://scholar.google.com/",
+          "github": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": "masters",
+      "title_en": "Master's Students",
+      "title_zh": "硕士生",
+      "members": [
+        {
+          "placeholder": true,
+          "name_en": "Example Member C",
+          "name_zh": "示例成员 C",
+          "photo": "people-placeholder-03.svg",
+          "photo_alt_en": "Placeholder portrait for Example Member C",
+          "photo_alt_zh": "示例成员 C 的占位头像",
+          "meta_en": "Master's · 2024",
+          "meta_zh": "硕士生 · 2024",
+          "research_en": "Generative Models · Diffusion Alignment",
+          "research_zh": "生成模型 · 扩散模型对齐",
+          "intern_en": "Research Intern · Example Research Center",
+          "intern_zh": "研究实习 · 示例研究中心",
+          "homepage": "https://example.com/",
+          "scholar": "",
+          "github": "https://github.com/"
+        },
+        {
+          "placeholder": true,
+          "name_en": "Example Member D",
+          "name_zh": "示例成员 D",
+          "photo": "people-placeholder-04.svg",
+          "photo_alt_en": "Placeholder portrait for Example Member D",
+          "photo_alt_zh": "示例成员 D 的占位头像",
+          "meta_en": "Master's · 2025",
+          "meta_zh": "硕士生 · 2025",
+          "research_en": "AI for Science · Scientific Reasoning",
+          "research_zh": "科学智能 · 科学推理",
+          "intern_en": "",
+          "intern_zh": "",
+          "homepage": "",
+          "scholar": "",
+          "github": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": "undergraduate",
+      "title_en": "Undergraduate Students",
+      "title_zh": "本科生",
+      "members": [
+        {
+          "placeholder": true,
+          "name_en": "Example Member E",
+          "name_zh": "示例成员 E",
+          "photo": "people-placeholder-01.svg",
+          "photo_alt_en": "Placeholder portrait for Example Member E",
+          "photo_alt_zh": "示例成员 E 的占位头像",
+          "meta_en": "Undergraduate · 2025",
+          "meta_zh": "本科生 · 2025",
+          "research_en": "Multimodal Learning · Visual Reasoning",
+          "research_zh": "多模态学习 · 视觉推理",
+          "intern_en": "",
+          "intern_zh": "",
+          "homepage": "",
+          "scholar": "",
+          "github": ""
+        }
+      ]
+    },
+    {
+      "id": "interns",
+      "title_en": "Research Interns",
+      "title_zh": "研究实习生",
+      "members": []
+    }
+  ]
+}

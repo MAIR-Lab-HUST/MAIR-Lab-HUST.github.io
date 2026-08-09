@@ -2,6 +2,7 @@ import { marked } from "marked"
 import { parse as parseToml } from "smol-toml"
 import siteToml from "../content/site.toml?raw"
 import publicationsBib from "../content/publications.bib?raw"
+import peopleData from "../content/people/people.json"
 
 export type Language = "en" | "zh"
 export type PublicationLinkKind = "paper" | "code" | "project" | "acl"
@@ -19,7 +20,6 @@ interface NewsItem {
   title: string
   date: string
   href: string
-  html: string
 }
 
 interface ResearchArea {
@@ -73,14 +73,25 @@ interface PublicationAuthor {
 
 interface AboutSectionCopy extends SectionCopy {
   paragraphs: string[]
-  focusHeading: string
-  focusItems: string[]
 }
 
 interface PeopleGroup {
-  order: number
+  id: string
   title: string
-  html: string
+  members: PeopleMember[]
+}
+
+interface PeopleMember {
+  name: string
+  photo: string
+  photoAlt: string
+  meta: string
+  research: string
+  intern?: string
+  homepage?: string
+  scholar?: string
+  github?: string
+  placeholder: boolean
 }
 
 interface PrincipalInvestigator {
@@ -91,11 +102,14 @@ interface PrincipalInvestigator {
   email: string
   image: string
   imageAlt: string
+  homepage?: string
+  scholar?: string
+  github?: string
 }
 
 export interface PageContent {
   news: SectionCopy & { items: NewsItem[] }
-  about: Required<AboutSectionCopy>
+  about: AboutSectionCopy
   research: Required<SectionCopy> & { areas: ResearchArea[] }
   join: Required<SectionCopy> & { opportunities: JoinOpportunity[] }
   publications: PublicationSectionCopy & { items: Publication[] }
@@ -113,7 +127,6 @@ const markdownModules = {
   ...import.meta.glob("../content/news/**/*.md", { eager: true, query: "?raw", import: "default" }),
   ...import.meta.glob("../content/research/**/*.md", { eager: true, query: "?raw", import: "default" }),
   ...import.meta.glob("../content/join/**/*.md", { eager: true, query: "?raw", import: "default" }),
-  ...import.meta.glob("../content/people/**/*.md", { eager: true, query: "?raw", import: "default" }),
 } as Record<string, string>
 
 const workAssetModules = import.meta.glob("./assets/work/*", {
@@ -154,6 +167,20 @@ function requiredStringArray(value: unknown, context: string): string[] {
   return value.map((item, index) => requiredString(item, `${context}[${index}]`))
 }
 
+function optionalString(value: unknown, context: string): string | undefined {
+  if (value === undefined || value === null || value === "") {
+    return undefined
+  }
+  if (typeof value !== "string") {
+    throw new Error(`Expected string value: ${context}`)
+  }
+  return value.trim() || undefined
+}
+
+function localizedString(record: Record<string, unknown>, key: string, language: Language, context: string): string {
+  return requiredString(record[`${key}_${language}`], `${context}.${key}_${language}`)
+}
+
 function parseMarkdownDocument(path: string, source: string): MarkdownDocument {
   const match = source.match(/^\+\+\+\r?\n([\s\S]*?)\r?\n\+\+\+\r?\n?([\s\S]*)$/)
   if (!match) {
@@ -172,7 +199,7 @@ const markdownDocuments = Object.entries(markdownModules).map(([path, source]) =
   parseMarkdownDocument(path, source),
 )
 
-function documentsFor(section: "news" | "research" | "join" | "people", language: Language) {
+function documentsFor(section: "news" | "research" | "join", language: Language) {
   return markdownDocuments.filter(({ path }) =>
     path.includes(`/content/${section}/${language}/`),
   )
@@ -202,10 +229,6 @@ function parseNews(language: Language): NewsItem[] {
         title: requiredString(item[`title_${language}`], `${document.path}: items[${index}].title_${language}`),
         date: requiredString(item[`date_${language}`], `${document.path}: items[${index}].date_${language}`),
         href: requiredString(item.href, `${document.path}: items[${index}].href`),
-        html: marked.parseInline(
-          requiredString(item[`description_${language}`], `${document.path}: items[${index}].description_${language}`),
-          { async: false, gfm: true },
-        ),
       }
     })
     .sort((a, b) => a.order - b.order)
@@ -233,14 +256,56 @@ function parseJoin(): JoinOpportunity[] {
     .sort((a, b) => a.order - b.order)
 }
 
-function parsePeople(language: Language): PeopleGroup[] {
-  return documentsFor("people", language)
-    .map(({ path, metadata, html }) => ({
-      order: requiredNumber(metadata.order, `${path}: order`),
-      title: requiredString(metadata.title, `${path}: title`),
-      html,
-    }))
-    .sort((a, b) => a.order - b.order)
+function parsePeople(language: Language) {
+  const source = requiredRecord(peopleData, "app/content/people/people.json")
+  const pi = requiredRecord(source.principalInvestigator, "people.json: principalInvestigator")
+  const rawGroups = source.groups
+  if (!Array.isArray(rawGroups)) {
+    throw new Error("people.json: groups must be an array")
+  }
+
+  const principalInvestigator: PrincipalInvestigator = {
+    name: localizedString(pi, "name", language, "people.json: principalInvestigator"),
+    role: localizedString(pi, "role", language, "people.json: principalInvestigator"),
+    institution: localizedString(pi, "institution", language, "people.json: principalInvestigator"),
+    research: localizedString(pi, "research", language, "people.json: principalInvestigator"),
+    email: requiredString(pi.email, "people.json: principalInvestigator.email"),
+    image: assetUrl(pi.image, "people.json: principalInvestigator.image"),
+    imageAlt: localizedString(pi, "image_alt", language, "people.json: principalInvestigator"),
+    homepage: optionalString(pi.homepage, "people.json: principalInvestigator.homepage"),
+    scholar: optionalString(pi.scholar, "people.json: principalInvestigator.scholar"),
+    github: optionalString(pi.github, "people.json: principalInvestigator.github"),
+  }
+
+  const groups: PeopleGroup[] = rawGroups.map((rawGroup, groupIndex) => {
+    const group = requiredRecord(rawGroup, `people.json: groups[${groupIndex}]`)
+    if (!Array.isArray(group.members)) {
+      throw new Error(`people.json: groups[${groupIndex}].members must be an array`)
+    }
+    const members = group.members.map((rawMember, memberIndex): PeopleMember => {
+      const context = `people.json: groups[${groupIndex}].members[${memberIndex}]`
+      const member = requiredRecord(rawMember, context)
+      return {
+        name: localizedString(member, "name", language, context),
+        photo: assetUrl(member.photo, `${context}.photo`),
+        photoAlt: localizedString(member, "photo_alt", language, context),
+        meta: localizedString(member, "meta", language, context),
+        research: localizedString(member, "research", language, context),
+        intern: optionalString(member[`intern_${language}`], `${context}.intern_${language}`),
+        homepage: optionalString(member.homepage, `${context}.homepage`),
+        scholar: optionalString(member.scholar, `${context}.scholar`),
+        github: optionalString(member.github, `${context}.github`),
+        placeholder: member.placeholder === true,
+      }
+    })
+    return {
+      id: requiredString(group.id, `people.json: groups[${groupIndex}].id`),
+      title: localizedString(group, "title", language, `people.json: groups[${groupIndex}]`),
+      members,
+    }
+  })
+
+  return { principalInvestigator, groups }
 }
 
 function cleanBibText(value: string): string {
@@ -437,6 +502,7 @@ function buildPageContent(language: Language): PageContent {
   const publications = section(language, "publications")
   const projects = section(language, "projects")
   const people = section(language, "people")
+  const peopleRoster = parsePeople(language)
   const publicationItems = parsePublications(language)
 
   return {
@@ -446,10 +512,7 @@ function buildPageContent(language: Language): PageContent {
     },
     about: {
       heading: requiredString(about.heading, `${language}.about.heading`),
-      intro: requiredString(about.intro, `${language}.about.intro`),
       paragraphs: requiredStringArray(about.paragraphs, `${language}.about.paragraphs`),
-      focusHeading: requiredString(about.focus_heading, `${language}.about.focus_heading`),
-      focusItems: requiredStringArray(about.focus_items, `${language}.about.focus_items`),
     },
     research: {
       heading: requiredString(research.heading, `${language}.research.heading`),
@@ -484,19 +547,8 @@ function buildPageContent(language: Language): PageContent {
     people: {
       heading: requiredString(people.heading, `${language}.people.heading`),
       intro: requiredString(people.intro, `${language}.people.intro`),
-      principalInvestigator: (() => {
-        const pi = requiredRecord(people.pi, `${language}.people.pi`)
-        return {
-          name: requiredString(pi.name, `${language}.people.pi.name`),
-          role: requiredString(pi.role, `${language}.people.pi.role`),
-          institution: requiredString(pi.institution, `${language}.people.pi.institution`),
-          research: requiredString(pi.research, `${language}.people.pi.research`),
-          email: requiredString(pi.email, `${language}.people.pi.email`),
-          image: assetUrl(pi.image, `${language}.people.pi.image`),
-          imageAlt: requiredString(pi.image_alt, `${language}.people.pi.image_alt`),
-        }
-      })(),
-      groups: parsePeople(language),
+      principalInvestigator: peopleRoster.principalInvestigator,
+      groups: peopleRoster.groups,
     },
   }
 }

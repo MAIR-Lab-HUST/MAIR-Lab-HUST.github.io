@@ -41,15 +41,6 @@ intro = "Research systems, open-source implementations, and project pages develo
 heading = "People"
 intro = "Meet the researchers and students who make up MAIR Lab."
 
-[en.people.pi]
-name = "Zhiyuan Ma · 马志远"
-role = "Principal Investigator · MAIR Lab"
-institution = "Huazhong University of Science and Technology"
-research = "Research: Generative AI, Multimodal Intelligence, Embodied AI, and AI for Science"
-email = "mzyth@hust.edu.cn"
-image = "zhiyuan-ma.png"
-image_alt = "Portrait of Zhiyuan Ma"
-
 [zh.news]
 heading = "实验室动态"
 
@@ -60,13 +51,6 @@ paragraphs = [
   "我们的研究连接多模态智能、物理智能与科学智能。我们不仅关注模型如何理解和生成信息，也关注模型如何形成可用于行动的环境表征，并进一步服务科学发现。",
   "围绕这些方向，实验室开展数据集与评测基准、学习与对齐方法、交互系统等研究，推动基础模型能力转化为面向复杂数字环境、物理世界与科学场景的可靠智能。"
 ]
-focus_heading = "研究视角"
-focus_items = [
-  "在统一的多模态系统中连接理解与生成。",
-  "打通从感知、推理到交互与行动的完整闭环。",
-  "构建结果可靠、科学内容正确且能够支持真实研究的智能系统。"
-]
-
 [zh.research]
 heading = "研究方向"
 intro = "我们研究能够感知、生成、推理与行动的多模态系统，将前沿成果转化为面向复杂真实场景的可靠智能。"
@@ -92,15 +76,6 @@ intro = "围绕实验室近期成果形成的研究系统、开源实现与项�
 [zh.people]
 heading = "成员"
 intro = "认识共同组成 MAIR 实验室的研究者与学生。"
-
-[zh.people.pi]
-name = "马志远 · Zhiyuan Ma"
-role = "负责人 · MAIR 实验室"
-institution = "华中科技大学"
-research = "研究方向：生成式人工智能、多模态智能、具身智能与科学智能"
-email = "mzyth@hust.edu.cn"
-image = "zhiyuan-ma.png"
-image_alt = "马志远老师肖像"
 
 [publication.sciir]
 order = 1

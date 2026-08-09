@@ -145,19 +145,6 @@
     border-radius: 999px;
   }
 
-  .latest-contact {
-    width: 78px;
-    height: 34px;
-    font-size: var(--text-1);
-  }
-
-  .latest-nav-actions-divider {
-    width: 1px;
-    height: 18px;
-    margin: 0 4px 0 2px;
-    background: rgb(0 0 0 / 14%);
-  }
-
   .latest-language-switch {
     display: flex;
     align-items: center;
@@ -190,8 +177,7 @@
     color: #fff;
   }
 
-  .latest-language-option:focus-visible,
-  .latest-contact:focus-visible {
+  .latest-language-option:focus-visible {
     outline: 2px solid #4667d7;
     outline-offset: 2px;
   }
@@ -388,7 +374,8 @@
   }
 
   .latest-section-copy {
-    max-width: 800px;
+    width: 100%;
+    max-width: none;
     margin: 20px 0 0;
     font-size: var(--text-3);
     line-height: 1.55;
@@ -453,7 +440,7 @@
   }
 
   .publications-section .latest-section-copy {
-    max-width: 680px;
+    max-width: none;
   }
 
   .people-section {
@@ -610,15 +597,14 @@
   }
 
   .publication-authors {
-    display: -webkit-box;
-    max-width: 560px;
+    display: block;
+    max-width: none;
     margin: 11px 0 0;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    overflow: visible;
     font-size: var(--text-2);
     line-height: 1.55;
     color: rgb(0 0 0 / 50%);
+    overflow-wrap: anywhere;
   }
 
   .publication-description {
@@ -1006,17 +992,6 @@
     .latest-nav-actions {
       height: 30px;
       padding: 2px;
-    }
-
-    .latest-contact {
-      width: 50px;
-      height: 24px;
-      font-size: var(--text-1);
-    }
-
-    .latest-nav-actions-divider {
-      height: 13px;
-      margin-inline: 2px;
     }
 
     .latest-language-switch {
@@ -1784,6 +1759,7 @@
 
   .latest-page.is-zh {
     --font-emphasis-weight: 700;
+    font-synthesis-weight: none;
   }
 
   .latest-page.is-zh .latest-title,
@@ -1837,19 +1813,6 @@
     padding: 0;
     border: 0;
     border-radius: 0;
-  }
-
-  .latest-contact {
-    width: auto;
-    height: auto;
-    padding-right: 14px;
-    color: var(--academic-accent);
-  }
-
-  .latest-nav-actions-divider {
-    height: 14px;
-    margin: 0 10px 0 0;
-    background: var(--academic-rule);
   }
 
   .latest-language-option {
@@ -2092,7 +2055,8 @@
   }
 
   .latest-section-copy {
-    max-width: 68ch;
+    width: 100%;
+    max-width: none;
     color: var(--academic-muted);
     line-height: 1.7;
   }
@@ -2240,6 +2204,10 @@
     padding: 0;
   }
 
+  .publication-feature:not(:first-child) {
+    padding-top: 24px;
+  }
+
   .publication-figure {
     min-height: 170px;
     border-color: var(--academic-rule);
@@ -2254,11 +2222,12 @@
     font-size: clamp(22px, 2.25vw, 30px);
     line-height: 1.2;
     letter-spacing: -0.025em;
+    margin-bottom: 0;
   }
 
   .publication-badge {
     min-height: 0;
-    margin-top: 12px;
+    margin: 6px 0 16px;
     padding: 0;
     border: 0;
     background: transparent;
@@ -2349,6 +2318,7 @@
   }
 
   .people-groups {
+    grid-template-columns: 1fr;
     gap: 36px 48px;
     border: 0;
   }
@@ -2442,13 +2412,116 @@
   }
 
   .people-pi-card + .people-groups {
-    margin-top: 44px;
+    margin-top: 58px;
   }
 
   .people-group {
     min-height: 0;
     padding: 0;
     border: 0;
+  }
+
+  .people-group + .people-group {
+    margin-top: 56px;
+  }
+
+  .people-group > h3 {
+    margin: 0 0 24px;
+    color: var(--academic-ink);
+    font-family: var(--font-emphasis);
+    font-size: var(--text-5);
+    font-weight: var(--font-emphasis-weight, 500);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .people-member-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 44px 24px;
+  }
+
+  .people-member {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .people-member-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    object-fit: cover;
+    object-position: center;
+    background: #f4f5f8;
+  }
+
+  .people-member-copy {
+    padding: 16px 6px 0;
+  }
+
+  .people-member h4 {
+    margin: 0;
+    color: var(--academic-ink);
+    font-family: var(--font-emphasis);
+    font-size: var(--text-3);
+    font-weight: var(--font-emphasis-weight, 500);
+    line-height: 1.3;
+  }
+
+  .people-member-meta,
+  .people-member-research,
+  .people-member-intern {
+    margin: 8px 0 0;
+    color: var(--academic-muted);
+    font-size: var(--text-1);
+    line-height: 1.5;
+  }
+
+  .people-member-meta {
+    margin-top: 7px;
+  }
+
+  .people-member-intern {
+    color: #252ca5;
+  }
+
+  .people-member-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    min-height: 24px;
+    margin-top: 12px;
+  }
+
+  .people-member-links a {
+    display: grid;
+    width: 26px;
+    height: 26px;
+    place-items: center;
+    color: var(--academic-muted);
+    text-decoration: none;
+    transition: color 160ms ease, transform 160ms ease;
+  }
+
+  .people-member-links a:hover {
+    color: #252ca5;
+    transform: translateY(-1px);
+  }
+
+  .people-member-links a:focus-visible {
+    outline: 2px solid #252ca5;
+    outline-offset: 3px;
+  }
+
+  .people-member-links svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .people-member.is-placeholder .people-member-photo {
+    outline: 1px dashed rgb(37 44 165 / 22%);
+    outline-offset: -1px;
   }
 
   .latest-footer-brand {
@@ -2632,6 +2705,32 @@
     .people-pi-email {
       font-size: var(--text-2);
     }
+
+    .people-pi-card + .people-groups {
+      margin-top: 42px;
+    }
+
+    .people-member-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 36px 16px;
+    }
+
+    .people-group + .people-group {
+      margin-top: 44px;
+    }
+
+    .people-group > h3 {
+      margin-bottom: 18px;
+      font-size: var(--text-4);
+    }
+
+    .people-member-copy {
+      padding: 13px 2px 0;
+    }
+
+    .people-member h4 {
+      font-size: var(--text-2);
+    }
   }
 
   @media (min-width: 640px) and (max-width: 900px) {
@@ -2642,6 +2741,11 @@
 
     .hero-ascii-canvas {
       height: 370px;
+    }
+
+    .people-member-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 38px 18px;
     }
   }
 
