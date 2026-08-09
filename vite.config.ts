@@ -1,4 +1,4 @@
-import { existsSync, rmSync, cpSync } from "node:fs"
+import { existsSync, rmSync, cpSync, copyFileSync, mkdirSync } from "node:fs"
 import { resolve } from "node:path"
 import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
@@ -21,9 +21,28 @@ function copyTmpoStaticPage() {
   }
 }
 
+function createRouteEntryPoints() {
+  return {
+    name: "create-route-entry-points",
+    closeBundle() {
+      const dist = resolve(__dirname, "dist")
+      const source = resolve(dist, "index.html")
+      const routes = ["about", "research", "publications", "projects", "people", "join"]
+
+      if (!existsSync(source)) return
+
+      for (const route of routes) {
+        const targetDirectory = resolve(dist, route)
+        mkdirSync(targetDirectory, { recursive: true })
+        copyFileSync(source, resolve(targetDirectory, "index.html"))
+      }
+    },
+  }
+}
+
 export default defineConfig({
   root: "app",
-  plugins: [react(), tailwindcss(), copyTmpoStaticPage()],
+  plugins: [react(), tailwindcss(), copyTmpoStaticPage(), createRouteEntryPoints()],
   build: {
     outDir: "../dist",
     emptyOutDir: true,

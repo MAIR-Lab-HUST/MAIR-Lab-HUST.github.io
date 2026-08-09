@@ -103,10 +103,24 @@ type PageRoute = "home" | "about" | "research" | "publications" | "projects" | "
 
 function getPageRoute(): PageRoute {
   if (typeof window === "undefined") return "home"
-  const route = window.location.hash.replace(/^#\/?/, "")
+  const pathnameRoute = window.location.pathname.replace(/^\/+|\/+$/g, "")
+  const hashRoute = window.location.hash.replace(/^#\/?/, "")
+  const route = pathnameRoute || hashRoute
   return route === "about" || route === "research" || route === "publications" || route === "projects" || route === "people" || route === "join"
     ? route
     : "home"
+}
+
+function getRoutePath(route: PageRoute) {
+  if (route === "home") return "/"
+  if (route === "research") return "/about"
+  return `/${route}`
+}
+
+function getCanonicalHref(href: string) {
+  const legacyRoute = href.replace(/^#\/?/, "")
+  if (!legacyRoute) return "/"
+  return legacyRoute === "research" ? "/about" : `/${legacyRoute}`
 }
 
 function App() {
@@ -120,8 +134,8 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = isChinese ? "zh-CN" : "en"
-    const routeHref = route === "home" ? "#/" : `#/${route}`
-    const currentPage = copy.nav.find((item) => item.href === routeHref)
+    const routeHref = getRoutePath(route)
+    const currentPage = copy.nav.find((item) => getCanonicalHref(item.href) === routeHref)
     document.title = currentPage ? `${currentPage.label} | ${copy.documentTitle}` : copy.documentTitle
     window.localStorage.setItem("mair-language", language)
   }, [copy.documentTitle, copy.nav, isChinese, language, route])
@@ -131,8 +145,12 @@ function App() {
       setRoute(getPageRoute())
       window.scrollTo({ top: 0, behavior: "instant" })
     }
+    window.addEventListener("popstate", handleRouteChange)
     window.addEventListener("hashchange", handleRouteChange)
-    return () => window.removeEventListener("hashchange", handleRouteChange)
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange)
+      window.removeEventListener("hashchange", handleRouteChange)
+    }
   }, [])
 
   return (
@@ -141,7 +159,7 @@ function App() {
       <header className="px-3 pt-2 sm:px-6 sm:pt-5">
         <nav className="latest-nav mx-auto flex items-center justify-between rounded-full border border-black/10 px-[10px]">
           <a
-            href="#/"
+            href="/"
             className="latest-brand leading-none text-black no-underline"
             style={{ fontFamily: displayFont }}
             aria-label={copy.brandAria}
@@ -153,9 +171,9 @@ function App() {
             {copy.nav.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
-                className={`latest-nav-link text-black no-underline transition-opacity duration-200 hover:opacity-55${route === (link.href === "#/" ? "home" : link.href.slice(2)) ? " is-active" : ""}`}
-                aria-current={route === (link.href === "#/" ? "home" : link.href.slice(2)) ? "page" : undefined}
+                href={getCanonicalHref(link.href)}
+                className={`latest-nav-link text-black no-underline transition-opacity duration-200 hover:opacity-55${getRoutePath(route) === getCanonicalHref(link.href) ? " is-active" : ""}`}
+                aria-current={getRoutePath(route) === getCanonicalHref(link.href) ? "page" : undefined}
               >
                 {link.label}
               </a>
@@ -185,7 +203,7 @@ function App() {
           <button type="button" className="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen((open) => !open)}>☰</button>
         </nav>
         {mobileMenuOpen && <div className="mobile-menu">
-          {copy.nav.map((link) => <a key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)}>{link.label}</a>)}
+          {copy.nav.map((link) => <a key={link.href} href={getCanonicalHref(link.href)} onClick={() => setMobileMenuOpen(false)}>{link.label}</a>)}
         </div>}
       </header>
 
@@ -199,7 +217,7 @@ function App() {
             <img src={hustLogoUrl} alt={copy.hero.hustAlt} className="latest-hust-logo object-contain" />
           </div>
 
-          <h1 id="hero-title" className="latest-title font-normal text-black" style={{ fontFamily: displayFont }}>
+          <h1 id="hero-title" className="latest-title font-normal text-black hero-acronym-title" style={{ fontFamily: displayFont }}>
             {copy.hero.title.map((line) => {
               const [letter, word] = line.split("|")
               return <span key={line} className="hero-acronym-line"><strong><b>{letter}</b>{word.slice(1)}</strong></span>
@@ -209,11 +227,11 @@ function App() {
             {copy.hero.intro.map((line) => <span key={line} className="block">{line}</span>)}
           </p>
           {route === "home" && <div className="home-hero-actions">
-            <a href="https://github.com/MAIR-Lab-HUST" target="_blank" rel="noreferrer" className="home-hero-action">
+            <a href="https://github.com/MAIR-Lab-HUST" target="_blank" rel="noreferrer" className="home-hero-action home-hero-action-english">
               <GithubLogo weight="bold" aria-hidden="true" />
               <span>GitHub</span>
             </a>
-            <a href="mailto:mzyth@hust.edu.cn" className="home-hero-action">
+            <a href="mailto:mzyth@hust.edu.cn" className="home-hero-action home-hero-action-english">
               <EnvelopeSimple weight="bold" aria-hidden="true" />
               <span>mzyth@hust.edu.cn</span>
             </a>
@@ -251,7 +269,7 @@ function App() {
           </section>
           }
 
-          {route === "research" &&
+          {(route === "about" || route === "research") &&
           <section id="research" className="homepage-major-section research-section scroll-mt-8">
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
               {content.research.heading}
