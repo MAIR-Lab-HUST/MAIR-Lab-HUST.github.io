@@ -1778,7 +1778,8 @@
     font-synthesis-weight: none;
   }
 
-  /* English identifiers stay in the Jost display face when Chinese UI copy is active. */
+  /* English identifiers stay in Jost Medium when Chinese UI copy is active.
+     Use the actual 500 face instead of the synthetic heavy display weight. */
   .latest-page.is-zh .latest-brand,
   .latest-page.is-zh .hero-acronym-title,
   .latest-page.is-zh .hero-acronym-title .hero-acronym-line,
@@ -1787,7 +1788,7 @@
   .latest-page.is-zh .home-hero-action-english,
   .latest-page.is-zh .home-hero-action-english span {
     font-family: "MAIR Jost Emphasis", "Jost", sans-serif !important;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
   }
 
   .latest-page.is-zh .latest-title,
