@@ -107,9 +107,7 @@ function App() {
   const copy = siteCopy[language]
   const content = pageContent[language]
   const isChinese = language === "zh"
-  const displayFont = isChinese
-    ? "'MAIR Douyin Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif"
-    : "'MAIR Jost Emphasis', 'Inter', sans-serif"
+  const displayFont = "'MAIR Jost Emphasis', 'MAIR Douyin Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif"
 
   useEffect(() => {
     document.documentElement.lang = isChinese ? "zh-CN" : "en"

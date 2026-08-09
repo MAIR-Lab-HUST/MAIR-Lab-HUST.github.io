@@ -46,16 +46,16 @@
 }
 
 @theme {
-  --font-display: "MAIR Jost Emphasis", "Inter", sans-serif;
-  --font-body: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-emphasis: "MAIR Jost Emphasis", "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "MAIR Jost Emphasis", "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: "MAIR Jost Emphasis", "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-emphasis: "MAIR Jost Emphasis", "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 @layer base {
   :root {
-    --font-display: "MAIR Jost Emphasis", "Inter", sans-serif;
-    --font-body: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-    --font-emphasis: "MAIR Jost Emphasis", "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-display: "MAIR Jost Emphasis", "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-body: "MAIR Jost Emphasis", "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-emphasis: "MAIR Jost Emphasis", "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
     /* Shared site type scale: keep every interface size on these eight steps. */
     --text-1: 12px;
     --text-2: 14px;
@@ -731,6 +731,10 @@
 
   .join-opportunity .join-markdown > p:has(> strong:only-child) {
     text-indent: 0;
+  }
+
+  .join-opportunity:nth-of-type(2) .join-markdown > p:first-child {
+    font-size: var(--text-3);
   }
 
   .join-opportunity ul {
@@ -1558,24 +1562,24 @@
 
   .latest-page.is-home .latest-brand,
   .latest-page.is-home .latest-footer-brand {
-    font-family: "MAIR Jost Emphasis", "Jost", sans-serif !important;
+    font-family: var(--font-emphasis) !important;
   }
 
   .latest-page:not(.is-zh) .latest-nav,
   .latest-page:not(.is-zh) .latest-nav a,
   .latest-page:not(.is-zh) .latest-nav button {
-    font-family: "MAIR Jost Emphasis", "Jost", sans-serif !important;
+    font-family: var(--font-emphasis) !important;
   }
 
   .latest-page.is-zh .latest-nav,
   .latest-page.is-zh .latest-nav a,
   .latest-page.is-zh .latest-nav button {
-    font-family: "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+    font-family: var(--font-emphasis) !important;
   }
 
   .latest-page:not(.is-home) .latest-brand,
   .latest-page:not(.is-home) .latest-footer-brand {
-    font-family: "MAIR Jost Emphasis", "Jost", sans-serif !important;
+    font-family: var(--font-emphasis) !important;
   }
 
   .latest-page:not(.is-home) .latest-footer {
@@ -1768,7 +1772,6 @@
   }
 
   .latest-page.is-zh {
-    --font-emphasis: "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
     --font-emphasis-weight: 700;
   }
 
