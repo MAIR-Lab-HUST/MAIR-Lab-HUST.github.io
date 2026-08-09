@@ -170,7 +170,7 @@ href = "https://aclanthology.org/2026.acl-long.2076/"
 
 [publication.momentumfm]
 order = 5
-image = "momentum-flow.png"
+image = "momentum-flow-transport.png"
 image_href = "https://arxiv.org/abs/2506.08796"
 badge_en = "Preprint · 2026"
 badge_zh = "预印本 · 2026"

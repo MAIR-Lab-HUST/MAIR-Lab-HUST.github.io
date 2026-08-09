@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Code, EnvelopeSimple, FileText, GithubLogo, GlobeSimple, LinkSimple } from "@phosphor-icons/react"
 import { motion } from "motion/react"
+import { marked } from "marked"
 import { HomepageAsciiBackground } from "@/components/IrisAsciiArt"
 import { pageContent, type Language } from "@/content"
 import hustLogoUrl from "@/assets/HUST_logo.png"
@@ -288,7 +289,7 @@ function App() {
             <div className="join-opportunity-grid">
               {content.join.opportunities.map((opportunity) => (
                 <article key={opportunity.title} className="join-opportunity">
-                  <h3>{opportunity.title}</h3>
+                  <h3 dangerouslySetInnerHTML={{ __html: marked.parseInline(opportunity.title, { async: false }) }} />
                   <div className="join-markdown" dangerouslySetInnerHTML={{ __html: opportunity.html }} />
                 </article>
               ))}

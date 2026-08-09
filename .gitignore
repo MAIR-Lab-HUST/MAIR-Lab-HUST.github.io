@@ -2,4 +2,7 @@ node_modules/
 dist/
 *.local
 *.log
-
+.edge-cdp-*/
+.codex-edge-diag/
+app/public/assets/momentum-flow-transport.png
+assets/momentum-flow-transport.png
