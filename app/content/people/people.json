@@ -106,20 +106,20 @@
       "members": [
         {
           "placeholder": true,
-          "name_en": "Example Member E",
-          "name_zh": "示例成员 E",
+          "name_en": "Chenyu Zhu",
+          "name_zh": "朱晨宇",
           "photo": "people-placeholder-01.svg",
-          "photo_alt_en": "Placeholder portrait for Example Member E",
-          "photo_alt_zh": "示例成员 E 的占位头像",
-          "meta_en": "Undergraduate · 2025",
-          "meta_zh": "本科生 · 2025",
-          "research_en": "Multimodal Learning · Visual Reasoning",
-          "research_zh": "多模态学习 · 视觉推理",
+          "photo_alt_en": "Placeholder portrait for Chenyu Zhu",
+          "photo_alt_zh": "朱晨宇的占位头像",
+          "meta_en": "Undergraduate · 2023",
+          "meta_zh": "本科生 · 2023",
+          "research_en": "Multimodal Post-training · World Models",
+          "research_zh": "多模态后训练 · 世界模型",
           "intern_en": "",
           "intern_zh": "",
-          "homepage": "",
-          "scholar": "",
-          "github": ""
+          "homepage": "https://chael-chael.github.io/",
+          "scholar": "https://scholar.google.com/citations?user=k_GGXCkAAAAJ",
+          "github": "https://github.com/Chael-Chael"
         }
       ]
     },
