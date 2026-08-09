@@ -47,6 +47,7 @@ interface Publication {
   title: string
   authors: PublicationAuthor[]
   badge: string
+  date: string
   description: string
   image: string
   imageHref: string
@@ -82,6 +83,16 @@ interface PeopleGroup {
   html: string
 }
 
+interface PrincipalInvestigator {
+  name: string
+  role: string
+  institution: string
+  research: string
+  email: string
+  image: string
+  imageAlt: string
+}
+
 export interface PageContent {
   news: SectionCopy & { items: NewsItem[] }
   about: Required<AboutSectionCopy>
@@ -89,7 +100,7 @@ export interface PageContent {
   join: Required<SectionCopy> & { opportunities: JoinOpportunity[] }
   publications: PublicationSectionCopy & { items: Publication[] }
   projects: Required<SectionCopy> & { items: Publication[] }
-  people: Required<SectionCopy> & { groups: PeopleGroup[] }
+  people: Required<SectionCopy> & { principalInvestigator: PrincipalInvestigator; groups: PeopleGroup[] }
 }
 
 interface BibEntry {
@@ -401,6 +412,7 @@ function parsePublications(language: Language): Publication[] {
         title: requiredString(bib.fields.title, `publications.bib: ${citationKey}.title`),
         authors: parsePublicationAuthors(requiredString(bib.fields.author, `publications.bib: ${citationKey}.author`), citationKey),
         badge: requiredString(display[`badge_${language}`], `publication.${citationKey}.badge_${language}`),
+        date: requiredString(display.date, `publication.${citationKey}.date`),
         description: requiredString(
           display[`description_${language}`],
           `publication.${citationKey}.description_${language}`,
@@ -472,6 +484,18 @@ function buildPageContent(language: Language): PageContent {
     people: {
       heading: requiredString(people.heading, `${language}.people.heading`),
       intro: requiredString(people.intro, `${language}.people.intro`),
+      principalInvestigator: (() => {
+        const pi = requiredRecord(people.pi, `${language}.people.pi`)
+        return {
+          name: requiredString(pi.name, `${language}.people.pi.name`),
+          role: requiredString(pi.role, `${language}.people.pi.role`),
+          institution: requiredString(pi.institution, `${language}.people.pi.institution`),
+          research: requiredString(pi.research, `${language}.people.pi.research`),
+          email: requiredString(pi.email, `${language}.people.pi.email`),
+          image: assetUrl(pi.image, `${language}.people.pi.image`),
+          imageAlt: requiredString(pi.image_alt, `${language}.people.pi.image_alt`),
+        }
+      })(),
       groups: parsePeople(language),
     },
   }

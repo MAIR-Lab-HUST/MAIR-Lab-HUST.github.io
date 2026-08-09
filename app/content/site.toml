@@ -41,6 +41,15 @@ intro = "Research systems, open-source implementations, and project pages develo
 heading = "People"
 intro = "Meet the researchers and students who make up MAIR Lab."
 
+[en.people.pi]
+name = "Zhiyuan Ma · 马志远"
+role = "Principal Investigator · MAIR Lab"
+institution = "Huazhong University of Science and Technology"
+research = "Research: Generative AI, Multimodal Intelligence, Embodied AI, and AI for Science"
+email = "mzyth@hust.edu.cn"
+image = "zhiyuan-ma.png"
+image_alt = "Portrait of Zhiyuan Ma"
+
 [zh.news]
 heading = "实验室动态"
 
@@ -84,8 +93,18 @@ intro = "围绕实验室近期成果形成的研究系统、开源实现与项�
 heading = "成员"
 intro = "认识共同组成 MAIR 实验室的研究者与学生。"
 
+[zh.people.pi]
+name = "马志远 · Zhiyuan Ma"
+role = "负责人 · MAIR 实验室"
+institution = "华中科技大学"
+research = "研究方向：生成式人工智能、多模态智能、具身智能与科学智能"
+email = "mzyth@hust.edu.cn"
+image = "zhiyuan-ma.png"
+image_alt = "马志远老师肖像"
+
 [publication.sciir]
 order = 1
+date = "2026-06"
 image = "sciir-overview.png"
 image_href = "https://sci-ir.vercel.app/sciir.html"
 badge_en = "Paper · ECCV 2026"
@@ -109,6 +128,7 @@ href = "https://sci-ir.vercel.app/sciir.html"
 
 [publication.cliuniverse]
 order = 2
+date = "2026-06"
 image = "cli-universe-overview.png"
 image_href = "https://arxiv.org/abs/2606.22883"
 badge_en = "Preprint · 2026"
@@ -124,6 +144,7 @@ href = "https://arxiv.org/abs/2606.22883"
 
 [publication.tmpo]
 order = 3
+date = "2026-05"
 image = "tmpo-method.png"
 image_href = "https://arxiv.org/abs/2605.10983"
 badge_en = "Paper · Preprint 2026"
@@ -147,6 +168,7 @@ href = "https://mair-lab-hust.github.io/TMPO/"
 
 [publication.i2e]
 order = 4
+date = "2026-01"
 image = "i2e-method.png"
 image_href = "https://image2env.github.io/"
 badge_en = "Paper · ACL 2026"
@@ -170,6 +192,7 @@ href = "https://aclanthology.org/2026.acl-long.2076/"
 
 [publication.momentumfm]
 order = 5
+date = "2025-06"
 image = "momentum-flow-transport.png"
 image_href = "https://arxiv.org/abs/2506.08796"
 badge_en = "Preprint · 2026"
@@ -189,6 +212,7 @@ href = "https://github.com/liuruixun/momentum-fm"
 
 [publication.rldiffusionsurvey]
 order = 6
+date = "2026-06"
 image = "rl-diffusion-survey.svg"
 image_href = "#publication-rldiffusionsurvey"
 badge_en = "Survey · Preprint 2026"
@@ -201,6 +225,7 @@ links = []
 
 [publication.mild]
 order = 7
+date = "2025-08"
 image = "mild-human-erasing.png"
 image_href = "https://arxiv.org/abs/2508.06543"
 badge_en = "Preprint · 2026"
@@ -216,6 +241,7 @@ href = "https://arxiv.org/abs/2508.06543"
 
 [publication.vcvton]
 order = 9
+date = "2026-07"
 image = "vc-vton.svg"
 image_href = "https://doi.org/10.1109/TIP.2026.3700904"
 badge_en = "Paper · TIP 2026"
@@ -231,6 +257,7 @@ href = "https://doi.org/10.1109/TIP.2026.3700904"
 
 [publication.dynappi]
 order = 8
+date = "2025-12"
 image = "dynappi.svg"
 image_href = "https://neurips.cc/virtual/2025/125787"
 badge_en = "Workshop · NeurIPS 2025"

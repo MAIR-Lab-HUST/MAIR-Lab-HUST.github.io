@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Code, EnvelopeSimple, FileText, GithubLogo, GlobeSimple, LinkSimple } from "@phosphor-icons/react"
+import { Code, EnvelopeSimple, FileText, GithubLogo, GlobeSimple, GraduationCap, House, LinkSimple } from "@phosphor-icons/react"
 import { motion } from "motion/react"
 import { marked } from "marked"
 import { HomepageAsciiBackground } from "@/components/IrisAsciiArt"
@@ -12,6 +12,18 @@ const publicationLinkIcons = {
   code: Code,
   project: GlobeSimple,
   acl: LinkSimple,
+}
+
+const isPreprintBadge = (badge: string) => /预印本|preprint/i.test(badge)
+
+const formatPublicationBadge = (badge: string) => {
+  const separatorIndex = badge.indexOf("·")
+  return separatorIndex >= 0 ? badge.slice(separatorIndex + 1).trim() : badge
+}
+
+const formatPublicationDate = (date: string) => {
+  const [year, month] = date.split("-")
+  return `${year}.${month}`
 }
 
 const siteCopy = {
@@ -230,17 +242,10 @@ function App() {
             <h2 className="latest-section-title font-normal" style={{ fontFamily: displayFont }}>
               {content.about.heading}
             </h2>
-            <p className="latest-section-copy">{content.about.intro}</p>
-            <div className="about-layout">
+            <div className="about-layout about-layout-single">
               <div className="about-narrative">
                 {content.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
-              <aside className="about-focus">
-                <h3>{content.about.focusHeading}</h3>
-                <ol>
-                  {content.about.focusItems.map((item) => <li key={item}>{item}</li>)}
-                </ol>
-              </aside>
             </div>
             <div className="about-news" aria-labelledby="news-heading">
               <h3 id="news-heading" className="latest-heading font-medium uppercase">{content.news.heading}</h3>
@@ -316,7 +321,9 @@ function App() {
 
                   <div className="publication-copy">
                     <h3 className="publication-title">{item.title}</h3>
-                    <span className={`publication-badge ${/预印本|preprint/i.test(item.badge) ? "is-preprint" : ""}`}>{item.badge}</span>
+                    <span className={`publication-badge ${isPreprintBadge(item.badge) ? "is-preprint" : "is-accepted"}`}>
+                      {formatPublicationBadge(item.badge)}/{formatPublicationDate(item.date)}
+                    </span>
                     <p className="publication-authors">
                       {item.authors.map((author, index) => <span key={`${author.name}-${index}`} className={author.isLabAuthor ? "publication-author lab-author" : "publication-author"}>
                         {index > 0 ? ", " : ""}{author.name}
@@ -349,13 +356,15 @@ function App() {
             </h2>
             <p className="latest-section-copy">{content.projects.intro}</p>
             <div className="project-list">
-              {content.projects.items.map((item) => (
+              {content.projects.items.filter((item) => item.citationKey === "sciir").map((item) => (
                 <article key={item.citationKey} className="project-feature">
                   <a href={item.imageHref} target="_blank" rel="noreferrer" className="project-figure" aria-label={`${content.publications.openLabel} ${item.title}`}>
                     <img src={item.image} alt={item.imageAlt} />
                   </a>
                   <div className="project-copy">
-                    <span className={`publication-badge ${/预印本|preprint/i.test(item.badge) ? "is-preprint" : ""}`}>{item.badge}</span>
+                    <span className={`publication-badge ${isPreprintBadge(item.badge) ? "is-preprint" : "is-accepted"}`}>
+                      {formatPublicationBadge(item.badge)}/{formatPublicationDate(item.date)}
+                    </span>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
                     <div className="publication-links" aria-label={`${item.title} ${content.publications.linksLabel}`}>
@@ -383,6 +392,24 @@ function App() {
               {content.people.heading}
             </h2>
             <p className="latest-section-copy">{content.people.intro}</p>
+            <article className="people-pi-card">
+              <a href="https://ponymzy.github.io/" target="_blank" rel="noreferrer" className="people-pi-portrait-link" aria-label={content.people.principalInvestigator.name}>
+                <img className="people-pi-portrait" src={content.people.principalInvestigator.image} alt={content.people.principalInvestigator.imageAlt} />
+              </a>
+              <div className="people-pi-copy">
+                <h3>{content.people.principalInvestigator.name}</h3>
+                <p className="people-pi-role">{content.people.principalInvestigator.role}</p>
+                <p>{content.people.principalInvestigator.institution}</p>
+                <p>{content.people.principalInvestigator.research}</p>
+                <a className="people-pi-email" href={`mailto:${content.people.principalInvestigator.email}`}>{content.people.principalInvestigator.email}</a>
+                <div className="people-pi-links" aria-label={`${content.people.principalInvestigator.name} links`}>
+                  <a href="https://ponymzy.github.io/" target="_blank" rel="noreferrer" aria-label="Homepage" title="Homepage"><House weight="regular" aria-hidden="true" /></a>
+                  <a href="https://scholar.google.com.hk/citations?hl=zh-CN&user=pJRStG4AAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar"><GraduationCap weight="regular" aria-hidden="true" /></a>
+                  <a href="https://github.com/ponymzy" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><GithubLogo weight="regular" aria-hidden="true" /></a>
+                  <a href={`mailto:${content.people.principalInvestigator.email}`} aria-label="Email" title="Email"><EnvelopeSimple weight="regular" aria-hidden="true" /></a>
+                </div>
+              </div>
+            </article>
             <div className="people-groups">
               {content.people.groups.map((group, index) => (
                 <section key={group.title} className="people-group" aria-labelledby={`people-group-${index}`}>
