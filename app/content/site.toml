@@ -5,8 +5,14 @@ heading = "News"
 heading = "About"
 intro = "MAIR Lab is a research group at Huazhong University of Science and Technology studying multimodal intelligence across perception, generation, reasoning, and action."
 paragraphs = [
-  "Our research connects multimodal intelligence, physical intelligence, and AI for science. We study not only how models understand and generate information, but also how they acquire actionable representations of environments and support scientific discovery.",
-  "Across these directions, we develop datasets, benchmarks, learning and alignment methods, and interactive systems. Our goal is to turn advances in foundation models into reliable intelligence for complex digital, physical, and scientific settings."
+  "Founded in 2025 at the School of Computer Science and Technology, Huazhong University of Science and Technology, **MAIR Lab**, led by **Associate Professor Zhiyuan Ma**, is dedicated to advancing the next generation of artificial intelligence through **Multimodal Intelligence, Physical Intelligence, and Scientific Intelligence**. We aim to build systems that go beyond understanding and generating information—AI that can **understand the world, act upon it, and ultimately discover the principles that govern it**, bridging digital intelligence with the physical world and scientific discovery.",
+  "We focus on three core capabilities that lead toward real-world intelligence:",
+  "* **Multimodal Intelligence** enables models to jointly understand language, vision, and other modalities, forming structured and generalizable representations of complex environments and providing the cognitive foundation for machines to comprehend the world.",
+  "* **Physical Intelligence** takes intelligence from understanding to action, enabling systems to perceive their surroundings, reason about spatial relationships and physical constraints, and accomplish complex real-world tasks through reasoning, planning, interaction, and manipulation.",
+  "* **Scientific Intelligence** moves AI beyond solving predefined problems toward discovering the unknown, enabling systems to participate in scientific reasoning, modeling, experimentation, and verification, and ultimately to help expand the frontier of human knowledge.",
+  "These three capabilities are not isolated. Together, they form a progression from **understanding, to acting, to discovering**: **multimodal intelligence enables machines to understand the world, physical intelligence allows them to act in the world, and scientific intelligence empowers them to explain and discover how the world works.** Together, they point toward a single goal: building intelligent systems that are deeply grounded in complex real-world environments, capable of autonomous action, and able to continuously expand the boundaries of knowledge.",
+  "Toward this vision, we conduct research across **data and evaluation, learning and alignment, and agentic and interactive systems**, spanning multimodal foundation models, AI agents, embodied intelligence, and AI for Science. Our work investigates the fundamental mechanisms of perception, reasoning, planning, action, and discovery across digital environments, the physical world, and scientific domains.",
+  "We believe the next generation of AI will be defined not by model scale alone, but by how **perception, reasoning, action, and discovery come together within a unified intelligent system**. Our goal is to advance AI from **understanding information to interacting with environments, from reactive responses to autonomous action, and from solving existing problems to discovering new problems and underlying principles**."
 ]
 focus_heading = "Research perspective"
 focus_items = [
@@ -48,8 +54,14 @@ heading = "实验室动态"
 heading = "关于我们"
 intro = "MAIR 实验室隶属于华中科技大学，围绕感知、生成、推理与行动研究多模态智能。"
 paragraphs = [
-  "我们的研究连接多模态智能、物理智能与科学智能。我们不仅关注模型如何理解和生成信息，也关注模型如何形成可用于行动的环境表征，并进一步服务科学发现。",
-  "围绕这些方向，实验室开展数据集与评测基准、学习与对齐方法、交互系统等研究，推动基础模型能力转化为面向复杂数字环境、物理世界与科学场景的可靠智能。"
+  "华中科技大学计算机学院 **MAIR 实验室**成立于 2025 年，由**马志远副教授**带领，致力于探索从**多模态智能（Multimodal Intelligence）**、**物理智能（Physical Intelligence）**到**科学智能（Scientific Intelligence）**的新一代人工智能。我们希望构建的不只是能够理解和生成信息的模型，而是能够**理解世界、作用于世界，并进一步发现世界规律**的智能系统，推动人工智能从数字空间走向物理世界与科学发现。",
+  "我们聚焦通向真实世界智能的三类核心能力：",
+  "* **多模态智能（Multimodal Intelligence）**赋予模型统一理解语言、视觉及其他模态信息的能力，使其能够在复杂环境中形成结构化、可泛化的世界表征，为机器理解世界奠定认知基础。",
+  "* **物理智能（Physical Intelligence）**让智能从“理解”进一步走向“行动”，使模型能够感知环境、理解空间关系与物理规律，并通过推理、规划、交互与操作完成真实世界中的复杂任务。",
+  "* **科学智能（Scientific Intelligence）**推动人工智能从解决既定问题迈向探索未知规律，使模型能够参与科学推理、建模、实验与验证，辅助知识发现，并不断拓展人类认识世界的边界。",
+  "三者并非彼此孤立，而是构成一条从**理解、行动到发现**的能力链条：**多模态智能让机器理解世界，物理智能让机器作用于世界，科学智能让机器进一步解释世界并发现其内在规律。** 它们共同指向一个目标——构建真正扎根于复杂现实环境、具备自主行动能力，并能够持续拓展认知边界的智能系统。",
+  "围绕这一愿景，我们从**数据与评测、学习与对齐、智能体与交互系统**等层面开展系统研究，覆盖多模态基础模型、Agent、具身智能与 AI for Science 等方向，探索机器在数字空间、物理世界与科学场景中的感知、推理、规划、行动与发现机制。",
+  "我们相信，下一代人工智能的关键不只在于更大的模型规模，而在于**感知、推理、行动与发现能力如何在统一的智能系统中协同形成**。我们的目标，是推动人工智能从**信息理解走向环境交互，从被动响应走向自主行动，从解决问题走向发现问题与规律**。"
 ]
 [zh.research]
 heading = "研究方向"
@@ -78,7 +90,7 @@ heading = "成员"
 intro = "认识共同组成 MAIR 实验室的研究者与学生。"
 
 [publication.sciir]
-order = 1
+order = 2
 date = "2026-06"
 image = "sciir-overview.png"
 image_href = "https://sci-ir.vercel.app/sciir.html"
@@ -102,7 +114,7 @@ kind = "project"
 href = "https://sci-ir.vercel.app/sciir.html"
 
 [publication.cliuniverse]
-order = 2
+order = 3
 date = "2026-06"
 image = "cli-universe-overview.png"
 image_href = "https://arxiv.org/abs/2606.22883"
@@ -118,7 +130,7 @@ kind = "paper"
 href = "https://arxiv.org/abs/2606.22883"
 
 [publication.tmpo]
-order = 3
+order = 6
 date = "2026-05"
 image = "tmpo-method.png"
 image_href = "https://arxiv.org/abs/2605.10983"
@@ -142,7 +154,7 @@ kind = "project"
 href = "https://mair-lab-hust.github.io/TMPO/"
 
 [publication.i2e]
-order = 4
+order = 8
 date = "2026-01"
 image = "i2e-method.png"
 image_href = "https://image2env.github.io/"
@@ -166,7 +178,7 @@ kind = "acl"
 href = "https://aclanthology.org/2026.acl-long.2076/"
 
 [publication.momentumfm]
-order = 5
+order = 13
 date = "2025-06"
 image = "momentum-flow-transport.png"
 image_href = "https://arxiv.org/abs/2506.08796"
@@ -186,7 +198,7 @@ kind = "code"
 href = "https://github.com/liuruixun/momentum-fm"
 
 [publication.rldiffusionsurvey]
-order = 6
+order = 4
 date = "2026-06"
 image = "rl-diffusion-survey.svg"
 image_href = "#publication-rldiffusionsurvey"
@@ -199,7 +211,7 @@ image_alt_zh = "面向语言与视觉的强化学习驱动扩散模型"
 links = []
 
 [publication.mild]
-order = 7
+order = 12
 date = "2025-08"
 image = "mild-human-erasing.png"
 image_href = "https://arxiv.org/abs/2508.06543"
@@ -215,9 +227,9 @@ kind = "paper"
 href = "https://arxiv.org/abs/2508.06543"
 
 [publication.vcvton]
-order = 9
+order = 1
 date = "2026-07"
-image = "vc-vton.svg"
+image = "vc-vton-paper.png"
 image_href = "https://doi.org/10.1109/TIP.2026.3700904"
 badge_en = "Paper · TIP 2026"
 badge_zh = "论文 · TIP 2026"
@@ -231,9 +243,9 @@ kind = "paper"
 href = "https://doi.org/10.1109/TIP.2026.3700904"
 
 [publication.dynappi]
-order = 8
+order = 9
 date = "2025-12"
-image = "dynappi.svg"
+image = "dynappi-paper.png"
 image_href = "https://neurips.cc/virtual/2025/125787"
 badge_en = "Workshop · NeurIPS 2025"
 badge_zh = "研讨会 · NeurIPS 2025"
@@ -245,3 +257,92 @@ image_alt_zh = "DynaPPI 动态蛋白质相互作用数据集概览"
 [[publication.dynappi.links]]
 kind = "paper"
 href = "https://neurips.cc/virtual/2025/125787"
+
+[publication.edmsurvey]
+order = 11
+date = "2025-09"
+image = "edm-survey-paper.png"
+image_href = "https://doi.org/10.1109/TPAMI.2025.3569700"
+badge_en = "Survey · TPAMI 2025"
+badge_zh = "综述 · TPAMI 2025"
+description_en = "A comprehensive efficiency-oriented survey of diffusion models, organizing practical advances in architecture, training, inference, and deployment."
+description_zh = "从效率视角系统梳理扩散模型的架构设计、训练、推理与部署方法，为理论研究和实际应用提供统一脉络。"
+image_alt_en = "Efficient diffusion models survey spanning principles and practical methods"
+image_alt_zh = "高效扩散模型的原理与实践综述"
+
+[[publication.edmsurvey.links]]
+kind = "paper"
+href = "https://doi.org/10.1109/TPAMI.2025.3569700"
+
+[[publication.edmsurvey.links]]
+kind = "code"
+href = "https://github.com/TsinghuaC3I/Efficient-Diffusion-Models"
+
+[publication.unitransfer]
+order = 10
+date = "2025-12"
+image = "unitransfer-paper.png"
+image_href = "https://yu-shaonian.github.io/UniTransfer-Web/"
+badge_en = "Paper · NeurIPS 2025"
+badge_zh = "论文 · NeurIPS 2025"
+description_en = "A progressive video concept-transfer framework that disentangles foreground, background, and motion, then guides diffusion with stage-specific prompts for precise control."
+description_zh = "通过渐进式分解前景、背景与运动，并以分阶段提示引导扩散生成，实现精细、可控的视频概念迁移。"
+image_alt_en = "UniTransfer progressive spatial and timestep decomposition for video concept transfer"
+image_alt_zh = "UniTransfer 的视频概念迁移渐进式空间与时间步分解"
+
+[[publication.unitransfer.links]]
+kind = "paper"
+href = "https://papers.neurips.cc/paper_files/paper/2025/hash/7f05193e5487287a890df7fbc3554427-Abstract-Conference.html"
+
+[[publication.unitransfer.links]]
+kind = "project"
+href = "https://yu-shaonian.github.io/UniTransfer-Web/"
+
+[publication.opera]
+order = 7
+date = "2026-02"
+image = "opera-paper.png"
+image_href = "https://doi.org/10.1609/AAAI.V40I38.40499"
+badge_en = "Paper · AAAI 2026"
+badge_zh = "论文 · AAAI 2026"
+description_en = "A reasoning-driven multi-hop retrieval framework that orchestrates goal planning, retrieval, and evidence filtering, trained with a multi-agent GRPO variant."
+description_zh = "面向多跳检索的推理驱动框架，协同目标规划、检索与证据筛选，并通过多智能体 GRPO 变体进行训练。"
+image_alt_en = "OPERA planner-executor architecture for reasoning-oriented multi-hop retrieval"
+image_alt_zh = "OPERA 面向推理型多跳检索的规划器-执行器架构"
+
+[[publication.opera.links]]
+kind = "paper"
+href = "https://doi.org/10.1609/AAAI.V40I38.40499"
+
+[[publication.opera.links]]
+kind = "code"
+href = "https://github.com/Ameame1/OPERA"
+
+[publication.dramtransfer]
+order = 5
+date = "2026-06"
+image = "dra-mtransfer-paper.png"
+image_href = "#publication-dramtransfer"
+badge_en = "Workshop · CVPR 2026"
+badge_zh = "研讨会 · CVPR 2026"
+description_en = "A dual-grained re-adaptation method for video motion transfer that reactivates pretrained motion priors to improve physical realism without sacrificing transfer fidelity."
+description_zh = "通过双粒度再适配重新激活预训练视频扩散模型中的运动先验，在保持迁移保真度的同时提升动作的物理真实感。"
+image_alt_en = "DRA-MTransfer dual-grained re-adaptation for physically realistic video motion transfer"
+image_alt_zh = "DRA-MTransfer 的双粒度再适配视频运动迁移方法"
+links = []
+
+[publication.dreamalign]
+order = 14
+date = "2025-04"
+image = "dreamalign-paper.png"
+image_href = "https://doi.org/10.1609/aaai.v39i5.32577"
+badge_en = "Paper · AAAI 2025"
+badge_zh = "论文 · AAAI 2025"
+description_en = "A reward-free text-to-3D optimization approach that combines expert preference data, direct 3D preference optimization, and contrastive feedback for better human alignment."
+description_zh = "结合专家偏好数据、直接 3D 偏好优化与对比反馈的无奖励文本生成 3D 方法，提升生成结果与人类偏好的对齐。"
+image_alt_en = "DreamAlign human-preference-aligned text-to-3D optimization"
+image_alt_zh = "DreamAlign 的人类偏好对齐文本生成 3D 优化"
+
+[[publication.dreamalign.links]]
+kind = "paper"
+href = "https://doi.org/10.1609/aaai.v39i5.32577"

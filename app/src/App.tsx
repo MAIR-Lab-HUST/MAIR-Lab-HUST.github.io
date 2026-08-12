@@ -25,6 +25,12 @@ const formatPublicationBadge = (badge: string) => {
   return separatorIndex >= 0 ? badge.slice(separatorIndex + 1).trim() : badge
 }
 
+const renderBoldMarkdown = (text: string) => text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
+  part.startsWith("**") && part.endsWith("**")
+    ? <strong key={index}>{part.slice(2, -2)}</strong>
+    : part,
+)
+
 const siteCopy = {
   en: {
     documentTitle: "MAIR Lab @ HUST",
@@ -200,11 +206,13 @@ function App() {
               </button>
             </div>
           </div>
-          <button type="button" className="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen((open) => !open)}>☰</button>
+          <button type="button" className={`mobile-menu-toggle${mobileMenuOpen ? " is-open" : ""}`} aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen((open) => !open)}>
+            <span /><span /><span />
+          </button>
         </nav>
-        {mobileMenuOpen && <div className="mobile-menu">
+        <div className={`mobile-menu${mobileMenuOpen ? " is-open" : ""}`} aria-hidden={!mobileMenuOpen}>
           {copy.nav.map((link) => <a key={link.href} href={getCanonicalHref(link.href)} onClick={() => setMobileMenuOpen(false)}>{link.label}</a>)}
-        </div>}
+        </div>
       </header>
 
       <main key={route} className="page-transition">
@@ -249,20 +257,24 @@ function App() {
             </h2>
             <div className="about-layout about-layout-single">
               <div className="about-narrative">
-                {content.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {content.about.paragraphs.map((paragraph) => {
+                  const isBullet = paragraph.startsWith("* ")
+                  const text = isBullet ? paragraph.slice(2) : paragraph
+                  return <p key={paragraph} className={isBullet ? "about-narrative-bullet" : undefined}>{renderBoldMarkdown(text)}</p>
+                })}
               </div>
             </div>
             <div className="about-news" aria-labelledby="news-heading">
               <h3 id="news-heading" className="latest-heading font-medium uppercase">{content.news.heading}</h3>
               {content.news.items.map((item) => (
                 <div key={`${item.href}-${item.title}`} className="latest-row grid items-start">
-                  <span className="latest-row-type font-medium">{item.type}</span>
+                  <time className="latest-row-date font-normal">{item.date}</time>
                   <div className="latest-row-body">
+                    <span className="latest-row-tag">{item.type.replace(/:$/, "")}</span>
                     <a href={item.href} target="_blank" rel="noreferrer" className="latest-row-title font-medium no-underline transition-opacity duration-200 hover:opacity-60">
                       {item.title}
                     </a>
                   </div>
-                  <time className="latest-row-date text-right font-normal">{item.date}</time>
                 </div>
               ))}
             </div>
