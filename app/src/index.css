@@ -2135,7 +2135,7 @@
 
   .about-narrative p {
     margin: 0 0 22px;
-    color: var(--academic-ink);
+    color: var(--academic-muted);
     font-size: 18px;
     line-height: 1.62;
     letter-spacing: -0.012em;
@@ -2147,7 +2147,10 @@
     font-family: "MAIR Douyin Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   }
 
-  .about-narrative strong { font-weight: 700; }
+  .about-narrative strong {
+    color: var(--academic-ink);
+    font-weight: 700;
+  }
 
   .about-narrative .about-narrative-bullet {
     position: relative;
